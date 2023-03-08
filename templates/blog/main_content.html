@@ -1,0 +1,996 @@
+<!-- Main Content -->
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    :root {
+        --color-gray-90: hsl(0, 0%, 90%);
+        --color-gray-80: hsl(0, 0%, 80%);
+        --color-gray-50: hsl(0, 0%, 50%);
+        --color-light: hsl(0, 0%, 100%);
+        --font-size-initial: 11px;
+        --size-initial: 1px;
+    }
+
+    body {
+        background: var(--color-gray-90);
+        color: var(--color-gray-50);
+        font-family: BlinkMacSystemFont, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: var(--font-size-initial);
+    }
+
+    /* CONTAINERS */
+
+    .main_ard {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(calc(var(--font-size-initial) * 18), 1fr));
+        gap: calc(var(--font-size-initial) * 2);
+        max-width: calc(var(--font-size-initial) * 80);
+        padding: calc(var(--font-size-initial) * 1);
+    }
+
+    .section_ard {
+        background: var(--color-light);
+        border-radius: calc(var(--font-size-initial) * .5);
+        box-shadow: 0 calc(var(--size-initial) * 3) calc(var(--size-initial) * 6) hsla(0, 0%, 0%, .1);
+        overflow: hidden;
+    }
+
+    .article_ard {
+        padding: calc(var(--font-size-initial) * 1);
+    }
+
+    figure_ard {
+        height: calc(var(--font-size-initial) * 15);
+    }
+
+    /* IMAGE */
+
+    .img_ard {
+        height: 250px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    /* TYPOGRAPHY */
+
+    .h3_ard {
+        font-size: calc(var(--font-size-initial) * 2);
+        letter-spacing: calc(var(--size-initial) * -1.25);
+        line-height: calc(var(--font-size-initial) * 2.25);
+        margin: calc(var(--font-size-initial) * .5) 0;
+    }
+
+    .p_ard {
+        font-size: calc(var(--font-size-initial) * 1.100);
+        line-height: calc(var(--font-size-initial) * 1.25);
+    }
+
+    #owl-demo_ard .item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+{% load static %}
+<div class="col-lg-9">
+    <div class="main_content">
+
+
+
+        <style>
+
+            /* make headings larger and bolder */
+            h2 {
+                font-size: 28px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+            /* add padding to sections */
+            .section {
+                padding: 50px 0;
+            }
+
+            /* add border and shadow to image */
+            img {
+                border: 1px solid #ccc;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            }
+        </style>
+        
+ <!-- values -->
+        <div class="py-5 section">
+            <div class="section_title" id="values">Values...</div>
+            <div class="container py-5">
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <h2 class="text-danger">Mission</h2>
+                        <p class="text-dark" style="font-size: 1.1rem; ">A strong nation lies in its youth who are
+                            empowered with
+                            the right values, take pride in the country and are able and willing to contribute for its
+                            growth
+                            and development. So Utkrishta Bharat as team aims at organising programmes that help in
+                            promoting
+                            nationalistic thinking and cultural ethos amongst the youth.</p>
+                    </div>
+                    <div class="col-lg-5 px-0 mx-auto order-1 order-lg-2">
+                        <div class="embed-responsive embed-responsive-16by9 mb-4">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/7GKmAm_mXJM"
+                                title="Utkrishta Bharath Trailer | Krivanto Viswam Aryam" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                        <img src="{% static 'images/culture1.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="" />
+                    </div>
+        
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="{% static 'images/a1.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt=" " />
+                    </div>
+        
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="{% static 'images/culture2.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="" />
+        
+                    </div>
+                </div>
+        
+
+                <div class="row align-items-center">
+                    <div class="col-lg-5 px-0 mx-auto">
+                        <img src="{% static 'images/culture.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="text-danger">Culture</h2>
+                        <p class="text-dark" style="font-size: 1.1rem; ">India is home to over a billion people,
+                            accommodating
+                            incredible cultural diversity between languages, geographic regions, religious traditions
+                            and social
+                            stratifications. In recognition of this large demographic diversity, the following
+                            descriptions are
+                            not intended to represent every Indian person. However, there are common themes and
+                            principles that
+                            contribute to the values, attitudes, beliefs and norms of the dominant society. Generally
+                            speaking,
+                            Indians tend to have a strong sense of pride in the distinctiveness and diversity of their
+                            culture.
+                            For example, the country’s agricultural expansions and technological advancements in
+                            infrastructure,
+                            science and engineering are sources of pride. Moreover, a considerable amount of pride stems
+                            from
+                            India's rich artistic cultural exports of music, fine arts, literature and spirituality
+                            (especially
+                            the practice of yoga).</p>
+                    </div>
+                </div>
+
+                <br><br><br>
+                <!-- Gallery -->
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                        <img src="{% static 'images/a4.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="" />
+
+                    </div>
+
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="{% static 'images/a2.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt=" " />
+                    </div>
+
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="{% static 'images/a3.jpg' %}" class="w-100 shadow-1-strong rounded mb-4"
+                            alt="" />
+
+                    </div>
+                </div>
+                <!-- Gallery -->
+
+
+                <br><br><br>
+
+                <div class="row align-items-center mb-5">
+                    <div class="col-lg-6 order-2 order-lg-1">
+                        <h2 class="text-danger"> Nationalism</h2>
+                        <p class="text-dark" style="font-size: 1.1rem; ">Textbook definition of nationalism states that
+                            it is an
+                            ideology which emphasizes loyalty, devotion and patriotism towards a country.
+
+                            But, as Indians, Nationalism is more of an emotion than ideology. A farmer in a corner of
+                            some
+                            village continues to put tremendous effort in a hope that he is contributing to the Nation’s
+                            welfare. A teacher walks into a class full of highly energetic students thinking and working
+                            towards
+                            building the future generation of patriots and ideal citizens. A soldier serving his country
+                            from
+                            both inside and outside our perimeter readily gives his/her life so that the Nation stays
+                            protected.
+
+                            Nationalism is what brought revolutionaries of different states from Pre-Independence
+                            together.
+
+                            Nationalism is the heightened power they feel when they know they would put their Nation
+                            first any
+                            day and every day against all odds</p>
+                    </div>
+                    <div class="col-lg-5 px-0 mx-auto order-1 order-lg-2">
+                        <div class="">
+                            <img src="{% static 'images/nationality.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-lg-5 px-0 mx-auto">
+                        <img src="{% static 'images/governance.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="text-danger">Governance</h2>
+                        <p class="text-dark" style="font-size: 1.1rem; ">Governance is all the processes of interactions
+                            be they
+                            through the laws, norms, power or language of an organized society over a social system. It
+                            is done
+                            by the government of a state, by a market, or by a network. It is the decision-making among
+                            the
+                            actors involved in a collective problem that leads to the creation, reinforcement, or
+                            reproduction
+                            of social norms and institutions. At Utkrishta Bharath, we wish to teach and give an
+                            understanding
+                            of Law, Governance and Administration to engineering students.</p>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+      
+
+        <!-- Categories -->
+        <div class="blog_section">
+            <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                <div class="section_title" id="categories_ard">Categories...</div>
+                <div class="section_tags ml-auto">
+                    <ul>
+                        <!-- <li class="active"><a href="#">all</a></li> -->
+                        {%for c in cat_4 %}
+                        <li><a href="/category/{{c.url}}">{{c.title}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+                <div class="section_panel_more">
+                    <ul>
+                        <li>more
+                            <ul>
+                                {%for cat in cat_r %}
+                                <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                {%endfor%}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section_content">
+                <div class="grid clearfix">
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_main %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_first %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_second %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_third %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_forth %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_fifth %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+                    <!-- Small Card Without Image -->
+                    {% for f in post_sixth %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- ________________________________________________________________ -->
+
+        <!-- initiatives -->
+        <!-- Blog Section - What's Trending -->
+
+        <div class="blog_section">
+            <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                <div class="section_title">Our Initiatives..</div>
+                <!-- <div class="section_tags ml-auto">
+                    <ul>
+                        <li class="active"><a href="category.html">all</a></li>
+                        <li><a href="category.html">style hunter</a></li>
+                        <li><a href="category.html">vogue</a></li>
+                        <li><a href="category.html">health & fitness</a></li>
+                        <li><a href="category.html">travel</a></li>
+                    </ul>
+                </div>
+                <div class="section_panel_more">
+                    <ul>
+                        <li>more
+                            <ul>
+                                <li><a href="category.html">new look 2018</a></li>
+                                <li><a href="category.html">street fashion</a></li>
+                                <li><a href="category.html">business</a></li>
+                                <li><a href="category.html">recipes</a></li>
+                                <li><a href="category.html">sport</a></li>
+                                <li><a href="category.html">celebrities</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div> -->
+                <p class="pl-2">Some famous event and initiatives that we took to go forward with our values</p>
+            </div>
+            <div class="container mt-4">
+                {% for i in initiatives %}
+                <div class="row wow fadeInLeft" data-wow-delay=".3s">
+                    <div class="col-lg-6 col-xl-5 pr-lg-5 pb-5">
+                        <h6 class="text-dark text-center font-bold" style="font-weight: 300;">{{i.name}}</h6>
+                        <img class="img-fluid rounded z-depth-2" src="/media/{{i.image}}" alt="project image" />
+                        <p>Conducted on : {{i.date_of_initiative}}</p>
+                    </div>
+                    <div class="col-lg-6 col-xl-7 pl-lg-5 pb-4 slide-left">
+
+
+                        <div class="row mb-3">
+                            <div class="col-1 mr-1"></div>
+                            <div class="col-10">
+                                <h5 class="font-weight-bold">{{i.title1_like_what_we_do}}</h5>
+                                <p class="grey-text">
+                                    {{i.content1}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-1 mr-1"></div>
+                            <div class="col-10">
+                                <h5 class="font-weight-bold">{{i.title2_like_how_we_do}}</h5>
+                                <p class="grey-text">
+                                    {{i.content2}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-1 mr-1"></div>
+                            <div class="col-10">
+                                <h5 class="font-weight-bold">{{i.title_like_what_we_achieve}}</h5>
+                                <p class="grey-text">
+                                    {{i.content3}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <hr /> {%endfor%}
+
+            </div>
+        </div>
+
+
+
+
+        <!-- product details -->
+        <style>
+            .carousel {
+                margin: 50px auto;
+                padding: 0 70px;
+            }
+
+            .carousel .item {
+                color: #747d89;
+                min-height: 325px;
+                text-align: center;
+                overflow: hidden;
+            }
+
+            .carousel .thumb-wrapper {
+                padding: 25px 15px;
+                background: #fff;
+                border-radius: 6px;
+                text-align: center;
+                position: relative;
+                box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+            }
+
+            .carousel .item .img-box {
+                height: 120px;
+                margin-bottom: 20px;
+                width: 100%;
+                position: relative;
+            }
+
+            .carousel .item img {
+                max-width: 100%;
+                max-height: 100%;
+                display: inline-block;
+                position: absolute;
+                bottom: 0;
+                margin: 0 auto;
+                left: 0;
+                right: 0;
+            }
+
+            .carousel .item h4 {
+                font-size: 18px;
+            }
+
+            .carousel .item h4,
+            .carousel .item p,
+            .carousel .item ul {
+                margin-bottom: 5px;
+            }
+
+            .carousel .thumb-content .btn {
+                color: #030303;
+                font-size: 11px;
+                text-transform: uppercase;
+                font-weight: bold;
+                background: none;
+                border: 1px solid #000000;
+                padding: 6px 14px;
+                margin-top: 5px;
+                line-height: 16px;
+                border-radius: 20px;
+            }
+
+            .carousel .thumb-content .btn:hover,
+            .carousel .thumb-content .btn:focus {
+                color: #fff;
+                background: #000000;
+                box-shadow: none;
+            }
+
+            .carousel .thumb-content .btn i {
+                font-size: 14px;
+                font-weight: bold;
+                margin-left: 5px;
+            }
+
+            .carousel .item-price {
+                font-size: 13px;
+                padding: 2px 0;
+            }
+
+            .carousel .item-price strike {
+                opacity: 0.7;
+                margin-right: 5px;
+            }
+
+            .carousel-control-prev,
+            .carousel-control-next {
+                height: 44px;
+                width: 40px;
+                background: #626262;
+                margin: auto 0;
+                border-radius: 4px;
+                opacity: 0.8;
+            }
+
+            .carousel-control-prev:hover,
+            .carousel-control-next:hover {
+                background: #000000;
+                opacity: 1;
+            }
+
+            .carousel-control-prev i,
+            .carousel-control-next i {
+                font-size: 36px;
+                position: absolute;
+                top: 50%;
+                display: inline-block;
+                margin: -19px 0 0 0;
+                z-index: 5;
+                left: 0;
+                right: 0;
+                color: #fff;
+                text-shadow: none;
+                font-weight: bold;
+            }
+
+            .carousel-control-prev i {
+                margin-left: -2px;
+            }
+
+            .carousel-control-next i {
+                margin-right: -4px;
+            }
+
+            .carousel-indicators {
+                bottom: -50px;
+            }
+
+            .carousel-indicators li,
+            .carousel-indicators li.active {
+                width: 10px;
+                height: 10px;
+                margin: 4px;
+                border-radius: 50%;
+                border: none;
+            }
+
+            .carousel-indicators li {
+                background: rgba(0, 0, 0, 0.2);
+            }
+
+            .carousel-indicators li.active {
+                background: rgba(0, 0, 0, 0.6);
+            }
+
+            .carousel .wish-icon {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                z-index: 99;
+                cursor: pointer;
+                font-size: 16px;
+                color: #abb0b8;
+            }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $(".wish-icon i").click(function() {
+                    $(this).toggleClass("fa-heart fa-heart-o");
+                });
+            });	
+        </script>
+        <div class="container-xl">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section_title">Explore..</div>
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                        <!-- Carousel indicators -->
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <!-- Wrapper for carousel items -->
+                        <div class="carousel-inner">
+                            <div class="item carousel-item active">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/forum.jpg' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Forum</b></h4>
+                                                <p class="item-price"> Created for solely discussion about Indian topics
+                                                </p>
+                                                <a href="/forum" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/forum.jpg' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Gallery</b></h4>
+                                                <p class="item-price"> Created for solely discussion about Indian topics
+                                                </p>
+                                                <a href="/gallery" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/india1.jpg' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Indic Renaissance</b> </h4>
+                                                <p class="item-price"> Our most famous event, know more about it.</p>
+                                                <a href="/indic-renaissance" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item carousel-item">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/videos.webp' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Videos</b></h4>
+                                                <p class="item-price"> Recommended videos, that you must watch </p>
+                                                <a href="/our_youtube_videos" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/forum.jpg' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>About Us</b></h4>
+                                                <p class="item-price"> know more about us and our team
+                                                </p>
+                                                <a href="/about" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/articles.jpg' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Articles</b></h4>
+                                                <p class="item-price"> All articles posted by Utkrishta Bhartah</p>
+                                                <a href="/all_posts" class="btn btn-primary" >Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                            <div class="item carousel-item">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/social.webp' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Twitter</b></h4>
+                                                <p class="item-price"> Follow us on twitter
+                                                </p>
+                                                <a href="https://twitter.com/UtkrishtaBNitk" class="btn btn-primary" target="_blank">Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/social.webp' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Youtube</b></h4>
+                                                <p class="item-price"> Like, Share and Subscribe
+                                                </p>
+                                                <a href="https://www.youtube.com/@utkrishtabharathnitk/videos" class="btn btn-primary" target="_blank">Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="thumb-wrapper">
+
+                                            <div class="img-box">
+                                                <img src="{% static 'images/social.webp' %}" class="img-fluid"
+                                                    alt="forum">
+                                            </div>
+                                            <div class="thumb-content">
+                                                <h4 class="text-dark"><b>Instagram</b></h4>
+                                                <p class="item-price"> Follow us on Instagram
+                                                </p>
+                                                <a href="https://www.instagram.com/utkrishta.bharath.nitk/" class="btn btn-primary" target="_blank">Visit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel controls -->
+                        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- __________________________________________________________________________ -->
+        <!-- post filtered with views -->
+        <div class="blog_section">
+            <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                <div class="section_title" id="categories_ard">Most Viewed...</div>
+                <div class="section_tags ml-auto">
+                    <ul>
+                        <!-- <li class="active"><a href="#">all</a></li> -->
+                        {%for c in cat_4 %}
+                        <li><a href="/category/{{c.url}}">{{c.title}}</a></li>
+                        {%endfor%}
+                    </ul>
+                </div>
+                <div class="section_panel_more">
+                    <ul>
+                        <li>more
+                            <ul>
+                                {%for cat in cat_r %}
+                                <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                {%endfor%}
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section_content">
+                <div class="grid clearfix">
+                    <!-- Small Card Without Image -->
+                    {% for f in aj %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small"><a href="/blog/{{f.url}}">{{f.title}}</a></div>
+                            <small class="post_meta"><a
+                                    href="/blog/{{f.url}}">{{f.author}}</a><span>{{f.publish}}</span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+        <!-- __________________________________________________________________________ -->
+
+
+
+        <!-- Blog Section - Team Members -->
+        <div class="blog_section" id="team">
+            <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                <div class="section_title">Team Members</div>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div class="section_content">
+                <div class="grid">
+
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small text-dark ">Our social media handles</div>
+                            <!-- <small class="post_meta">Our Handles<span> -->
+                            <a style="color:rgb(34, 34, 244);" href="https://twitter.com/UtkrishtaBNitk" class="ml-2"
+                                target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            <a style="color:rgb(0, 68, 255);" href="https://ne-np.facebook.com/utkrishta.bharath.nitk"
+                                class="ml-2" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                            <a style="color:rgb(255, 0, 157);" href="https://www.instagram.com/utkrishta.bharath.nitk/"
+                                class="ml-2" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                            <a style="color:rgb(255, 0, 0);" href="https://www.youtube.com/@utkrishtabharathnitk"
+                                class="ml-2" target="_blank"><i class="fa fa-youtube fa-youtube-play"
+                                    aria-hidden="true"></i></a>
+                            <!-- </span> -->
+                            <!-- </small> -->
+                        </div>
+                    </div>
+
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small text-dark">We are not only one big team, but we are
+                                also one big family!</div>
+                            <!-- <small class="post_meta">Our Handles<span><a style="color:blue;" href=""
+                                        target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></span></small> -->
+                        </div>
+                    </div>
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small text-dark">These are our warriors who are currently
+                                leading the mission.</div>
+                            <!-- <small class="post_meta">Our Handles<span><a style="color:blue;" href=""
+                                        target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></span></small> -->
+                        </div>
+                    </div>
+                    {% for i in team_core_members %}
+                    <div class="card card_small_with_image grid-item">
+                        <img class="card-img-top" src="/media/{{i.image}}" alt="Image">
+                        <div class="card-body">
+                            <div class="card-title card-title-small text-dark"><a href="#">{{i.name}}</a></div>
+                            <small class="post_meta">{{i.work}}<span><a style="color:blue;" href="{{i.handle_link}}"
+                                        target="_blank">{{i.Social_media_handle}}</a></span></small>
+                        </div>
+                    </div>
+                    {%endfor%} {% for i in other_important_members %}
+                    <div class="card card_default card_small_no_image grid-item">
+                        <div class="card-body">
+                            <div class="card-title card-title-small text-dark">{{i.name}}</div>
+                            <small class="post_meta">{{i.work}}<span><a style="color:blue;" href="{{i.handle_link}}"
+                                        target="_blank">{{i.Social_media_handle}}</a></span></small>
+                        </div>
+                    </div>
+                    {%endfor%}
+                </div>
+            </div>
+            {% else %}
+            <div class="container text-center color-black font-bold col-12 col-md-8 col-lg-6 col-xl-5">
+                <h6 class="alert-danger">Login to see our team members</h6>
+                <a href="/login"> <button type="button" class="btn btn-dark btn-rounded"
+                        data-mdb-ripple-color="dark">Login</button></a>
+                <a href="/signup"><button type="button" class="btn btn-dark btn-rounded"
+                        data-mdb-ripple-color="dark">SignUp</button></a>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- contact us -->
+        <section id="contact">
+
+            <div class="rgba-black-strong py-5">
+                <div class="container">
+                    <div class="wow fadeIn">
+                        <div class="section_title" id="categories_ard">Contact Us</div>
+
+                    </div>
+                    <div class="card mb-5 wow fadeInUp" data-wow-delay=".4s">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <!-- {% if messages %}
+                                    {% for message in messages %}
+                                    <div class="alert alert-dismissible alert-success">
+                                        <button type="button" class="close" data-dismiss="alert">
+                                            ×
+                                        </button>
+                                        <strong>{{message}}</strong>
+                                    </div>
+                                    {% endfor %}
+                                    {% endif %} -->
+                                    <form id="myForm" method="POST">
+                                        {% comment %}
+                                        <div class="row">
+                                            <div class="col-md-12 text-center py-2">
+                                                <h4> (Suggestions, corrections, and advice are all welcome!)</h4>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                                    <input class="form-control" id="name" type="text" name="name"
+                                                        required="required" />
+                                                    <label for="name">Your name</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="md-form">
+                                                    <input class="form-control" id="email" type="text" name="_replyto"
+                                                        required="required" />
+                                                    <label for="email">Your email</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="md-form">
+                                                    <input class="form-control" id="subject" type="text" name="subject"
+                                                        required="required" />
+                                                    <label for="subject">Subject</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="md-form">
+                                                    <textarea class="md-textarea" id="message" name="message"
+                                                        required="required"></textarea>
+                                                    <label for="message">Your message</label>
+                                                </div>
+                                            </div>
+                                        </div> {% endcomment %} {{ contact_form.as_p }} {% csrf_token %}
+                                        <div class="center-on-small-only mb-4">
+                                            <button class="btn btn-indigo ml-0" type="submit"><i
+                                                    class="fa fa-paper-plane-o mr-2"></i> Send</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <ul class="list-unstyled text-center">
+                                        <li class="mt-4"><i class="fa fa-map-marker indigo-text fa-2x"></i>
+                                            <p class="mt-2">NITK Surathkal, Karnataka</p>
+                                        </li>
+                                        <li class="mt-4"><i class="fa fa-phone indigo-text fa-2x"></i>
+                                            <p class="mt-2">+910000000000</p>
+                                        </li>
+                                        <li class="mt-4"><i class="fa fa-envelope indigo-text fa-2x"></i>
+                                            <p class="mt-2">something@gmail.com</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+</div>
+
+
+<script>
+    $('#myForm').trigger("reset");
+</script>

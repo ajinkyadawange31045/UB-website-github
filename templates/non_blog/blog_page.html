@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %} {% load static %} {%block title%} All Articles | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Wanna see all articles of Utkrishta Bharath under on page? We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Connect with Utkrishta Bharath Nitk is a not just a club but it is a movement ">
+    <meta name="keywords" content="All articles, all pages, all post, all articles of Utkrishta Bharath,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+
+{%block content%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+</script>
+
+<style>
+    .ard {
+        background-color: black;
+        height: 55vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+    }
+
+    .block_ard {
+        display: none;
+        /* font-size: 20px; */
+    }
+</style>
+
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_title">All article published on Utkrishta bhartath</div>
+        
+    </div>
+</div>
+<div class="page_content">
+    <div class="container">
+        <div class="row row-lg-eq-height ">
+            <!-- Main Content -->
+            <div class="col-lg-12">
+                <div class="main_content">
+                    <!-- Category -->
+                    <div class="category">
+                        <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                            <div class="section_title">All Post</div>
+                            <div class="section_tags ml-auto">
+                                <ul>
+                                    {%for cat in cat_4 %}
+                                    <li class=""><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                    {%endfor%}
+                                    <li><a href="/our_youtube_videos">Videos</a></li>
+                                    <li><a href="/all_posts">Articles</a></li>
+                                </ul>
+                            </div>
+                            <div class="section_panel_more">
+                                <ul>
+                                    <li>more
+                                        <ul> {%for cat in cat_r %}
+                                            <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                            {%endfor%}
+                                        <li><a href="our_youtube_videos">Videos</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="container pt-2">
+                            <div class="album py-1 bg-light">
+                                <div class="container">
+                                    <div class="row">
+                                        {% for post in post %}
+                                        <div class="col-md-3 block_ard">
+                                            <a class="text-dark" href="/blog/{{post.url}}">
+                                                <div class="card mb-4 box-shadow">
+                                                    <img class="card-img-top" src="/media/{{post.thumbnail}}"
+                                                        alt="Image-{{ post.title }}">
+                                                    <div class="card-body">
+                                                        <h2 style="font-size:18px;font-weight:bold">
+                                                            {{post.title|truncatechars:50}}</h2>
+                                                        <p class="card-text">{{post.excerpt|truncatechars:100}}</p>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <small class="text-muted">{{post.publish}}</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        {%endfor%}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center load_more">
+                        <div id="load" class="load_more_button text-center trans_200">Load More</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function() {
+        $(".block_ard").slice(0,8).show();
+        if($(".block_ard:hidden").length!=0) {
+            $("#load").show();
+        }
+        $("#load").on("click",function(e) {
+            e.preventDefault();
+            $(".block_ard:hidden").slice(0,8).slideDown();
+            if($(".block_ard:hidden").length==0) {
+                $("#load").text("No More to view")
+                    .fadOut("slow");
+            }
+        });
+    })
+</script>
+{%endblock%}

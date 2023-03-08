@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %} {% load static %} {% load static %}{%block title%} Search Page | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}  {% load crispy_forms_tags %}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Search for the blog your want. Filter Categories. Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Search page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}{%block content%}
+<style>
+    .ard {
+        background-color: black;
+        height: 55vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+</style>
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_title">Search Result</div>
+        
+    </div>
+</div>
+
+
+
+<!-- Page Content -->
+<div class="container pt-5">
+
+    {% if q %}
+    <h4 class="text-dark">Posts containing "{{ q }}" {% if c %} In category "{{ c }}" {% endif %}
+
+    </h4>
+    <p class="text-danger">
+        {% with results.count as total_results %} Found {{ total_results }} result{{ total_results|pluralize }} {% endwith %}
+    </p>
+
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for post in results %}
+                <div class="col-md-4">
+                    <a class="text-dark" href="/blog/{{post.url}}">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top" src="/media/{{post.thumbnail}}" alt="Image-{{ post.title }}">
+                            <div class="card-body">
+                                <h2 style="font-size:18px;font-weight:bold">{{post.title|truncatechars:50}}</h2>
+                                <p class="card-text">{{post.excerpt|truncatechars:150}}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">{{post.publish}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <div class="col-md-4 m-2">
+                    <p class="text-dark">Your search query : <b>"{{q}}" </b> did not match any documents.</p>
+                    <br>
+                    <hr><b class="text-dark"> Suggestions:</b>
+                    <ul class="text-dark">
+                        <li>Make sure that all words are spelled correctly.</li>
+                        <li>Try more general keywords.</li>
+                        <li> Try fewer keywords.</li>
+                        <li> Try different keywords.</li>
+                        </li>
+                    </ul>
+                </div>
+                <p><a href="/search" class="btn btn-primary" role="button" aria-disabled="true">New
+                    Search</a>
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+
+    {% else %}
+    <h2 class="text-dark">Search for posts</h2>
+    <form method="get">
+        {{ form.as_p }}
+        <input class="btn btn-primary m-3" type="submit" value="Search">
+    </form>
+    {% endif %}
+
+</div>
+{%endblock%}

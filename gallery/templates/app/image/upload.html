@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+    {% block content%}
+    <style>
+        .ard {
+            background-color: black;
+            height: 45vh;
+            width: 100vw;
+            margin-bottom: 14px;
+        }
+    </style>
+    
+    <div class="home ard">
+        <div class="home_content">
+            <div class="post_title">add image</div>
+    
+        </div>
+    </div>
+    <div class="container pt-5">
+        <!-- upload.html -->
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+</div>  
+
+    {% endblock %}
+

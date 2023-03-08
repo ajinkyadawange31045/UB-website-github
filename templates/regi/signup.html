@@ -1,0 +1,128 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} Signup Page | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}  {% load crispy_forms_tags %}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Signup page of Utkrishta bharath.Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %} {% block content %}
+<style>
+    .errorlist {
+      color: black;
+    }
+  </style>
+  <style>
+    .login-with-google-btn {
+  transition: background-color .3s, box-shadow .3s;
+    
+  padding: 12px 16px 12px 42px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+  
+  color: #757575;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif;
+  
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+  background-color: white;
+  background-repeat: no-repeat;
+  background-position: 12px 11px;
+  
+  &:hover {
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+  }
+  
+  &:active {
+    background-color: #eeeeee;
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 
+      0 -1px 0 rgba(0, 0, 0, .04),
+      0 2px 4px rgba(0, 0, 0, .25),
+      0 0 0 3px #c8dafc;
+  }
+  
+  &:disabled {
+    filter: grayscale(100%);
+    background-color: #ebebeb;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    cursor: not-allowed;
+  }
+}
+
+body {
+  text-align: center;
+  padding-top: 2rem;
+}
+</style>
+
+  <style>
+    .ard {
+        background-color: black;
+        
+        height: 6rem;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+    body{
+        background-color: black;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+<!-- Section: Design Block -->
+<section class="text-center">
+    <!-- Background image -->
+    
+    <!-- Background image -->
+    <div class="card mx-4 mx-md-5 shadow-5-strong">
+        <div class="card-body py-5 px-md-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-5">Sign up now</h2>
+                    {% if messages %} {% for message in messages %}
+                    <p if {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+                    {% endfor %} {% endif %}
+                    <form action="" method="post" novalidate>
+                        {% comment %} {% csrf_token %} {% for fm in form %} {% endcomment %}
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                            <label class="form-label" for="form3Example3">{{fm.label_tag}}</label>
+                            <small class="text-warning"> {{fm.errors|striptags}}</small>
+                        </div>
+                        {% comment %} {% endfor %} {% endcomment %}
+
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-align mb-4">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+                            <label class="form-check-label" for="form2Example33">
+                                 Subscribe to our newsletter
+                            </label>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" value="sign up">SignUp</button><br>
+                        {% comment %} <!-- <button type="button" class="login-with-google-btn" >
+                            <a style="font-weight: 600; color: black; text-decoration: none;" href="{% provider_login_url 'google'%}?next=/">
+                                Sign in with Google
+                            </a>
+                        </button><br><br> --> {% endcomment %}
+                        <a href="/login" style="color: red;">Already SignedUp?</a> {% if form.non_field_errors %} {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                        {% endfor %} {% endif %}
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  
+<!-- Section: Design Block -->
+{% endblock content %}

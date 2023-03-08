@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %} {%block title%} Utkrishta Bharath Community Feature | Ask your question regarding India{%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Ask you questions related India on Utkrishta Bharath community platform. Whom are you waiting for?">
+    <meta name="keywords" content="Utkrishta Bharath community feature,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, community, stackoverflow, github, questions and answers, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    .ard {
+        background-color: black;
+        height: 50vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+</style>
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_title">Post Related Replies</div>
+    </div>
+</div>
+
+
+<div class="container justify-content-center align-content-center">
+
+    <!-- <div class="m-b-25"> <img src="{{ user.profile.image.url }}" class="img-radius" alt="User-Profile-Image"> </div> -->
+    <!-- <h6 class="f-w-600" style="font-size: 24px; color: black;">Answer a question here!</h6> -->
+    <p style="font-size: 14px; color: black;">
+        Follow the given rules before answering:
+    <ul style="color: rgb(155, 8, 8);">
+        <li>Do not post Adult/illegal Links.</li>
+        <li>Try to comment in only English Language.</li>
+        <li>Do not post other website's links which are useless.</li>
+        <li>Your Comment should be based on the Topic, for other queries Kindly Visit our Contact Us Page.</li>
+        <li>Do not use Abusive Language.</li>
+        <li>Respect each other.</li>
+        <li style="color: blue;">Tolerance, Humility and Patience are appreciable</li>
+        <li style="color: blue;">No hatred with other religion</li>
+        <li style="color: blue;">No hatred with other caste</li>
+    </ul>
+    </p>
+    <hr>
+    <!-- <div style=" background-color: #0b73fa;"> -->
+        <p style="font-size: 14px; color: black;">
+            Try to ask Question regarding the following topics majorly:
+        <ul style="color: rgb(93, 2, 61);">
+            <li>Ancient Science</li>
+            <li>Glorious India</li>
+            <li>Current Affairs</li>
+            <li>Spirituality</li>
+            <li>Geopolitics</li>
+            <li>Sports</li>
+            <li>Art</li>
+            <li>and about related topics.</li>
+        </ul>
+        </p>
+    <!-- </div> -->
+</div>
+
+<div class="container text-center my-5 p-3" style="border: 1px solid rgb(222, 217, 217); background-color: white;">
+    <div class="col-sm-12">
+
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form|crispy}}
+            <button class="btn btn-success" id="logout-btn" type="submit">Add Reply</button>
+            <a style="text-decoration: none; " class="btn btn-outline-secondary" href="/forum">Cancel</a>
+            <!-- <button class="btn btn-secondary" id="logout-btn" type="submit"><a id="fa" href="" style="color: white; text-decoration: none;">Go back</a></button> -->
+        </form>
+    </div>
+</div>
+
+
+<script>
+    feather.replace()
+</script>
+
+{% endblock content %}

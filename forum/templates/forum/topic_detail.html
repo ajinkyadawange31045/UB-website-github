@@ -1,0 +1,128 @@
+{% extends "base/base.html" %}{%block title%} Forum | Utkrishta Bharath | Come and Discuss to make Bharath Utkrishta {%endblock%}
+
+{% block content %}
+{% load static %}
+<style>
+  a{
+    text-decoration: none;
+  }
+    .ard {
+        background-color: black;
+        height: 50vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+    .block_ard {
+        display: none;
+        /* font-size: 20px; */
+    }
+
+    body{
+      
+    background:rgb(0, 0, 0);
+}
+/* .icon-1x {
+    font-size: 24px !important;
+}
+a{
+    text-decoration:none;    
+}
+.text-primary, a.text-primary:focus, a.text-primary:hover {
+    color: #00ADBB!important;
+}
+.text-black, .text-hover-black:hover {
+    color: #000 !important;
+}
+.font-weight-bold {
+    font-weight: 700 !important;
+} */
+</style>
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_title">{{ object.title }}</div>
+        {% comment %} <form action="" method="GET">
+                    
+            <input class="" type="text" id="" name="search-area" placeholder="Search for posts...">
+            <button type="submit" class="btn btn-success">Search</button>
+        </form> {% endcomment %}
+        {% if request.user.is_authenticated %}
+        {% comment %} <div class="px-4 pt-3"> <button type="button" class="btn btn-primary" href="{% url 'post-create' object.id %}"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div> {% endcomment %}
+        <div class="px-4 pt-3">  
+        <a class="btn btn-primary" href="{% url 'forum:post-create' object.id %}">Reply</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+
+{% for post in posts %}
+
+          <div class="container-fluid mt-100">
+            <div class="row justify-content-center">
+                <div class="col-md-8 ">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="media flex-wrap w-100 align-items-center">
+                                 <!-- <img src="https://i.imgur.com/iNmBizf.jpg" class="d-block ui-w-40 rounded-circle" alt=""> -->
+                                 {% if post.author.profile and post.author.profile.profile_image %}
+                                 <img class="rounded-circle account-img thumbpic" src="{{ post.author.profile.profile_image.url }}" style="width: 50px; height: 50px; object-fit: cover;">
+                             {% else %}
+                                 <img class="rounded-circle account-img thumbpic" src="{% static 'images/user_avtar.webp' %}" style="width: 50px; height: 50px; object-fit: cover;">
+                             {% endif %}
+                             
+                             
+                                <div class="media-body ml-3"> <a href="{% url 'public-profile' post.author.username %}" data-abc="true" class="text-dark" style="font-weight: 500; color: black;">{{ post.author }}</a>
+                                    <div class="text-muted small">{{post.timestamp}}</div>
+                                </div>
+                                <div class="text-muted small ml-3">
+                                    <div>Member since <strong>{{post.author.date_joined|date:"j F, Y"}}</strong></div>
+                                    <!-- <div><strong>{{post.likes}}</strong> Likes</div>
+                                    <div><strong>{{post.views}}</strong> Views</div> -->
+                                    <div><strong>{{ post.comment_set.count }}</strong> Replies</div>
+
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p style="font-weight: 500; color: black;"> <b> {{ post.title }} </b>
+                            </p>
+                            <p  style="font-weight: 300; color: black;">{{ post.description }}
+                            </p>
+                        </div>
+                        <div class="card-footer d-flex flex-wrap justify-content-between align-items-center px-0 pt-0 pb-3">
+                            <div class="px-4 pt-3"> <a href="{% url 'forum:post-detail' post.id %}" class="text-muted d-inline-flex align-items-center align-middle" data-abc="true"> <i class="fa fa-heart text-danger"></i>&nbsp; <span class="align-middle">{{ post.likes.count }}</span> </a> 
+                                
+                                <span class="text-muted d-inline-flex align-items-center align-middle ml-4"> <i class="fa fa-eye text-muted fsize-3"></i>&nbsp; <span class="align-middle">{{ post.views }}</span> 
+                            </span> 
+                            </div>
+                            {% comment %} <div class="col-md-4 op-7">
+                              <div class="row text-center op-7">
+                                <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">141</span> </div>
+                                <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122</span> </div>
+                                <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290</span> </div>
+                              </div>
+                            </div> {% endcomment %}
+                            {% if request.user.is_authenticated %}
+                            
+                            <div class="px-4 pt-3">  
+                            <a class="btn btn-primary" href="{% url 'forum:post-detail' post.id %}">Discussion</a>
+                            </div>
+                            {%else%}
+                            <div class="px-4 pt-3">  
+                                <a class="btn btn-primary" href="{% url 'login' %}">Login to reply</a>
+                                </div>
+                            {% endif %}
+                        </div>
+          
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+{% endblock content %} 

@@ -1,0 +1,216 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} Utkrishta Bharath | The Glorious India | Be proud to be
+an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+<meta name="description"
+    content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+<meta name="keywords"
+    content="Utkrishta Bharath,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+
+{%block content%} {% load social_share %} {% load crispy_forms_tags %}
+<style>
+    .ard {
+        background-color: black;
+
+        height: 6rem;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+
+    body {
+        background-color: white;
+        color: black;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    body {
+        font-family: "Lato", sans-serif
+    }
+
+    .mySlides {
+        display: none
+    }
+</style>
+
+
+
+<!-- Automatic Slideshow Images -->
+<!-- <div class="mySlides w3-display-container w3-center">
+    <img src="" style="width:100%">
+    <div class="w3-display-bottommiddle w3-container w3-text-white w3-padding-32 w3-hide-small">
+        <h3>Los Angeles</h3>
+        <p><b>We had the best time playing at Venice Beach!</b></p>
+    </div>
+</div> -->
+
+
+<!-- The Band Section -->
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="band">
+    <h2 class="w3-wide">{{ entity.title }}</h2>
+    <p class="w3-opacity"><i>Indic Renaissance </i></p>
+    <p class="w3-justify">{{ entity.content }}</p>
+
+    <div class="w3-container w3-content w3-left-align w3-padding-64" style="max-width:800px" id="band">
+        <!-- <h2 class="w3-wide">{{ entity.title }}</h2>
+        <p class="w3-opacity"><i>We love music</i></p>
+        <p class="w3-justify">{{ entity.content }}</p> -->
+
+        <div class="w3-row w3-padding-32">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-left">Comments</h2>
+                    {% for comment in comments %}
+                    <div class="card mb-3">
+                        <!-- < class="card-header">Title: {{ comment.title }}</  div> -->
+                        <div class="card-body">
+                            <h5 class="card-title">Title: {{ comment.title }}</h5>
+                            <p class="card-text">Brief:{{ comment.content }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No comments yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="text-left">Add a Comment</h2>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="w3-row w3-padding-32">
+        <h2 class="w3-wide">Other competitions</h2>
+        {% for i in comp %}
+        <a href="{% url 'competition_detail' i.pk %}">
+            <div class="w3-third">
+                <p>{{i.title}}</p>
+                <!-- <img src="/w3images/bandmember.jpg" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    
+    <style>
+        .w3-third {
+            width: calc(33.33% - 20px);
+            margin: 10px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            background-color: #fff;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+    
+        .w3-third:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    
+        @media only screen and (max-width: 768px) {
+            .w3-third {
+                width: calc(50% - 20px);
+            }
+        }
+    
+        @media only screen and (max-width: 480px) {
+            .w3-third {
+                width: calc(100% - 20px);
+            }
+        }
+    </style>
+       <div class="w3-row w3-padding-32">
+        <h2 class="w3-wide">Checkout</h2>
+      
+        <a href="/">
+          <div class="w3-third text-center text-dark" style="width: 30%; height: 3rem; display: flex; justify-content: center; align-items: center;">
+            <p>Utkrishta Bharath</p>
+            <!-- <img src="/media/{{i.image}}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+          </div>
+        </a>
+        <a href="/ir">
+          <div class="w3-third text-center text-dark" style="width: 30%; height: 3rem; display: flex; justify-content: center; align-items: center;">
+            <p>Indic Renaissance</p>
+            <!-- <img src="/media/{{i.image}}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+          </div>
+        </a>
+        <a href="/all_posts">
+          <div class="w3-third text-center text-dark" style="width: 30%; height: 3rem; display: flex; justify-content: center; align-items: center;">
+            <p>All Articles</p>
+            <!-- <img src="/media/{{i.image}}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+          </div>
+        </a>
+        <a href="/our_youtube_videos">
+          <div class="w3-third text-center text-dark" style="width: 30%; height: 3rem; display: flex; justify-content: center; align-items: center;">
+            <p>Videos</p>
+            <!-- <img src="/media/{{i.image}}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+          </div>
+        </a>
+        <a href="/forum">
+          <div class="w3-third text-center text-dark" style="width: 30%; height: 3rem; display: flex; justify-content: center; align-items: center;">
+            <p>Forum</p>
+            <!-- <img src="/media/{{i.image}}" class="w3-round w3-margin-bottom" alt="Random Name" style="width:60%"> -->
+          </div>
+        </a>
+      
+      </div>
+      
+</div>
+
+
+
+<script>
+    // Automatic Slideshow - change image every 4 seconds
+    var myIndex=0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x=document.getElementsByClassName("mySlides");
+        for(i=0;i<x.length;i++) {
+            x[i].style.display="none";
+        }
+        myIndex++;
+        if(myIndex>x.length) {myIndex=1}
+        x[myIndex-1].style.display="block";
+        setTimeout(carousel,4000);
+    }
+
+    // Used to toggle the menu on small screens when clicking on the menu button
+    function myFunction() {
+        var x=document.getElementById("navDemo");
+        if(x.className.indexOf("w3-show")==-1) {
+            x.className+=" w3-show";
+        } else {
+            x.className=x.className.replace(" w3-show","");
+        }
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    var modal=document.getElementById('ticketModal');
+    window.onclick=function(event) {
+        if(event.target==modal) {
+            modal.style.display="none";
+        }
+    }
+</script>
+
+
+
+{%endblock%}

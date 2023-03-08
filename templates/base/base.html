@@ -1,0 +1,204 @@
+<!DOCTYPE html>{% load static %}
+<html lang="en">
+
+<head>
+    <title>{%block title%} {%endblock%}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{% static 'images/ub.jpg' %}" type="image/jpg">
+    {% block extra_head_tags %}
+    <!-- {{ block.super }} -->
+       <!-- <meta CONTENT1/> -->
+    {% endblock %}
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'styles/style2.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <!-- for post next 2 -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/post.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/post_responsive.css'%}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+
+    <style>
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #111;
+            transition: 0.5s;
+            z-index: 2;
+        }
+        
+        .showcase.active {
+            right: 30px;
+        }
+        
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #717171;
+            mix-blend-mode: overlay;
+        }
+        
+        .textard {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .textard h2 {
+            font-size: 3em;
+            font-weight: 50;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        .textard h5 {
+            font-size: 1em;
+            font-weight: 50;
+            color: #fff;
+        }
+        
+        .textard p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 2px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+        
+        .textard a {
+            display: inline-block;
+            font-size: 1em;
+            background: #fff;
+            padding: 10px 10px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            /* margin-top: 2px; */
+            color: #111;
+            letter-spacing: 2px;
+            transition: 0.2s;
+        }
+        
+        .textard a:hover {
+            letter-spacing: 6px;
+        }
+        
+        .social {
+            position: absolute;
+            z-index: 10;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* margin-left: 33px; */
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+        
+        .social li {
+            list-style: none;
+        }
+        
+        .social li a {
+            display: inline-block;
+            margin-right: 10px;
+            filter: invert(1);
+            transform: scale(0.5);
+            transition: 0.5s;
+        }
+        
+        .social li a:hover {
+            transform: scale(0.5) translateY(-15px);
+        }
+        
+        .dropbtnard {
+            background-color: inherit;
+            color: white;
+            padding: auto;
+            font-size: 16px;
+            border: none;
+        }
+        
+        .dropdownard {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .dropdownard-content {
+            display: none;
+            position: absolute;
+            background-color: inherit;
+            color: rgb(129, 126, 126);
+            min-width: 100px;
+            background-color: black;
+            z-index: 1;
+        }
+        
+        .dropdownard-content a {
+            color: rgb(133, 133, 133);
+            padding: 2px 5px;
+            margin: -2px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdownard-content a:hover {
+            background-color: inherit;
+            color: yellow;
+        }
+        
+        .dropdownard:hover .dropdownard-content {
+            display: block;
+        }
+        
+        .dropdownard:hover .dropbtnard {
+            background-color: inherit;
+        }
+    </style>
+</head>
+
+<body onscroll="showScrollUp()" onload="setupScrollProgress()">
+    <div class="super_container">
+        {% include 'base/header.html' %} {%block content%} {%endblock%} {% include 'base/footer.html' %}
+    </div>
+    <script src="{% static 'js/post.js' %}"></script>
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <!-- <script src="{% static 'plugins/jquery.mb.YTPlayer-3.1.12/jquery.mb.YTPlayer.js' %}"></script> -->
+    <!-- <script src="{% static 'plugins/easing/easing.js' %}"></script> -->
+    <script src="{% static 'plugins/masonry/masonry.js' %}"></script>
+    <script src="{% static 'plugins/masonry/images_loaded.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

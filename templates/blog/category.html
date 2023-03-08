@@ -1,0 +1,129 @@
+ {% extends 'base/base.html' %} {% load static %}{%block title%} Categories of blogs | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}  
+ {% block extra_head_tags %}
+ {{ block.super }}
+    <meta name="description" content="These categories of blogs will be uploaded here.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+     <meta name="keywords" content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+ {% endblock %}  {%block content%}
+<style>
+    .ard {
+        background-color: black;
+        height: 55vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+</style>
+
+<!-- Home -->
+<!-- <div class="ard">
+    <img src="{% static 'images/category.jpg' %}" alt="">
+</div> -->
+<div class="home ard">
+    <!-- <div class="home_background parallax-window" data-parallax="scroll" data-image-src="{% static 'images/post.jpg' %}" data-speed="0.8"></div> -->
+    <img src="{% static 'images/category_background.webp' %}" alt="">
+    <div class="home_content">
+        <div class="post_category trans_200"><a href="/" class="trans_200">Home</a></div>
+        <div class="post_title">{{ cat.title | safe }}</div>
+    </div>
+</div>
+
+
+<!-- Page Content -->
+
+<div class="page_content">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="main_content">
+                    <!-- Category -->
+                    <div class="category">
+                        <!-- for catergory panel -->
+                        <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+                            <div class="section_title">Don't Miss</div>
+                            <div class="section_tags ml-auto">
+                                <ul>
+                                    {%for cat in cat_4 %}
+                                    <li class="active"><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                    {%endfor%}
+                                </ul>
+                            </div>
+                            <div class="section_panel_more">
+                                <ul>
+                                    <li>more
+                                        <ul> {%for cat in cat_r %}
+                                            <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+                                            {%endfor%}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="section_content">
+                            <div class="grid clearfix">
+
+                                <!-- Small Card Without Image -->
+                                {% for p in p1 %}
+                                <div class="card card_default card_small_no_image grid-item">
+                                    <div class="card-body">
+                                        <div class="card-title card-title-small"><a href="/blog/{{p.url}}">{{p.title}}</a></div>
+                                        <small class="post_meta"><a href="/blog/{{p.url}}">{{p.author}}</a><span>{{p.publish}}</span></small>
+                                    </div>
+                                </div>{% empty %}
+                                <h5 class="card-title align-content-center">No posts in this category</h5>
+                                {%endfor%}
+
+                                <!-- Small Card With Image -->
+                                {% for p in posts %}
+                                <div class="card card_small_with_image grid-item">
+                                    <img class="card-img-top" src="/media/{{p.thumbnail}}" alt="Image">
+                                    <div class="card-body">
+                                        <div class="card-title card-title-small"><a href="/blog/{{p.url}}">{{p.title}}</a></div>
+                                        <small class="post_meta"><a href="/blog/{{p.url}}">{{p.author}}</a><span>{{p.publish}}</span></small>
+                                    </div>
+                                </div>
+                                {%endfor%}
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="mt-5">
+                    <div class="text-center trans_200">
+                        <nav aria-label="Page navigation example mt-5">
+                            {% if posts.has_other_pages %}
+                            <ul class="pagination">
+                                {% if posts.has_previous %}
+                                <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a>
+                                </li>
+                                {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                {% endif %} {% for num in posts.paginator.page_range %} {% if posts.number == l %}
+                                <li class="page-item active"><span class="page-link">{{ num }} <span class="sr-only">(current)</span></span>
+                                </li>
+                                {% else %}
+                                <li><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                {% endif %} {% endfor %} {% if posts.has_next %}
+                                <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+                                {% else %}
+                                <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            {% include 'blog/sidebar.html' %}
+
+        </div>
+    </div>
+</div>
+{%endblock%}

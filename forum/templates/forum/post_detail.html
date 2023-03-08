@@ -1,0 +1,194 @@
+{% extends 'base/base.html' %} {%block title%} {{ object.title }} | Utkrishta Bharath | Come and Discuss to make Bharath Utkrishta{%endblock%}
+{% block extra_head_tags %}
+{% load crispy_forms_tags %}{% load static %}
+{{ block.super }}
+<meta name="description"
+    content="Ask you questions related India on Utkrishta Bharath community platform. Whom are you waiting for?">
+<meta name="keywords"
+    content="Utkrishta Bharath community feature,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, community, stackoverflow, github, questions and answers, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+
+{% block content %}{% load crispy_forms_tags %}
+<style>
+    .ard {
+        background-color: black;
+        height: 50vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+    body{
+        background-color: black;
+        color: aliceblue;
+    }
+</style>
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_category trans_200"><a href="/forum" class="trans_200">Forum</a></div>
+        <!-- <div class="post_title">{{question.title}}</div> -->
+        <div class="post_title trans_200">{{ object.title }}</div>
+
+        <!-- <div class="post_title">{{question.title}}</div> -->
+    </div>
+</div>
+
+
+<div class="container">
+    
+    <div class="post_body text-justify">
+        <h3 class="card-title text-dark" style="font-weight: 700;">{{ object.title }}</h3>
+        <p class="card-text post_p text-justify"> {{ object.body|safe }}</p>
+        <!-- <p class="text-dark" style="font-size: 10px; font-style: italic; color: rgb(155, 155, 155); text-align: right;">Asked By: {{ object.user|title }}&nbsp;&nbsp;&nbsp;
+            |&nbsp;&nbsp;&nbsp; On: {{ object.date_created|date:"j F, Y" }} -->
+            <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+
+
+    <div class="  post_panel  d-flex flex-row align-items-center justify-content-start">
+
+       
+        <div class="post_meta text-dark">
+           
+            <form action="{% url 'forum:like_post' object.pk %}" method="POST">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+            {% if liked %}
+            <div style="display: flex; align-items: center; margin-left: 10px;">
+                
+                <button type="submit" name="post_id" value="{{ object.id }}"
+                    style="color: red; border: none; border-radius: 60px;"><img
+                        src="{% static 'images/heart-solid.svg' %}"
+                        alt="" style="width: 40px;"></button>
+                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;
+                        <br>{{ total_likes }} Likes</h5>
+            </div>
+            {% else %}
+            <div style="display: flex; align-items: center; margin-left: 10px;">
+                <button type="submit" name="post_id" value="{{ object.id }}"
+                    style="color: red; border: none; border-radius: 30px;"><img
+                        src="{% static 'images/heart-regular.svg' %}"
+                        alt="" style="width: 40px;"></button>
+                        <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;
+                            |&nbsp; On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br>{{ total_likes }} Likes</h5>
+            </div>
+            
+            {% endif %}
+            {% else %}
+            <h5 style="margin-left: 10px; cursor: pointer;"><a href="{% url 'login' %}">Login</a> to Like
+                Question | {{ total_likes }} Likes</h5>
+            {% endif %}
+        </form> </div>
+
+        <div class="row mt-2">
+            <div class="col-1 offset-4 ">
+                <img class="rounded-circle account-img thumbpic" src="{{ user.profile.image.url }}" height="50">
+            </div>
+        </div>
+
+
+
+        <div class="ml-sm-auto dropdownard show bg-secondary">
+            <a class="btn btn-secondary dropdown-toggle dropbtnard" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span></span>
+            </a>
+            {% load social_share %}
+            <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">{% post_to_facebook object_or_url "Facebook!" %}</a>
+                <a class="dropdown-item" href="#">{% post_to_whatsapp object_or_url "WhatsApp" %}</a>
+                <a class="dropdown-item" href="#">{% post_to_reddit object_or_url "Share To Reddit" %}</a>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+        {% for comment in comments %}
+        <div class="container-fluid mt-100">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <div class="media flex-wrap w-100 align-items-center"> 
+                                    {% if comment.author.profile.profile_image %}
+                                    <img class="rounded-circle account-img thumbpic" src="{{ comment.author.profile.profile_image.url }}" style="width: 50px; height: 50px; object-fit: cover;" alt="NA">
+
+                                    {% else %}
+                                        <img class="rounded-circle account-img thumbpic" src="{% static 'images/user_avtar.webp' %}" style="width: 50px; height: 50px; object-fit: cover;">
+                                    {% endif %}
+                                {% comment %} </a> {% endcomment %}
+                                {% comment %} final-ub-website-project\static\images\user_avtar.webp           {% endcomment %}
+                                <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true">{{comment.author.username}}</a>
+                                {% comment %} <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'profile' username=comment.author.username %}" data-abc="true">{{comment.author.username}}</a> {% endcomment %}
+                                    <div class="text-muted small">{{comment.timestamp|date:"j F, Y"}}</div>
+                                </div>
+                                
+                                <div class="text-muted small ml-3">
+                                    <div>Member since <strong>{{comment.author.date_joined|date:"j F, Y"}}</strong></div>
+                                    <div><strong> {{ comment.author.post_set.count }}</strong> posts</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <p style="font-weight: 700; color: black;">
+                                {{comment.body}}
+                            </p>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {% endfor %}
+       
+
+
+        <div class="container">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{form|crispy}}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+
+
+        {% if object.author == user %}
+       
+        <!-- <a style="text-decoration: none; " class="btn btn-outline-secondary"
+            href="{% url 'forum:forum-index' %}">&#x21a9;</a><br><br> -->
+        <p class="pb-1 text-warning">Only those who have posted questions can edit or delete them.</p>
+        <a style="text-decoration: none; " class="btn btn-outline-success"
+            href="{% url 'forum:post-update' object.id %}">&#x270E;</a>
+        <a style="text-decoration: none; " class="btn btn-outline-danger"
+            href="{% url 'forum:post-delete' object.id %}">&#x2716;</a>
+            
+        {% endif %}
+
+
+
+    </div>
+
+</div>
+
+
+</div>
+<br>
+<script>
+    document.getElementById("div_id_author").style.display="none"
+    document.getElementById("div_id_post").style.display="none"
+    document.getElementById("div_id_body").getElementsByTagName('label')[0].style.display="none"
+</script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script> -->
+
+{% endblock content %}

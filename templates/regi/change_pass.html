@@ -1,0 +1,77 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} Change Password | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}  
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}  {% block content %} {% load crispy_forms_tags %}
+
+<style>
+    .ard {
+        background-color: black;
+        height: 14vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+
+
+<div class="container bootstrap snippet pt-4    ">
+
+    <div class="row">
+
+        <!--/col-3-->
+        <div class="col-sm-9">
+            <h4 class="active text-justify text-dark">Change Password</h4>
+            <hr>
+            <div class="tab-content mt-3">
+                <div class="tab-pane active" id="home">
+                    <form class="form" action="##" method="post" id="registrationForm">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                {% csrf_token %} {% for fm in form %}
+                                <div class="form-outline mb-4">
+                                    <!-- <input type="email" id="typeEmailX-2" class="form-control form-control-lg" />  -->
+                                    <!-- {{form | crispy}} -->
+                                    <!-- {{fm}} -->
+                                    <label class="form-label text-dark">
+                                    {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}
+                                </label>
+
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success m-2" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+
+                                <a href="/profile"> <button class="btn btn-lg m-2" type="button"><i class="glyphicon glyphicon-repeat"></i> Back to Profile</button></a>
+                                <a href="/"> <button class="btn btn-lg m-2  " type="button"><i class="glyphicon glyphicon-repeat"></i> Home</button></a>
+
+                            </div>
+                        </div>{% if form.non_field_errors %} {% for error in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{error}}</p>
+                        {% endfor %} {% endif %}
+                    </form>
+
+                    <hr>
+
+                </div>
+
+            </div>
+            <!--/tab-pane-->
+        </div>
+        <!--/tab-content-->
+
+    </div>
+    <!--/col-9-->
+</div>
+
+
+{% endblock content %}

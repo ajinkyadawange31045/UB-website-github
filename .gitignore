@@ -1,0 +1,20 @@
+# # Django settings
+*.env
+*.env.*
+.env
+# # Virtual environment
+venv/
+
+# # Third-party libraries
+# lib/
+# vendor/
+
+# # Static files
+# staticfiles/
+
+# # Database files
+# *.sqlite3
+
+
+
+

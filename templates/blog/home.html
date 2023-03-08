@@ -1,0 +1,67 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Utkrishta Bharath,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+
+ {%block content%} {% load social_share %}
+<!-- <div class="super_container"> -->
+<!-- Header -->
+<div class="home text-center">
+    <section class="showcase text-center">
+        <video src="{% static 'video/b_video1.mp4' %}" muted loop autoplay type="video/mp4"></video>
+        
+        <div class="overlay"></div>
+        <div class="textard ml-1">
+            <!-- <img class="text-center mb-2" width="10%" height="auto" src="{% static 'images/ub.jpg' %}" alt="Images"> -->
+            {% if request.user.is_authenticated %}
+            <p class="text-important">Hello! <b>{{user}}</b>, welcome to</p>
+            {%endif%}
+            <h2 style="color:white;"><b>Utkrishta Bharath</b></h2>
+            <h5>Let us make the whole world noble.</h5>
+            <!-- <p class="font-bold">Total Hits : {{newcount}}</p> -->
+            <!-- <p>Total Logins : {{user}} </p> -->
+            <!-- <p>Comments <span>{% with post.count as total_comments %}({{ total_comments }}) {% endwith %}</span></p> -->
+
+            <a class="my-1" href="/#values">Our Values</a>
+            <a class="my-1" href="https://www.youtube.com/watch?v=7GKmAm_mXJM" target="_blank"><i class="fa fa-play mr-1"></i> About Us</a>
+            
+        </div>
+        <ul class="social">
+            <li>
+                <a target="_blank" href="https://ne-np.facebook.com/utkrishta.bharath.nitk"><img src="https://i.ibb.co/x7P24fL/facebook.png"></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://twitter.com/UtkrishtaBNitk"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.instagram.com/utkrishta.bharath.nitk/"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Menu -->
+
+
+</div>
+
+<!-- Page Content -->
+
+<div class="page_content">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+
+            <!-- main content -->
+            {% include 'blog/main_content.html' %}
+
+            <!-- Sidebar -->
+            {% include 'blog/sidebar.html' %}
+
+
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}

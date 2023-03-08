@@ -1,0 +1,104 @@
+{% extends 'base/base.html' %} {% load static %}
+{% block title %}
+  Change Password | Utkrishta Bharath | The Glorious India | Be proud to be an Indian
+{% endblock %}
+{% block extra_head_tags %}
+  {{ block.super }}
+  <meta name="description" content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... " />
+  <meta name="keywords" content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  " />
+{% endblock %} {% block content %}
+  {% load crispy_forms_tags %}
+
+  <style>
+    .ard {
+        background-color: black;
+        
+        height: 6rem;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+    body{
+        background-color: black;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+
+
+  <style>
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      word-wrap: break-word;
+      background-color: #fff;
+      background-clip: border-box;
+      border: 0 solid transparent;
+      border-radius: 0.25rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+    }
+    .me-2 {
+      margin-right: 0.5rem !important;
+    }
+  </style>
+
+  <div class="container">
+    <div class="main-body">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <!-- <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110" /> -->
+                {% if user.profile.profile_image %}
+                <img src="{{ user.profile.profile_image.url }}" class="rounded float-right" width="220">
+            {% else %}
+                <img src="https://i.stack.imgur.com/34AD2.jpg" class="rounded float-right" width="220">
+            {% endif %}
+            
+                <div class="mt-3">
+                  <h4>{{user.username}}</h4>
+                  <p class="text-secondary mb-1">Full name: {{user.first_name}} {{user.last_name}}</p>
+                  <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                  <button class="btn btn-primary">Follow</button>
+                  <button class="btn btn-outline-primary">Message</button> -->
+                </div>
+              </div>
+              <hr class="my-4" />
+           
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              {% comment %} <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="John Doe" />
+                </div>
+              </div> {% endcomment %}
+
+              <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{user_form | crispy}}
+                {{profile_form | crispy}}
+                <button type="submit" class="btn btn-primary px-4" >Update</button>
+              </form>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
+{% endblock %}

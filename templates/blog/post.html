@@ -1,0 +1,316 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} {{post.title| safe }} {%endblock%} 
+
+  {% block extra_head_tags %}
+  <meta name="description" content="{{post.excerpt}}">
+    <meta name="keywords" content="{{post.tags_for_seo}}">
+    <meta name="author" content="{{post.author}}">
+       
+    <!-- <link rel="shortcut icon" href="{% static 'images/ard.png' %}" type="image/x-icon"> -->
+    {% endblock %}
+
+    {%block content%}{% load social_share %}
+    <div id="scroll-up" onclick="scrollToTop()"> <img src="{% static 'images/ard.png' %}" alt="^"> </div>
+    <style>
+    @media screen and (min-width: 600px) {
+        .children form {
+            margin-left: -48px;
+            /* will touch very left side */
+        }
+        .children .children form {
+            margin-left: -96px;
+            /* will touch very left side */
+        }
+    }
+</style>
+<style>
+    .ard {
+        background-color: black;
+        height: 55vh;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+
+    #scroll-up {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          z-index: 9999;
+          cursor: pointer;
+          visibility: hidden;
+          opacity: 0;
+          transition: visibility 0s, opacity 0.5s linear;
+          padding: 9px 20px;
+          border-radius: 50%;
+          text-align: center;
+          font-size: 1.3rem;
+        }
+        #scroll-up.show {
+          visibility: visible;
+          opacity: 1;
+        }
+        #scroll-progress {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 4px;
+          background-color: #007bff;
+          z-index: 9998;
+        }
+</style>
+
+<div class="home ard">
+    <div class="home_content">
+        <div class="post_title">{{post.main_long_title| safe }}</div>
+    </div>
+</div>
+
+<!-- Page Content -->
+
+<div class="page_content">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+
+            <!-- Post Content -->
+
+            <div class="col-lg-9">
+                <div class="post_content">
+
+                    <!-- Top Panel -->
+                    <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start">
+                        <div class="author_image">
+                            <div><img src="/media/{{post.author.image}}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" alt=""></div>
+                        </div>
+                        <div class="post_meta text-dark">{{post.author.name}} <span class="text-dark">{{post.publish}}</span><br><p class="text-primary">{{value}} views</p> </div>
+                        <!-- <div class="post_share ml-sm-auto">
+                            <span>share</span>
+                            <ul class="post_share_list">
+                                <li class="post_share_item" style=" color: darkblue;">{% post_to_facebook  object_or_url "Facebook!" %}</li>
+                                <li class="post_share_item" style=" color: darkblue;">{% post_to_whatsapp  object_or_url "WhatsApp" %}</li>
+                                <li class="post_share_item" style=" color: darkblue;">{% post_to_reddit  object_or_url "Share To Reddit" %}</li>
+                                </ul>
+                        </div> -->
+
+                        <div class="ml-sm-auto dropdownard show bg-secondary">
+                            <a class="btn btn-successs dropdown-toggle dropbtnard" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span></span>
+                            </a>
+                          
+                            <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
+                              <a class="dropdown-item" href="#">{% post_to_facebook  object_or_url "Facebook!" %}</a>
+                              <a class="dropdown-item" href="#">{% post_to_whatsapp  object_or_url "WhatsApp" %}</a>
+                              <a class="dropdown-item" href="#">{% post_to_reddit  object_or_url "Share To Reddit" %}</a>
+                            </div>
+                          </div>
+
+
+                    </div>
+
+                    <!-- Post Body -->
+
+                    <div class="post_body text-justify text-dark">
+                        <p class="post_p h5 text-center text-info text-dark">
+                            {{post.title| safe }}
+                        </p>
+                        <figure class="text-justify">
+                            <img src="/media/{{post.thumbnail}}" alt="Image">
+                            <figcaption>{{post.thumbnail_caption| safe }}</figcaption>
+                        </figure>
+                        <p class="post_p text-dark">
+                            {{post.content_before_image| safe }}
+                        </p>
+                        <figure class="text-justify">
+                            <img src="/media/{{post.image_for_post}}" alt="">
+                            <figcaption>{{post.caption_for_image| safe }}</figcaption>
+                        </figure>
+                        <p class="post_p text-dark">
+                            {{post.content_after_image| safe }}
+                        </p>
+
+                        <div class="post_quote text-dark">
+                            <p class="post_p">{{post.quote_related_to_post|safe}}</p>
+                            <div class="post_quote_source">{{post.author_of_quote| safe }}</div>
+                        </div>
+
+                        <!-- Post Tags -->
+                        <div class="post_tags">
+                            <ul>{% for cat in cats %}
+                                <li class="post_tag"><a href="/category/{{cat.url}}">{{cat.title| safe }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Panel -->
+                    <div class="post_panel bottom_panel d-flex flex-row align-items-center justify-content-start">
+                        <div class="author_image">
+                            <div><img src="/media/{{post.author.image}}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" alt=""></div>
+                        </div>
+                        <div class="post_meta text-dark">{{post.author.name}}<span class="text-dark">{{post.publish}}</span><br><p class="text-primary">{{value}} views</p></div>
+                        <div class="post_share ml-sm-auto">
+                            <span>share</span>
+                            <ul class="post_share_list">
+                                <li class="post_share_item">{% post_to_facebook object_or_url "Facebook!" %}</li>
+                                <li class="post_share_item">{% post_to_whatsapp  object_or_url "WhatsApp" %}</li>
+                                <li class="post_share_item">{% post_to_reddit  object_or_url "Share To Reddit" %}</li>
+                                </ul>
+                        </div>
+                    </div>
+
+                    <div class="simalar_posts">
+                        <!-- Comments -->
+                        <div class="comments">
+                            <div class="comments_title">Comments <span>{% with allcomments.count as total_comments %}({{ total_comments }}) {% endwith %}</span></div>
+                            <p class="text-danger">Be Ethical and Responsible while commenting.</p>
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="comments_container">
+                                        {% load mptt_tags %}
+                                        <ul class="comment_list">
+                                            <li class="comment">
+                                                {% recursetree comments %}
+                                                <div id="{{ node.id }}" class="comment_body my-2 p-2" style="border: 1px solid #ededed">
+                                                    <div class="comment_panel d-flex flex-row align-items-center justify-content-start">
+                                                        {% comment %} <div class="comment_author_image">
+                                                            <div><img src="{% static 'images/user_avtar.webp' %}" alt="Image"></div>
+                                                        </div> {% endcomment %}
+                                                        <img  class="comment_author_image" src="{% static 'images/user_avtar.webp' %}" alt="UB">
+                                                        <small class="post_meta">{{ node.name }}<span>{{ node.publish }}</span></small> {% if node.level < 3 %} {% if request.user.is_authenticated %}<button class="reply_button ml-auto"
+                                                            onclick="myFunction({{ node.id }})">Reply</button>
+                                                            {%else%}
+                                                            <button type="button" class="reply_button ml-auto">  <a href="/signup" target="_blank">Reply</a></button> {% endif %} {% endif %}
+                                                    </div>
+                                                    <div class="comment_content">
+                                                        <p class="text-dark"><b>{{ node.content }}</b></p>
+                                                    </div>
+                                                </div>
+                                                {% if not node.is_leaf_node %}
+                                                <div class="children pl-2 pl-md-5 text-dark">
+                                                    {{ children }}
+                                                </div>
+                                                {% endif %} {% endrecursetree %}
+                                            </li>
+
+                                            <nav aria-label="Page navigation example">
+                                                {% if comments.has_other_pages %}
+                                                <ul class="pagination">
+                                                    {% if comments.has_previous %}
+                                                    <li class="page-item"><a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a>
+                                                    </li>
+                                                    {% else %}
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                                                    {% endif %} {% for num in comments.paginator.page_range %} {% if comments.number == l %}
+                                                    <li class="page-item active"><span class="page-link">{{ num }} <span class="sr-only">(current)</span></span>
+                                                    </li>
+                                                    {% else %}
+                                                    <li><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                                    {% endif %} {% endfor %} {% if comments.has_next %}
+                                                    <li class="page-item"><a class="page-link" href="?page={{ comments.next_page_number }}">Next</a></li>
+                                                    {% else %}
+                                                    <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+                                                    {% endif %}
+                                                </ul>
+                                                {% endif %}
+                                            </nav>
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post Comment -->
+                        <div class="post_comment">
+                            <div class="post_comment_title">Post Comment</div>
+                            <div class="row">
+                                <div class="col-xl-8">
+                                    <div id="myDIV" style="display:block;" class="post_comment_form_container">
+                                        <form style="display:block;" method="post" id="myForm"> {{ comment_form.as_p }} {% csrf_token %} {% comment %} <input type="text" class="comment_input comment_input_name" placeholder="Your Name" required="required">
+
+                                            <input type="email" class="comment_input comment_input_email" placeholder="Your Email" required="required">
+
+                                            <textarea class="comment_text" placeholder="Your Comment" name="comment" required="required"></textarea> {% endcomment %}
+
+                                            <input type="hidden" name="postSno" value="{{post.post_id}}"> {% if request.user.is_authenticated %}
+                                            <button type="submit" value="submit" class="comment_button">Post
+                                                Comment</button> {% else %}
+                                            <a href="/signup" target="_blank"><button type="button" class="comment_button">SignUp to Comment</button></a> {% endif %}
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                   
+
+                </div>
+            </div>
+
+
+            <!-- Sidebar -->
+            {%include 'blog/sidebar.html'%}
+
+        </div>
+    </div>
+    <!-- <img id="scroll-up" src="C:\Users\Ajinkya\Desktop\uparrow1.png" onclick="scrollToTop()">
+    <div id="scroll-progress"></div> -->
+</div>
+<div id="scroll-progress"></div>
+
+<script>
+    function formExit() {
+        document.getElementById("newForm").remove();
+    }
+
+    function myFunction(id) {
+        if (document.contains(document.getElementById("newForm"))) {
+            document.getElementById("newForm").remove();
+        }
+
+
+        var d1 = document.getElementById(id);
+        d1.insertAdjacentHTML('afterend', '<form id="newForm" class="form-insert py-2 pl-2 ml-5" style="  border: 1px solid black" method="post"> \
+                <div class="d-flex justify-content-between"><h6>Reply:</h6><button type="button" class="reply_button ml-auto" onclick="formExit()">Close</button></div> \
+                <input type="text" name="name" class="comment_input comment_input_name" placeholder=" Your Name" maxlength="50" required="" id="id_name"></br> \
+                <select name="parent" class="d-none" id="id_parentt"> \
+                <option value="' + id + '" selected="' + id + '"></option> \
+                </select> \
+                <input type="text" name="email" class="comment_input comment_input_email" placeholder=" Your Email" maxlength="254" required="" id="id_email"></br> \
+                <textarea name="content" cols="30" rows="5" class="comment_text" placeholder=" Your Comment" required id="id_content"></textarea> \
+                {% csrf_token %} \
+                <button type="submit" class="comment_button">Submit</button> \
+              </form>');
+
+        //document.querySelector('#id_parentt [value="' + id + '"]').selected = true;
+    }
+
+    $('#myForm').trigger("reset");
+</script>
+<script>
+    function scrollToTop() {
+      window.scroll({
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth'
+      });
+    }
+    function showScrollUp() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("scroll-up").classList.add("show");
+      } else {
+        document.getElementById("scroll-up").classList.remove("show");
+      }
+    }
+    function setupScrollProgress() {
+      var max = document.body.scrollHeight - window.innerHeight;
+      window.addEventListener("scroll", function() {
+        var value = (document.body.scrollTop || document.documentElement.scrollTop) / max * 100;
+        document.getElementById("scroll-progress").style.width = value + "%";
+      });
+    }
+  </script>
+{%endblock%}

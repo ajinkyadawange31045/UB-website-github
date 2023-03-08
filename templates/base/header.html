@@ -1,0 +1,152 @@
+<header class="header">
+    {% load static %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                
+                <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                    <!-- <div class="logo"><a href="/">UB</a></div> -->
+
+                    <nav class="main_nav">
+                        
+                        <ul>
+                            <li>
+                                <a class="mr-1" href="/"><img style="width: 2.5rem; height:2.5rem; border-radius: 50%;" src="{% static 'images/ub.jpg' %}" alt=""></a>
+                            </li>
+                            <!-- <li>
+                                <a class="m-2" href="/"><img src="{% static 'images/ub1.jpg' %}" alt=""></a>
+                            </li> -->
+                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/about">About</a></li>
+                            <!-- <li><a href="/#categories_ard">Categories</a></li> -->
+                            {% if request.path == '/' %}
+    <li>
+        <div class="dropdownard show">
+            <a class="btn btn-block dropdown-toggle dropbtnard" href="#" role="button"
+               id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+               aria-expanded="false">
+                Categories
+            </a>
+
+            <div class="dropdown-menu dropdownard-content" aria-labelledby="dropdownMenuLink">
+                {% for cat in cat_r %}
+                    <a class="dropdown-item" href="/category/{{cat.url}}">{{cat.title}}</a>
+                {% endfor %}
+                <a href="/our_youtube_videos" class="dropdown-item">Videos</a>
+                <a href="/gallery" class="dropdown-item">Gallery</a>
+            </div>
+        </div>
+    </li>
+{% endif %}
+
+                            <li><a href="/forum">Forum</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="/all_posts">Articles</a></li>
+                            {% else %}
+                            <li class=""><a href="/our_youtube_videos">Videos</a></li>
+                            <li class="active"><a href="/login">Login</a></li>
+                            <li class="active"><a href="/signup">SignUp</a></li>{% endif %}
+                        </ul>
+                    </nav>
+                    <div class="search_container ml-auto">
+                        <form method="get" action="/search">
+                            <input type="search" class="header_search_input" required="required"
+                                placeholder="Type to Search..." name="q" id="q">
+                            <img class="header_search_icon" src="{% static 'images/search.png'%}" alt="">
+                            <button type="submit" value="search" class="btn-dark headShake">Search</button>
+                            <!-- <input type="search" class="header_search_input" required="required" placeholder="Type to Search..." name="query" id="query">
+                            <img class="header_search_icon" src="{% static 'images/search.png'%}" alt="">
+                            <button type="submit" value="search" class="btn-dark headShake">Search</button> -->
+                        </form>
+                        
+                        {% if request.user.is_authenticated %}
+                        <div class="dropdownard">
+                            <!-- <button class="dropbtnard"><img class="card-img-top" style="width: 7%; height: 7%; object-fit: cover; border-radius: 50%;" src="{% static 'images/ub.jpg' %}"
+                                alt="https://unsplash.com/@cjtagupa"></button> -->
+                            <button class="dropbtnard"><img class="card-img-top" src="{% static 'images/user.png' %}"
+                                    alt="Profile"></button>
+                            <div class="dropdownard-content dropdown-menu" aria-haspopup="true"
+                            aria-expanded="false">
+                                <a href="/profile">Profile</a>
+                                <!-- <a href="#">Saved Post</a> -->
+                                <a href="/logout">logout</a>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                    <div class="hamburger ml-auto menu_mm">
+                        <i class="fa fa-bars trans_200 menu_mm" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+<div class="menu d-flex flex-column align-items-center justify-content-center text-center menu_mm trans_400">
+    
+    <div class="menu_close_container">
+        <div class="menu_close">
+            <div></div>
+            
+            <div></div>
+
+        </div>
+    </div>
+
+    <div class="logo menu_mm text-center"><img src="{% static 'images/ub.jpg' %}" alt="" height="70rem"
+            width="70rem"><br><a href="/">Utkrishta Bharath</a></div>
+    <div class="search">
+        <form action="/search">
+            <!-- <img class="header_search_icon" src="{% static 'images/search.png'%}" alt=""> -->
+            <input type="search" class="header_search_input menu_mm" required="required" placeholder="Type to Search..."
+                name="q" id="q">
+            <!-- <img class="header_search_icon menu_mm" src="{% static 'images/search_2.png'%}" alt=""> -->
+            <button type="submit" value="search" class="btn btn-outline-success headShake m-3">Search</button>
+        </form>
+    </div>
+    <nav class="menu_nav">
+        <ul class="menu_mm">
+            <li class="menu_mm"><a href="/">Home</a></li>
+            <li class="menu_mm"><a href="/about">About</a></li>
+            <li class="menu_mm"><a href="/gallery">Gallery</a></li>
+
+            <li class="menu_mm"><a href="/all_posts">All articles</a></li>
+            <!-- <li class="menu_mm"><a href="/#categories_ard">Categories</a></li> -->
+            <li>
+                <div class="dropdownard show">
+                    <a class="btn btn-block dropdown-toggle dropbtnard" href="#" role="button" id="dropdownMenuLink"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categories
+                    </a>
+
+                    <div class="dropdown-menu dropdownard-content" aria-labelledby="dropdownMenuLink">
+                        {%for cat in cat_r %}
+                        <a class="dropdown-item" style="color: white;" href="/category/{{cat.url}}">{{cat.title}}</a>
+                        {%endfor%}
+
+                    </div>
+                </div>
+            </li>
+
+            <li class="menu_mm"><a href="/#contact">Contact</a></li>
+            <li class="menu_mm"><a href="/forum">Forum</a></li>
+            <li class="menu_mm"><a href="/our_youtube_videos">Videos</a></li>
+            
+            {% if request.user.is_authenticated %}
+            <!-- <li class="menu_mm"><a href="#">Saved</a></li> -->
+            <!-- <li class="menu_mm"><a href="#">Team</a></li> -->
+            <li class="menu_mm"> <a href="/profile">Profile</a></li>
+            <li class="menu_mm"><a href="/logout">logout</a></li>{% else %}
+            <li class="menu_mm"><a href="/login">Login</a></li>
+            <li class="menu_mm"><a href="/signup">SignUp</a></li>{% endif %}
+
+        </ul>
+    </nav>
+    <div class="hamburger ml-auto menu_mm">
+        <i class="fa fa-bars trans_200 menu_mm" aria-hidden="true"></i>
+    </div>
+</div>

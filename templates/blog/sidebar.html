@@ -1,0 +1,405 @@
+<!-- sidebar of home page -->
+{% load static %}
+<div class="col-lg-3">
+    <div class="sidebar">
+        <div class="sidebar_background"></div>
+
+        <!-- Top Stories -->
+
+        <div class="sidebar_section">
+            <div class="sidebar_title_container">
+                <div class="sidebar_title">Recently added</div>
+                <div class="sidebar_slider_nav">
+                    <div class="custom_nav_container sidebar_slider_nav_container">
+                        <div class="custom_prev custom_prev_top">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
+                            </svg>
+                        </div>
+                        <ul id="custom_dots" class="custom_dots custom_dots_top">
+                            <li class="custom_dot custom_dot_top active"><span></span></li>
+                            <li class="custom_dot custom_dot_top"><span></span></li>
+                            <li class="custom_dot custom_dot_top"><span></span></li>
+                        </ul>
+                        <div class="custom_next custom_next_top">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar_section_content">
+                <!-- Top Stories Slider -->
+                <div class="sidebar_slider_container">
+                    <div class="owl-carousel owl-theme sidebar_slider_top">
+
+                        <!-- Top Stories Slider Item -->
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in latest %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in latest1 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in latest2 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in latest3 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advertising -->
+
+        {%for i in adv2%}
+        <div class="sidebar_section">
+            <div class="advertising_2">
+                <!-- <a style="text-decoration: None;" href="{{i.url}}"> -->
+                <a style="text-decoration: None;" href="#">
+                    <div class="advertising_background" style="background-image:url(/media/{{i.image}})"></div>
+                    <div class="advertising_2_content d-flex flex-column align-items-center justify-content-center">
+                        <div class="text-primary">{{i.name}} <p class="text-secondary">{{i.content}}</p></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {%endfor%}
+
+        <!-- category wise -->
+
+        <div class="sidebar_section newest_videos">
+            <div class="sidebar_title_container">
+                <div class="sidebar_title">Category Wise..</div>
+                <div class="sidebar_slider_nav">
+                    <div class="custom_nav_container sidebar_slider_nav_container">
+                        <div class="custom_prev custom_prev_vid">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
+                            </svg>
+                        </div>
+                        <ul id="custom_dots" class="custom_dots custom_dots_vid">
+                            <li class="custom_dot custom_dot_vid active"><span></span></li>
+                            <li class="custom_dot custom_dot_vid"><span></span></li>
+                            <li class="custom_dot custom_dot_vid"><span></span></li>
+                        </ul>
+                        <div class="custom_next custom_next_vid">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar_section_content">
+                <!-- Sidebar Slider -->
+                <div class="sidebar_slider_container">
+                    <div class="owl-carousel owl-theme sidebar_slider_vid">
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_main.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_main %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_first.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_first %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_second.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_second %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_third.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_third %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_forth.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_forth %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_fifth.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_fifth %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Newest Videos Slider Item -->
+                        <div class="owl-item">
+                            <div class="side_post bg-dark">
+                                <!-- <a href="post.html"> -->
+                                <div class="d-flex flex-row align-items-xl-center align-items-center p-2 m-2 text-uppercase text-warning justify-content-center">
+                                    <h3 class="text-center"> {{post_sixth.first.category}}</h3>
+                                </div>
+                                <!-- </a> -->
+                            </div>
+                            <!-- Newest Videos Post -->
+                            {% for i in post_sixth %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" src="/media/{{i.thumbnail}}" alt=""></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advertising 2 -->
+
+        <div class="sidebar_section">
+            <div class="advertising_2">
+                <a style="text-decoration: None;" href="#">
+                    <div class="advertising_background" style="background-image:url(/media/{{adv1.image}})"></div>
+                    <div class="advertising_2_content d-flex flex-column align-items-center justify-content-center">
+                        <div class="advertising_2_link">{{adv1.name}} <span>{{adv1.content}}</span></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Future Events -->
+        <div class="sidebar_section future_events">
+            <div class="sidebar_title_container">
+                <div class="sidebar_title">Future Events</div>
+
+            </div>
+            <div class="sidebar_section_content">
+
+                <!-- Sidebar Slider -->
+                <!-- Future Events Slider Item -->
+                {%for i in future%}
+                <div class="item">
+                    <!-- Future Events Post -->
+                    <div class="side_post">
+                        <a href="#">
+                            <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                <div class="event_date d-flex flex-column align-items-center justify-content-center">
+                                    <div class="event_day">{{i.date_of_event}}</div>
+                                    <div class="event_month">{{i.month_of_event}}</div>
+                                </div>
+                                <div class="side_post_content">
+                                    <div class="side_post_title">{{i.title}}</div>
+                                    <small class="post_meta">{{i.any_hashtag}}</small>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+
+            </div>
+        </div>
+
+    </div>
+</div>

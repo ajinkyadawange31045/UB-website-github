@@ -1,0 +1,338 @@
+{% extends 'base/base.html' %} {% load static %} {%block title%} Profile Page | Utkrishta Bharath | The Glorious India |
+Be proud to be an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+<meta name="description"
+    content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+<meta name="keywords"
+    content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %} {% block content %} {% load crispy_forms_tags %}
+<style>
+    .ard {
+        background-color: black;
+
+        height: 6rem;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+
+    body {
+        background-color: black;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+
+<style>
+    .gradient-custom-2 {
+        /* fallback for old browsers */
+        background: #fbc2eb;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1))
+    }
+</style>
+<style>
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0, 0, 0, .125);
+        border-radius: .25rem;
+    }
+
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+
+    .gutters-sm>.col,
+    .gutters-sm>[class*=col-] {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .mb-3,
+    .my-3 {
+        margin-bottom: 1rem !important;
+    }
+
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+
+    .h-100 {
+        height: 100% !important;
+    }
+
+    .shadow-none {
+        box-shadow: none !important;
+    }
+</style>
+
+
+
+
+
+<section class="vh-100"
+    style="background-color: #000000; background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/041.webp'); background-size: cover;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-md-9 col-lg-7 col-xl-5">
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body p-4">
+                        <div class="d-flex text-black flex-wrap justify-content-center align-content-center">
+                            <div class="flex-shrink-0">
+                                {% if profile.user.profile.profile_image %}
+                                <img class="rounded float-right" src="{{ profile.user.profile.profile_image.url }}"
+                                    style="max-width: 100%; width: 280px; border-radius: 10px;">
+
+                                {% else %}
+                                <img class="rounded float-right" src="{% static 'images/user_avtar.webp' %}"
+                                    style="max-width: 100%; width: 280px; border-radius: 10px;">
+                                {% endif %}
+
+                                <!-- <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
+                    alt="Generic placeholder image" class="img-fluid"
+                    style="width: 180px; border-radius: 10px;"> -->
+                            </div>
+                            <div class="flex-grow-1 ms-3 pl-3 align-content-lg-start justify-content-center">
+                                <h5 class="mb-1 py-1">{{profile.user.username}}</h5>
+                                {% if messages %}
+                                {% for message in messages %}
+                                <p class="alert alert-{{ message.tags }}" role="alert">{{ message }}</p>
+                                {% endfor %}
+                                {% endif %}
+                                <p class="mb-2 pb-1" style="color: #2b2a2a; ">{{profile.user.first_name}}
+                                    {{profile.user.last_name}}</p>
+                                <div class="d-flex justify-content-around rounded-3 p-2 mb-2"
+                                    style="background-color: #efefef;">
+                                    <div>
+                                        <p class="small text-muted mb-1">Posts</p>
+                                        <p class="mb-0">{{ num_forum_posts }}</p>
+                                    </div>
+                                    <div class="px-3">
+                                        <p class="small text-muted mb-1">Replies</p>
+                                        <p class="mb-0">{{ num_comments }}</p>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="d-flex pt-1">
+                                    <!-- <button type="button" class="btn btn-outline-primary me-1 flex-grow-1">Chat</button>
+                    <button type="button" class="btn btn-primary flex-grow-1">Follow</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<div class="container pt-4">
+    <div class="main-body">
+
+        <!-- /Breadcrumb -->
+
+        <div class="row gutters-sm justify-content-around">
+            <div class="col-md-8 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center">
+
+
+                            <div class="mt-3 text-secondary justify-content-start">
+                                <h4>About</h4>
+
+                                <p class="text-secondary mb-1 text-dark"> {{profile.user.profile.bio}}</p>
+                                <p class="text-secondary mb-1 text-dark"> <b>Email</b>: {% if profile.user.profile.email %}{{ profile.user.profile.email }}{% else %}NA{% endif %}</p>
+                                <p class="text-secondary mb-1 text-dark"> <b>DOB</b>: {% if profile.user.profile.birth_date %}{{ profile.user.profile.birth_date }}{% else %}NA{% endif %}</p>
+                                <p class="text-secondary mb-1 text-dark"> <b>Address</b>: {% if profile.user.profile.location %}{{ profile.user.profile.location }}{% else %}NA{% endif %}</p>
+                                
+                                <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                               
+                              <p>   </p>
+                               
+                                <p class=" text-dark"><b>Date Joined</b> <br> {{profile.user.date_joined}}</p>
+                                <p class=" text-dark"><b>last login</b> <br> {{profile.user.last_login}}</p>
+                                <p class="pt-3 text-black">
+                                    It was a pleasure sharing a glimpse of my personality through my profile picture. I hope it gave you a better understanding of who I am and what I value. Thank you for taking the time to read it all. I wish you all the best and hope that you have a positive and fulfilling day!
+                                </p>
+                                {% comment %} <button class="btn btn-primary">Follow</button>
+                                <button class="btn btn-outline-primary">Message</button> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+                 
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                      <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
+                      <span class="text-secondary">
+                          {% if profile.user.github %}
+                            <a href="{{ profile.user.github }}" target="_blank" rel="noopener noreferrer" style="color: red;">
+                              <i class="fa fa-github" aria-hidden="true"></i>
+                            </a>
+                          {% else %}
+                            <span>NA</span>
+                          {% endif %}
+                        </span>
+                        
+                    </li>
+
+                  <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0 text-dark"><i class="fa fa-globe" aria-hidden="true"></i> Website</h6>
+                        <span class="text-secondary">
+                            {% if profile.user.profile.website %}
+                            <a href="{{ profile.user.profile.website }}" target="_blank" style="color: black;">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            NA
+                            {% endif %}
+                        </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
+                        <span class="text-secondary">
+                            {% if profile.user.github %}
+                            <a href="{{ profile.user.github }}" target="_blank" rel="noopener noreferrer" style="color: red;">
+                                <i class="fa fa-github" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            NA
+                            {% endif %}
+                        </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0 text-dark"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</h6>
+                        <span class="text-secondary">
+                            {% if profile.user.profile.twitter %}
+                            <a href="{{ profile.user.profile.twitter }}" target="_blank" style="color: black;">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            NA
+                            {% endif %}
+                        </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <style>
+                            .fa-instagram {
+                            color: red;
+                            }
+                        </style>
+                        <h6 class="mb-0 text-dark"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</h6>
+                        <span class="text-secondary">
+                            {% if profile.user.profile.instagram %}
+                            <a href="{{ profile.user.profile.instagram }}" target="_blank" style="color: black;">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            NA
+                            {% endif %}
+                        </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0 text-dark"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</h6>
+                        <span class="text-secondary">
+                            {% if profile.user.profile.facebook %}
+                            <a href="{{ profile.user.profile.facebook }}" target="_blank" style="color: black;">
+                                <i class="fa fa-external-link" aria-hidden="true"></i>
+                            </a>
+                            {% else %}
+                            NA
+                            {% endif %}
+                        </span>
+                        </li>
+
+                </ul>
+              </div>
+            </div>
+
+
+
+
+
+
+
+            
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="col-sm-12 mb-12">
+                        <div class="h-100">
+                            <div class="card-body">
+                                <h3 style="color: black;" class="text-center">All the following discussions were started by {{user.username}}</h3>
+                                <!-- <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Post in forums</i>{{ num_forum_posts }}</h5>
+                                <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Replies given</i>{{ num_comments }}</h5> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="row gutters-sm">
+                    <div class="col-sm-6 mb-3">
+                        {% for post in user_posts %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: black;">{{ post.post.title }}</h5>
+                                <p class="card-text">{{ post.post.content }}</p>
+                                <a href="{{ post.post_url }}" class="btn btn-primary">Go to post</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        {% for post in user_posts %}
+                        {% if not forloop.counter0|divisibleby:2 %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title" style="color: black;">{{ post.post.title }}</h5>
+                                <p class="card-text">{{ post.post.content }}</p>
+                                <a href="{{ post.post_url }}" class="btn btn-primary">Go to post</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock content %}

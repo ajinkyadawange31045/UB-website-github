@@ -1,0 +1,127 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} About Us | Utkrishta Bharath | The Glorious
+India | Be proud to be an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+<meta name="description"
+	content="These categories of blogs will be uploaded here.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+<meta name="keywords"
+	content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %} {%block content%}
+<style>
+	.ard {
+		background-color: black;
+		height: 55vh;
+		width: 100vw;
+		margin-bottom: 14px;
+	}
+</style>
+
+<div class="home ard">
+	<div class="home_content">
+		<div class="post_title">About Us</div>
+
+	</div>
+</div>
+
+
+
+
+<style>
+	/* set font family and size for all text */
+	body {
+		font-family: Arial, sans-serif;
+		font-size: 16px;
+	}
+
+	/* make headings larger and bolder */
+	h2 {
+		font-size: 28px;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+
+	/* add padding to sections */
+	.section {
+		padding: 50px 0;
+	}
+
+	
+</style>
+
+<div class="bg-white py-8 section">
+	<div class="container py-8">
+		
+
+		<div class="row align-items-center">
+			<div class="col-lg-5 px-0 mx-auto">
+				<img src="{% static 'images/ub.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
+			</div>
+			<div class="col-lg-7">
+				<h2 class="text-danger">Utkrishta Bharath</h2>
+				<p class="text-dark" style="font-size: 1.6rem;">India is home to over a billion people, accommodating incredible cultural diversity between languages, geographic regions, religious traditions and social stratifications. In recognition of this large demographic diversity, the following descriptions are not intended to represent every Indian person. However, there are common themes and principles that contribute to the values, attitudes, beliefs and norms of the dominant society. Generally speaking, Indians tend to have a strong sense of pride in the distinctiveness and diversity of their culture. For example, the country’s agricultural expansions and technological advancements in infrastructure, science and engineering are sources of pride. Moreover, a considerable amount of pride stems from India's rich artistic cultural exports of music, fine arts, literature and spirituality (especially the practice of yoga).</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="bg-light py-5">
+	<div class="container py-5">
+		<div class="row mb-4">
+			<div class="col-lg-5">
+				<h2 class="display-4 font-weight-dark text-dark"><b>Our team</b></h2>
+				<p class="font-italic text-muted">We are a family</p>
+			</div>
+		</div>
+		{% if request.user.is_authenticated %}
+		<div class="row text-center">
+			{% for i in team %}
+			<!-- Team item-->
+			
+			<div class="card card_small_with_image grid-item px-2">
+				<img class="card-img-top" src="/media/{{i.image}}" alt="Image">
+				<div class="card-body">
+					<div class="card-title card-title-small text-dark"><a href="#">{{i.name}}</a></div>
+					<small class="post_meta">{{i.work}}<span><a style="color:blue;" href="{{i.handle_link}}"
+								target="_blank">{{i.Social_media_handle}}</a></span></small>
+				</div>
+			</div>
+			{%endfor%} 
+			<!-- End-->
+			{% else %}
+			<div class="container text-center color-black font-bold col-12 col-md-8 col-lg-6 col-xl-5">
+                <h6 class="alert-danger">Login to see our team members</h6>
+                <a href="/login"> <button type="button" class="btn btn-dark btn-rounded"
+                        data-mdb-ripple-color="dark">Login</button></a>
+                <a href="/signup"><button type="button" class="btn btn-dark btn-rounded"
+                        data-mdb-ripple-color="dark">SignUp</button></a>
+            </div>
+            {% endif %}
+			
+		</div>
+	</div>
+</div>
+<style>
+	.social-link {
+		width: 30px;
+		height: 30px;
+		border: 1px solid #ddd;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: #666;
+		border-radius: 50%;
+		transition: all 0.3s;
+		font-size: 0.9rem;
+	}
+
+	.social-link:hover,
+	.social-link:focus {
+		background: #ddd;
+		text-decoration: none;
+		color: #555;
+	}
+</style>
+{%endblock%}

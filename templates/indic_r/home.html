@@ -1,0 +1,402 @@
+{% extends 'base/base.html' %} {% load static %}{%block title%} Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Utkrishta Bharath,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %}
+
+ {%block content%} {% load social_share %}
+<!-- <div class="super_container"> -->
+<!-- Header -->
+<div class="home text-center">
+    <section class="showcase text-center">
+        <video src="{% static 'video/b_video1.mp4' %}" muted loop autoplay type="video/mp4"></video>
+        
+        <div class="overlay"></div>
+        <div class="textard ml-1">
+            <!-- <img class="text-center mb-2" width="10%" height="auto" src="{% static 'images/ub.jpg' %}" alt="Images"> -->
+            {% if request.user.is_authenticated %}
+            <p class="text-important">Hello! <b>{{user}}</b>, welcome to</p>
+            {%endif%}
+            <h2 style="color:white;"><b>Indic Renaissance</b></h2>
+            <h5>Let us make the whole world noble.</h5>
+            <!-- <p class="font-bold">Total Hits : {{newcount}}</p> -->
+            <!-- <p>Total Logins : {{user}} </p> -->
+            <!-- <p>Comments <span>{% with post.count as total_comments %}({{ total_comments }}) {% endwith %}</span></p> -->
+
+            <a class="my-1" href="#">Know more</a>
+            <a class="my-1" href="https://www.youtube.com/watch?v=7GKmAm_mXJM" target="_blank"><i class="fa fa-play mr-1"></i> About IR</a>
+            
+        </div>
+        <ul class="social">
+            <li>
+                <a target="_blank" href="https://ne-np.facebook.com/utkrishta.bharath.nitk"><img src="https://i.ibb.co/x7P24fL/facebook.png"></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://twitter.com/UtkrishtaBNitk"><img src="https://i.ibb.co/Wnxq2Nq/twitter.png"></a>
+            </li>
+            <li>
+                <a target="_blank" href="https://www.instagram.com/utkrishta.bharath.nitk/"><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Menu -->
+
+
+</div>
+
+<!-- Page Content -->
+
+<div class="page_content">
+    <div class="container">
+        <div class="row row-lg-eq-height">
+
+            <!-- main content -->
+            <!-- Main Content -->
+<style>
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  :root {
+      --color-gray-90: hsl(0, 0%, 90%);
+      --color-gray-80: hsl(0, 0%, 80%);
+      --color-gray-50: hsl(0, 0%, 50%);
+      --color-light: hsl(0, 0%, 100%);
+      --font-size-initial: 11px;
+      --size-initial: 1px;
+  }
+
+  body {
+      background: var(--color-gray-90);
+      color: var(--color-gray-50);
+      font-family: BlinkMacSystemFont, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: var(--font-size-initial);
+  }
+
+  /* CONTAINERS */
+
+  .main_ard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(calc(var(--font-size-initial) * 18), 1fr));
+      gap: calc(var(--font-size-initial) * 2);
+      max-width: calc(var(--font-size-initial) * 80);
+      padding: calc(var(--font-size-initial) * 1);
+  }
+
+  .section_ard {
+      background: var(--color-light);
+      border-radius: calc(var(--font-size-initial) * .5);
+      box-shadow: 0 calc(var(--size-initial) * 3) calc(var(--size-initial) * 6) hsla(0, 0%, 0%, .1);
+      overflow: hidden;
+  }
+
+  .article_ard {
+      padding: calc(var(--font-size-initial) * 1);
+  }
+
+  figure_ard {
+      height: calc(var(--font-size-initial) * 15);
+  }
+
+  /* IMAGE */
+
+  .img_ard {
+      height: 250px;
+      object-fit: cover;
+      width: 100%;
+  }
+
+  /* TYPOGRAPHY */
+
+  .h3_ard {
+      font-size: calc(var(--font-size-initial) * 2);
+      letter-spacing: calc(var(--size-initial) * -1.25);
+      line-height: calc(var(--font-size-initial) * 2.25);
+      margin: calc(var(--font-size-initial) * .5) 0;
+  }
+
+  .p_ard {
+      font-size: calc(var(--font-size-initial) * 1.100);
+      line-height: calc(var(--font-size-initial) * 1.25);
+  }
+
+  #owl-demo_ard .item img {
+      display: block;
+      width: 100%;
+      height: auto;
+  }
+</style>
+{% load static %}
+<div class="col-lg-12">
+  <div class="main_content">
+
+     
+
+      <!-- competitions -->
+      <div class="blog_section">
+          <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+              <div class="section_title" id="categories_ard">competitions...</div>
+              
+          </div>
+          <div class="section_content">
+              <div class="grid clearfix">
+
+                 
+
+                  <!-- Small Card Without Image -->
+                  {% for f in competitions %}
+                  <div class="card card_default card_small_no_image grid-item">
+                      <div class="card-body">
+                          {% comment %} <img src="{{f.image}}" alt="img"> {% endcomment %}
+                          <div class="card-title card-title-small">
+                              <a href="{% url 'competition_detail' f.pk %}">{{f.title}}</a>
+                          </div>
+                      </div>
+                  </div>
+              {% endfor %}
+              
+
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
+      {% comment %} social Initiatives {% endcomment %}
+      <div class="blog_section mb-5">
+        <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+            <div class="section_title" id="categories_ard">Social Initiatives</div>
+            
+        </div>
+
+        <div class="row">
+          {% for i in social_initiatives %}
+            <div class="col-sm-4">
+              <div class="card">
+                <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'social_initiative_detail' i.pk %}">{{i.title}}</a></h5>
+                  <p class="card-text">{{i.short_content}}</p>
+                  {% comment %} <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+          
+      </div>
+
+      
+      
+      {% comment %} speaker-talks {% endcomment %}
+      <div class="blog_section">
+          <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+              <div class="section_title">Talks...</div>
+              <p class="pl-2">Some famous event and Speaker out there are..</p>
+          </div>
+          <div class="container mt-4">
+              {% for i in talks %}
+              <div class="row wow fadeInLeft" data-wow-delay=".3s">
+                  <div class="col-lg-6 col-xl-5 pr-lg-5 pb-5">
+                      <h6 class="text-dark text-center font-bold" style="font-weight: 300;">{{i.speaker_name}}</h6>
+                      <img class="img-fluid rounded z-depth-2" src="/media/{{i.image}}" alt="project image" />
+                      {% comment %} <p>Conducted on : {{i.date_of_initiative}}</p> {% endcomment %}
+                  </div>
+                  <div class="col-lg-6 col-xl-7 pl-lg-5 pb-4 slide-left">
+
+
+                      <div class="row mb-3">
+                          <div class="col-1 mr-1"></div>
+                          <div class="col-10">
+                              <h5 class="font-weight-bold"><a class="link" href="{% url 'talk_detail' i.pk %}">{{i.title_of_topic_of_speaker}}</a>
+
+                                <style>
+                                    .link {
+                                        text-decoration: none;
+                                        color: black;
+                                        transition: all 0.3s ease;
+                                    }
+                                    
+                                    .link:hover {
+                                        color: #8e8e8e;
+                                    }
+                                </style>
+                                </h5>
+                              <p class="grey-text">
+                                  {{i.about_talk_in_nutshell}}
+                              </p>
+                          </div>
+                      </div>
+                    
+
+                  </div>
+              </div>
+              <hr /> {%endfor%}
+
+          </div>
+      </div>
+
+      {% comment %} proshows-courssel {% endcomment %}
+      <div class="blog_section mb-5">
+          <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+              <div class="section_title">Proshows...</div>
+              <p class="pl-2">Some famous event and Speaker out there are..</p>
+          </div>
+          <div class="container my-4">
+           
+            
+            <div class="container-fluid">
+              <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                  {% for i in proshows %}
+                    <li data-target="#myCarousel" data-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active"{% endif %}></li>
+                  {% endfor %}
+                </ol>
+            
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                  {% for i in proshows %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <img src="{{ i.image.url }}" alt="{{ i.title }}" class="img-fluid">
+                      <div class="carousel-caption d-none d-md-block">
+                        <h5 style="background-color: rgba(0,0,0,0.5); padding: 10px; display: inline-block;"><a  href="{% url 'proshow_detail' i.pk %}" style="color:#fff">{{ i.title }}</a></h5>
+
+                      </div>
+                    </div>
+                  {% endfor %}
+                </div>
+            
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            </div>
+            
+            <style>
+              .carousel-control-prev-icon,
+              .carousel-control-next-icon {
+                background-image: none;
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 30px;
+                height: 30px;
+              }
+              .carousel-control-prev-icon:before,
+              .carousel-control-next-icon:before {
+                content: '\2039';
+                color: #fff;
+                font-size: 20px;
+              }
+              .carousel-control-next-icon:before {
+                content: '\203a';
+              }
+            </style>
+            
+            <script>
+              $(document).ready(function(){
+                $('.carousel').carousel({
+                  interval: 3000
+                })
+              });
+            </script>
+
+          </div>
+      </div>
+
+
+
+
+      {% comment %} workshops {% endcomment %}
+      <div class="blog_section mb-5">
+        <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+            <div class="section_title" id="categories_ard">Workshops</div>
+            
+        </div>
+
+        <div class="row">
+          {% for i in workshops %}
+            <div class="col-sm-4">
+              <div class="card">
+                <img class="card-img-top" src="/media/{{i.image}}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{% url 'workshop_detail' i.pk %}">{{i.title}}</a></h5>
+                  <p class="card-text"></p>
+                  {% comment %} <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> {% endcomment %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        
+          
+      </div>
+      
+      
+
+
+
+
+      <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> -->
+<!-- sponsors -->
+      <section class="section services-section pb-4" id="services">
+          <div class="container">
+              <div class="row">
+                <div class="section_title">Sponsors...</div>
+              </div>
+              <div class="row">
+                <!-- feaure box -->
+                {% for i in sponsor %}
+                <div class="col-sm-6 col-md-4 col-lg-2">
+                  <div class="feature-box">
+                    <div class="icon">
+                      <img src="/media/{{i.image}}" alt="" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <div class="feature-content text-center pt-4">
+                      <h5>{{i.title}}</h5>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              
+              <style>
+                .row {
+                  display: flex;
+                  flex-wrap: wrap;
+                  margin: 0 -15px;
+                }
+                .col-lg-2 {
+                  flex: 0 0 16.66666667%;
+                  max-width: 16.66666667%;
+                  padding: 0 15px;
+                }
+                .feature-box {
+                  border: 1px solid #eee;
+                  padding: 15px;
+                }
+              </style>
+              
+      </section>
+
+
+  </div>
+</div>
+      
+            
+
+
+{%endblock%}

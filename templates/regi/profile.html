@@ -1,0 +1,345 @@
+ {% extends 'base/base.html' %} {% load static %} {%block title%} Profile Page | Utkrishta Bharath | The Glorious India | Be proud to be an Indian {%endblock%}  
+{% block extra_head_tags %}
+{{ block.super }}
+   <meta name="description" content="Want to make Bharath Utkrishta?Join the movement with Utkrishta Bharath.We write blogs realted to he History with Indian point of view, Geopolitics, Glorioes of Inida, Spirituality and many more. Utkrishta Bharath Nitk. Connect with Utkrishta Bharath Nitk .NITK Surathkal Starts Utkrishta Bharath Club... ">
+    <meta name="keywords" content="Profile page of Utkrishta Bharath ,Login to Utkrishta Bharath, Login Page, signup Page,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+{% endblock %} {% block content %} {% load crispy_forms_tags %}
+<style>
+    .ard {
+        background-color: black;
+        
+        height: 6rem;
+        width: 100vw;
+        margin-bottom: 14px;
+    }
+    body{
+        background-color: black;
+    }
+</style>
+
+<div class="home ard">
+
+</div>
+
+
+<style>
+    .card {
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+    }
+    
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 0 solid rgba(0,0,0,.125);
+        border-radius: .25rem;
+    }
+    
+    .card-body {
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1rem;
+    }
+    
+    .gutters-sm {
+        margin-right: -8px;
+        margin-left: -8px;
+    }
+    
+    .gutters-sm>.col, .gutters-sm>[class*=col-] {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+    .mb-3, .my-3 {
+        margin-bottom: 1rem!important;
+    }
+    
+    .bg-gray-300 {
+        background-color: #e2e8f0;
+    }
+    .h-100 {
+        height: 100%!important;
+    }
+    .shadow-none {
+        box-shadow: none!important;
+    }
+</style>
+
+<div class="container pt-4">
+    <div class="main-body">
+    
+          <!-- /Breadcrumb -->
+    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    {% comment %} {% if user.profile.profile_image %}
+                    <img src="{{ user.profile.profile_image.url }}" class="rounded float-right" width="220">
+                {% else %}
+                    <img src="https://i.stack.imgur.com/34AD2.jpg" class="rounded float-right" width="220">
+                {% endif %} {% endcomment %}
+                
+                {% if user.profile.profile_image %}
+                <img class="rounded float-right" src="{{ user.profile.profile_image.url }}" width="220">
+
+                {% else %}
+                    <img class="rounded float-right" src="{% static 'images/user_avtar.webp' %}" width="220">
+                {% endif %}
+
+
+                    <div class="mt-3">
+                      <h4>{{user.username}} </h4>
+                      <p> {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+                        {% endfor %}
+                      {% endif %}</p>
+                      <p class="text-secondary mb-1"> {{user.first_name}} {{user.last_name}}</p>
+                      <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                      <p class="pt-3 text-info">
+                        Want to contribute to Utkrishta Bharth by Writing Blogs (related to your culture)?
+                    </p>
+                    <p class=" text-success ">Don't forget to mention WhatsApp Number in message</p>
+                    <p>
+                        <a href="/#contact"><button class="btn btn-sm btn-primary shadow-sm" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Contact us</button></a>
+
+                    </p>
+                    <p class=" text-dark">Date Joined <br> {{user.date_joined}}</p>
+                    <p class=" text-dark">last login <br> {{user.last_login}}</p>
+                      {% comment %} <button class="btn btn-primary">Follow</button>
+                      <button class="btn btn-outline-primary">Message</button> {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mt-3">
+                <ul class="list-group list-group-flush">
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
+                            <span class="text-secondary">
+                                {% if user.github %}
+                                <a href="{{ user.github }}" target="_blank" rel="noopener noreferrer"
+                                    style="color: red;">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                <span>NA</span>
+                                {% endif %}
+                            </span>
+
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 text-dark"><i class="fa fa-globe" aria-hidden="true"></i> Website</h6>
+                            <span class="text-secondary">
+                                {% if user.profile.website %}
+                                <a href="{{ user.profile.website }}" target="_blank" style="color: black;">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                NA
+                                {% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
+                            <span class="text-secondary">
+                                {% if user.github %}
+                                <a href="{{ user.github }}" target="_blank" rel="noopener noreferrer"
+                                    style="color: red;">
+                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                NA
+                                {% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 text-dark"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</h6>
+                            <span class="text-secondary">
+                                {% if user.profile.twitter %}
+                                <a href="{{ user.profile.twitter }}" target="_blank" style="color: black;">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                NA
+                                {% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <style>
+                                .fa-instagram {
+                                    color: red;
+                                }
+                            </style>
+                            <h6 class="mb-0 text-dark"><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</h6>
+                            <span class="text-secondary">
+                                {% if user.profile.instagram %}
+                                <a href="{{ user.profile.instagram }}" target="_blank" style="color: black;">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                NA
+                                {% endif %}
+                            </span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0 text-dark"><i class="fa fa-facebook" aria-hidden="true"></i> Facebook</h6>
+                            <span class="text-secondary">
+                                {% if user.profile.facebook %}
+                                <a href="{{ user.profile.facebook }}" target="_blank" style="color: black;">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>
+                                </a>
+                                {% else %}
+                                NA
+                                {% endif %}
+                            </span>
+                        </li>
+
+                    </ul>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.first_name}} {{user.last_name}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.email}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">DOB</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.birth_date}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.phone_number}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Bio</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      {{user.profile.bio}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      {% comment %} <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a> {% endcomment %}
+                      <a  href="{% url 'profile-update' %}" class="btn btn-sm btn-primary shadow-sm">Edit</a>
+
+                      
+                    <a href="{% url 'change_pass' %}" class="btn btn-primary btn-sm">Change Password</a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card mb-3">
+
+                <div class="col-sm-12 mb-12">
+                  <div class=" h-100 ">
+                    <div class="card-body">
+                      <h3 style="color: black;" class="text-center">All the following discussions were started by {{user.username}}</h3>
+                      
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Post in forums</i> {{ num_forum_posts }} </h5>
+                      <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Replies given</i> {{ num_comments }} </h5>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+               
+              <div class="row gutters-sm">
+                <!-- <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                   
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Post in forums</i>{{ num_forum_posts }}</h6>
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Replies given</i>{{ num_comments }}</h6>
+                      
+
+                    </div>
+                  </div>
+                </div> -->
+
+                
+                <!-- <div class="col-sm-6 mb-3">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h6 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">assignment</i>Project Status</h6>
+                     
+                    </div>
+                  </div>
+                </div> -->
+
+
+                <div class="col-sm-6 mb-3">
+                  {% for post in user_posts %}
+                  {% if forloop.counter0|divisibleby:2 %}
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title" style="color: black;">{{ post.post.title }}</h5>
+                      <p class="card-text">{{ post.post.content }}</p>
+                      <a href="{{ post.post_url }}" class="btn btn-primary">Go to post</a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+                <div class="col-sm-6 mb-3">
+                  {% for post in user_posts %}
+                  {% if not forloop.counter0|divisibleby:2 %}
+                  <div class="card mb-3">
+                    <div class="card-body">
+                      <h5 class="card-title" style="color: black;">{{ post.post.title }}</h5>
+                      <p class="card-text">{{ post.post.content }}</p>
+                      <a href="{{ post.post_url }}" class="btn btn-primary">Go to post</a>
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+              </div>
+
+              
+
+
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+{% endblock content %} 
