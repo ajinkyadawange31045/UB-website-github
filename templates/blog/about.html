@@ -73,7 +73,7 @@ India | Be proud to be an Indian {%endblock%}
 				<p class="font-italic text-muted">We are a family</p>
 			</div>
 		</div>
-		{% if request.user.is_authenticated %}
+		{% comment %} {% if request.user.is_authenticated %} {% endcomment %}
 		<div class="row text-center">
 			{% for i in team %}
 			<!-- Team item-->
@@ -88,7 +88,7 @@ India | Be proud to be an Indian {%endblock%}
 			</div>
 			{%endfor%} 
 			<!-- End-->
-			{% else %}
+			{% comment %} {% else %}
 			<div class="container text-center color-black font-bold col-12 col-md-8 col-lg-6 col-xl-5">
                 <h6 class="alert-danger">Login to see our team members</h6>
                 <a href="/login"> <button type="button" class="btn btn-dark btn-rounded"
@@ -96,7 +96,7 @@ India | Be proud to be an Indian {%endblock%}
                 <a href="/signup"><button type="button" class="btn btn-dark btn-rounded"
                         data-mdb-ripple-color="dark">SignUp</button></a>
             </div>
-            {% endif %}
+            {% endif %} {% endcomment %}
 			
 		</div>
 	</div>
