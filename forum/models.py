@@ -33,7 +33,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True,related_name='posts')
     timestamp = models.DateTimeField(default=timezone.now)
-    title = models.CharField(max_length=50, default='untitled')
+    title = models.CharField(max_length=200, default='untitled')
     likes = models.ManyToManyField(User, related_name='forum_post')
     body = models.TextField()
     views = models.PositiveIntegerField(default=0)

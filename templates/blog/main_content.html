@@ -106,10 +106,10 @@
         <div class="py-5 section">
             <div class="section_title" id="values">Values...</div>
             <div class="container py-5">
-                <div class="row align-items-center mb-5">
+                <div class="row align-items-center mb-3">
                     <div class="col-lg-6 order-2 order-lg-1">
                         <h2 class="text-danger">Mission</h2>
-                        <p class="text-dark" style="font-size: 14px; ">A strong nation lies in its youth who are
+                        <p class="text-dark" style="font-size: 14px; text-align: justify; ">A strong nation lies in its youth who are
                             empowered with
                             the right values, take pride in the country and are able and willing to contribute for its
                             growth
@@ -125,7 +125,8 @@
                     </div>
                 </div>
 
-                <div class="row">
+                
+                <div class="row align-items-center mb-3">
                     <div class="col-lg-4 mb-4 mb-lg-0">
                         <img src="{% static 'images/culture1.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="" />
                     </div>
@@ -141,13 +142,13 @@
                 </div>
         
 
-                <div class="row align-items-center">
-                    <div class="col-lg-5 px-0 mx-auto">
+                <div class="row align-items-center mb-3">
+                    <div class="col-lg-6 px-0">
                         <img src="{% static 'images/culture.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
                     </div>
                     <div class="col-lg-6">
                         <h2 class="text-danger">Culture</h2>
-                        <p class="text-dark" style="font-size: 14px; ">India is home to over a billion people,
+                        <p class="text-dark" style="font-size: 14px; text-align: justify; ">India is home to over a billion people,
                             accommodating
                             incredible cultural diversity between languages, geographic regions, religious traditions
                             and social
@@ -171,8 +172,8 @@
 
                 <br><br><br>
                 <!-- Gallery -->
-                <div class="row">
-                    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+                <div class="row align-items-center mb-3">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
                         <img src="{% static 'images/a4.jpg' %}" class="w-100 shadow-1-strong rounded mb-4" alt="" />
 
                     </div>
@@ -187,15 +188,15 @@
 
                     </div>
                 </div>
-                <!-- Gallery -->
+               
 
 
                 <br><br><br>
 
-                <div class="row align-items-center mb-5">
+                <div class="row align-items-center mb-3">
                     <div class="col-lg-6 order-2 order-lg-1">
                         <h2 class="text-danger"> Nationalism</h2>
-                        <p class="text-dark" style="font-size: 14px; ">Textbook definition of nationalism states that
+                        <p class="text-dark" style="font-size: 14px; text-align: justify; ">Textbook definition of nationalism states that
                             it is an
                             ideology which emphasizes loyalty, devotion and patriotism towards a country.
 
@@ -216,20 +217,20 @@
                             first any
                             day and every day against all odds</p>
                     </div>
-                    <div class="col-lg-5 px-0 mx-auto order-1 order-lg-2">
+                    <div class="col-lg-6 px-0 mx-auto order-1 order-lg-2">
                         <div class="">
-                            <img src="{% static 'images/nationality.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
+                            <img src="{% static 'images/akanda_india.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="row align-items-center">
-                    <div class="col-lg-5 px-0 mx-auto">
+                    <div class="col-lg-6 px-0 mx-auto">
                         <img src="{% static 'images/governance.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
                     </div>
                     <div class="col-lg-6">
                         <h2 class="text-danger">Governance</h2>
-                        <p class="text-dark" style="font-size: 14px; ">Governance is all the processes of interactions
+                        <p class="text-dark" style="font-size: 14px; text-align: justify; ">Governance is all the processes of interactions
                             be they
                             through the laws, norms, power or language of an organized society over a social system. It
                             is done
@@ -830,7 +831,7 @@
             <div class="section_panel d-flex flex-row align-items-center justify-content-start">
                 <div class="section_title">Team Members</div>
             </div>
-            {% if request.user.is_authenticated %}
+            
             <div class="section_content">
                 <div class="grid">
 
@@ -888,15 +889,7 @@
                     {%endfor%}
                 </div>
             </div>
-            {% else %}
-            <div class="container text-center color-black font-bold col-12 col-md-8 col-lg-6 col-xl-5">
-                <h6 class="alert-danger">Login to see our team members</h6>
-                <a href="/login"> <button type="button" class="btn btn-dark btn-rounded"
-                        data-mdb-ripple-color="dark">Login</button></a>
-                <a href="/signup"><button type="button" class="btn btn-dark btn-rounded"
-                        data-mdb-ripple-color="dark">SignUp</button></a>
-            </div>
-            {% endif %}
+           
         </div>
 
         <!-- contact us -->

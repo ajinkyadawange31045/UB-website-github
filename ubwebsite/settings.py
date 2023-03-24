@@ -169,9 +169,9 @@ LOGOUT_REDIRECT_URL = '/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
@@ -183,6 +183,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# AUTH_PASSWORD_VALIDATORS.remove('')
+if 'django.contrib.auth.password_validation.UppercaseValidator' in AUTH_PASSWORD_VALIDATORS:
+    AUTH_PASSWORD_VALIDATORS.remove('django.contrib.auth.password_validation.UppercaseValidator')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
@@ -353,3 +356,6 @@ CKEDITOR_CONFIGS = {
 #     }
 #   ]
 # }
+
+
+
