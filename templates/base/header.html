@@ -1,4 +1,5 @@
 <header class="header">
+    <link rel="stylesheet" href="../../static/styles/header.css">
     {% load static %}
     <div class="container">
         <div class="row">
@@ -16,8 +17,12 @@
                             <!-- <li>
                                 <a class="m-2" href="/"><img src="{% static 'images/ub1.jpg' %}" alt=""></a>
                             </li> -->
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="/about">About</a></li>
+                            
+                                <li class="active"><a href="/">Home</a></li>
+                            
+                            
+                                <li><a href="/about">About</a></li>
+                            
                             <!-- <li><a href="/#categories_ard">Categories</a></li> -->
                             {% if request.path == '/' %}
     <li>
@@ -47,6 +52,7 @@
                             <li class="active"><a href="/login">Login</a></li>
                             <li class="active"><a href="/signup">SignUp</a></li>{% endif %}
                         </ul>
+                   
                     </nav>
                     <div class="search_container ml-auto">
                         <form method="get" action="/search">
