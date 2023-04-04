@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 # from .forms import SignUpForm, LoginForm, PostForm
 from django.contrib import messages
 from blog.models import Post_with_image,Author,Category
-from non_blogs.models import Initiative, Team, Value, Future_events, Advertisement, Youtube_Video
+from non_blogs.models import Initiative,  Value, Future_events, Advertisement, Youtube_Video
 from django import forms
 
 

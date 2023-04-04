@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Value,Initiative, Advertisement,Future_events,Youtube_Video,Contact
+from .models import  Value,Initiative, Advertisement,Future_events,Youtube_Video,Contact,Core_Team,Alumini_Team,Developer_Team,Media_Team,Web_content_management_Team
 from mptt.admin import MPTTModelAdmin
 # Register your models here.
 
@@ -21,13 +21,9 @@ class ContactAdmin(admin.ModelAdmin):
 
 admin.site.register(Contact, ContactAdmin)
 
-class TeamAdmin(admin.ModelAdmin):
-    list_display = ('name', 'work', 'quote','image')
-    search_fields = ('name',)
-admin.site.register(Team,TeamAdmin)
 
 class ValueAdmin(admin.ModelAdmin):
-    list_display = ('name', 'quote','thumbnail')
+    list_display = ('name','quote', 'thumbnail')
     search_fields = ('name',)
 admin.site.register(Value,ValueAdmin)
 
@@ -42,4 +38,34 @@ from embed_video.admin import AdminVideoMixin
 class AdminVideo(AdminVideoMixin,admin.ModelAdmin):
     pass
 admin.site.register(Youtube_Video,AdminVideo)
+
+
+
+
+
+
+class Alumini_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'image')
+    search_fields = ('name',)
+admin.site.register(Alumini_Team,Alumini_TeamAdmin)
+
+class Core_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'work', 'image')
+    search_fields = ('name',)
+admin.site.register(Core_Team,Core_TeamAdmin)
+
+class Media_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name',  'image')
+    search_fields = ('name',)
+admin.site.register(Media_Team,Media_TeamAdmin)
+
+class Developer_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name',  'image')
+    search_fields = ('name',)
+admin.site.register(Developer_Team,Developer_TeamAdmin)
+
+class Web_content_management_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name',  'image')
+    search_fields = ('name',)
+admin.site.register(Web_content_management_Team,Web_content_management_TeamAdmin)
 

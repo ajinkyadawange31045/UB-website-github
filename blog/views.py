@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import  authenticate,login,logout
 from blog.models import Post_with_image,Author,Category,Comment
-from non_blogs.models import Initiative, Team, Value, Future_events, Advertisement, Youtube_Video
+from non_blogs.models import Initiative, Core_Team, Value, Future_events, Advertisement, Youtube_Video
 from django import forms
 from django.contrib.auth.models import Group
 # from .forms import NewCommentForm, PostSearchForm
@@ -121,13 +121,10 @@ def home(request):
     posts = Post_with_image.objects.all()[:11]
     # print(posts)
     try:
-        team_core_members = Team.objects.all()[:8]
+        team_core_members = Core_Team.objects.all()
     except:
         tean_core_members = None
-    try:
-        other_important_members = Team.objects.all()[8::]
-    except:
-        other_important_members = None
+    
     
     
     values = Value.objects.all()
@@ -155,7 +152,7 @@ def home(request):
     except:
         aj = None
 
-    data = {'all_categories':all_categories,'posts': posts,'cat_4': first_4_categories,'cat_r':remaining_categoreis,'team_core_members':team_core_members,'values':values,'other_important_members':other_important_members,'contact_form':contact_form,'user_comment':user_comment,"initiatives":initiatives,'future':future,'adv1':adv1,'adv2':adv2,'aj':aj,'user': request.user,}
+    data = {'all_categories':all_categories,'posts': posts,'cat_4': first_4_categories,'cat_r':remaining_categoreis,'team_core_members':team_core_members,'values':values,'contact_form':contact_form,'user_comment':user_comment,"initiatives":initiatives,'future':future,'adv1':adv1,'adv2':adv2,'aj':aj,'user': request.user,}
     
     # merging above dictionaries
     data_final = {**x_one,**data}
@@ -329,10 +326,21 @@ def post_search(request):
 #     params={'allPosts': allPosts, 'query': query}
 #     return render(request, 'search.html', params)
 
+from non_blogs.models import Core_Team,Alumini_Team,Media_Team,Developer_Team,Web_content_management_Team
 
 def about(request):
-    team = Team.objects.all()
+    #core team
+    core_team = Core_Team.objects.all()
+    amumini_team = Alumini_Team.objects.all()
+    media_team = Media_Team.objects.all()
+    dev_team = Developer_Team.objects.all()
+    content_management_team = Web_content_management_Team.objects.all()
+
     context = {
-        'team':team,
+        'core_team':core_team,
+        'alumini_team':amumini_team,
+        'media_team':media_team,
+        'dev_team':dev_team,
+        'content_management_team':content_management_team,
     }
     return render(request,'blog/about.html',context)
