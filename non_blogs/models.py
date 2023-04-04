@@ -5,13 +5,57 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 # team
-class Team(models.Model):
+class Alumini_Team(models.Model):
+    team_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    # work = models.CharField(max_length=20)
+    # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
+    # Social_media_handle = models.CharField(max_length=120)
+    # handle_link = models.CharField(max_length=120)
+    image  = models.ImageField(upload_to='team/')
+    def __str__(self):
+        return self.name
+
+class Core_Team(models.Model):
     team_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
     work = models.CharField(max_length=20)
-    quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
-    Social_media_handle = models.CharField(max_length=120)
-    handle_link = models.CharField(max_length=120)
+    # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
+    # Social_media_handle = models.CharField(max_length=120)
+    # handle_link = models.CharField(max_length=120)
+    image  = models.ImageField(upload_to='team/')
+    def __str__(self):
+        return self.name
+
+class Media_Team(models.Model):
+    team_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    # work = models.CharField(max_length=20,blank=True, null=True)
+    # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
+    # Social_media_handle = models.CharField(max_length=120)
+    # handle_link = models.CharField(max_length=120)
+    image  = models.ImageField(upload_to='team/')
+    def __str__(self):
+        return self.name
+
+class Developer_Team(models.Model):
+    team_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    # work = models.CharField(max_length=20,blank=True, null=True)
+    # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
+    # Social_media_handle = models.CharField(max_length=120)
+    # handle_link = models.CharField(max_length=120)
+    image  = models.ImageField(upload_to='team/')
+    def __str__(self):
+        return self.name
+
+class Web_content_management_Team(models.Model):
+    team_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+    # work = models.CharField(max_length=20,blank=True, null=True)
+    # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
+    # Social_media_handle = models.CharField(max_length=120)
+    # handle_link = models.CharField(max_length=120)
     image  = models.ImageField(upload_to='team/')
     def __str__(self):
         return self.name

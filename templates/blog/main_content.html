@@ -874,11 +874,11 @@
                         <img class="card-img-top" src="/media/{{i.image}}" alt="Image">
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark"><a href="#">{{i.name}}</a></div>
-                            <small class="post_meta">{{i.work}}<span><a style="color:blue;" href="{{i.handle_link}}"
-                                        target="_blank">{{i.Social_media_handle}}</a></span></small>
+                            <small class="post_meta">{{i.work}}</small>
                         </div>
                     </div>
-                    {%endfor%} {% for i in other_important_members %}
+                    {%endfor%} 
+                    {% comment %} {% for i in other_important_members %}
                     <div class="card card_default card_small_no_image grid-item">
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark">{{i.name}}</div>
@@ -886,7 +886,7 @@
                                         target="_blank">{{i.Social_media_handle}}</a></span></small>
                         </div>
                     </div>
-                    {%endfor%}
+                    {%endfor%} {% endcomment %}
                 </div>
             </div>
            
@@ -953,8 +953,8 @@
                                             </div>
                                         </div> {% endcomment %} {{ contact_form.as_p }} {% csrf_token %}
                                         <div class="center-on-small-only mb-4">
-                                            <button class="btn btn-indigo ml-0" type="submit"><i
-                                                    class="fa fa-paper-plane-o mr-2"></i> Send</button>
+                                            <button class="btn btn-indigo ml-0 mt-4" type="submit"><i
+                                                    class="fa fa-paper-plane-o mr-2 "></i> Send</button>
                                         </div>
                                     </form>
                                 </div>

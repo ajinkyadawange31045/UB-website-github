@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,Userna
 from django.contrib.auth.models import User
 from django.utils.translation import gettext, gettext_lazy as _
 from blog.models import Post_with_image,Author,Category,Comment
-from non_blogs.models import Initiative, Team, Value, Future_events, Advertisement, Youtube_Video
+from non_blogs.models import Initiative, Value, Future_events, Advertisement, Youtube_Video
 from mptt.forms import TreeNodeChoiceField
 
 # comment form
