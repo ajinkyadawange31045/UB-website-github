@@ -1,0 +1,24 @@
+.link-home:hover{
+    border-bottom: 2px solid white;
+    width: min-content;
+    
+}
+.link-home:active::after{
+    border-bottom: 2px solid white;
+    width: min-content;
+    
+}
+
+.active:hover{
+    text-decoration: solid;
+    text-decoration:white ;
+}
+
+.main_nav>ul>li>a:hover{
+    text-decoration: solid;
+    border-bottom: 2px solid white ;
+    padding: .5rem;
+    /* text-decoration: white; */
+}
+
+
