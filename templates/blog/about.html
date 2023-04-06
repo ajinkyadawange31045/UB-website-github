@@ -60,6 +60,107 @@ India | Be proud to be an Indian {%endblock%}
 			</div>
 		</div>
 	</div>
+
+
+	<div class="container">
+	
+
+	<div class="text-center my-4">
+		<h1 class="text-danger"><b>Our team</b></h2>
+		<ul style=" list-style: none; display: flex; justify-content:center" class="text-center">
+			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team1'>Core Team </a></li>
+			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team2'>Media Team </a></li>
+			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team3'>Content management </a></li>
+			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team4'>Web Developers </a></li>
+			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team5'>Alumni </a></li>
+		</ul>
+
+	</div>
+
+
+	<div class="text-center my-4">
+		<h2 class="text-dark" id='team1'><b>Core Team</b></h2>
+	</div>
+	<div class="card-container">
+		{% for i in core_team %}
+		<div class="card">
+		<div class="card-image">
+			<img src="/media/{{i.image}}" alt="{{i.name}}">
+		</div>
+		<h2>{{i.name}}</h2>
+		<p>{{i.work}}</p>
+		</div>
+		{% endfor %}
+	</div>
+	<hr>
+
+	<div class="text-center my-4">
+		<h2 class="text-dark" id='team2'><b>Media Team</b></h2>
+	</div>
+	<div class="card-container">
+		{% for i in media_team %}
+		<div class="card">
+		<div class="card-image">
+			<img src="/media/{{i.image}}" alt="{{i.name}}">
+		</div>
+		<h2>{{i.name}}</h2>
+		
+		</div>
+		{% endfor %}
+	</div>
+	<hr>
+
+	<div class="text-center my-3">
+		<h2 class="text-dark" id='team3'><b>Website Content Management Team</b></h2>
+	</div>
+	<div class="card-container">
+		{% for i in content_management_team %}
+		<div class="card">
+		<div class="card-image">
+			<img src="/media/{{i.image}}" alt="{{i.name}}">
+		</div>
+		<h2>{{i.name}}</h2>
+		
+		</div>
+		{% endfor %}
+	</div>
+	<hr>
+
+
+	<div class="text-center my-4">
+		<h2 class="text-dark" id='team4'><b>Website Developers</b></h2>
+	</div>
+	<div class="card-container">
+		{% for i in dev_team %}
+		<div class="card">
+		<div class="card-image">
+			<img src="/media/{{i.image}}" alt="{{i.name}}">
+		</div>
+		<h2>{{i.name}}</h2>
+		
+		</div>
+		{% endfor %}
+	</div>
+	<hr>
+
+
+	<div class="text-center my-4">
+		<h2 class="text-dark" id='team5'><b>Alumni</b></h2>
+	</div>
+	<div class="card-container">
+		{% for i in alumini_team %}
+		<div class="card">
+		<div class="card-image">
+			<img src="/media/{{i.image}}" alt="{{i.name}}">
+		</div>
+		<h2>{{i.name}}</h2>
+		
+		</div>
+		{% endfor %}
+	</div>
+	<hr>
+</div>
+
 </div>
 
 <style>
@@ -90,104 +191,7 @@ India | Be proud to be an Indian {%endblock%}
 
 
 
-<div class="container">
-	
 
-<div class="text-center my-4">
-	<h1 class="text-danger"><b>Our team</b></h2>
-	<ul style=" list-style: none; display: flex; justify-content:center" class="text-center">
-		<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team1'>Core Team </a></li>
-		<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team2'>Media Team </a></li>
-		<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team3'>Content management </a></li>
-		<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team4'>Web Developers </a></li>
-		<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team5'>Alumni </a></li>
-	</ul>
-
-</div>
-
-
-<div class="text-center my-4">
-	<h2 class="text-dark" id='team1'><b>Core Team</b></h2>
-</div>
-<div class="card-container">
-	{% for i in core_team %}
-	<div class="card">
-	  <div class="card-image">
-		<img src="/media/{{i.image}}" alt="{{i.name}}">
-	  </div>
-	  <h2>{{i.name}}</h2>
-	  <p>{{i.work}}</p>
-	</div>
-	{% endfor %}
- </div>
-<hr>
-
-<div class="text-center my-4">
-	<h2 class="text-dark" id='team2'><b>Media Team</b></h2>
-</div>
-<div class="card-container">
-	{% for i in media_team %}
-	<div class="card">
-	  <div class="card-image">
-		<img src="/media/{{i.image}}" alt="{{i.name}}">
-	  </div>
-	  <h2>{{i.name}}</h2>
-	  
-	</div>
-	{% endfor %}
- </div>
- <hr>
-
-<div class="text-center my-3">
-	<h2 class="text-dark" id='team3'><b>Website Content Management Team</b></h2>
-</div>
-<div class="card-container">
-	{% for i in content_management_team %}
-	<div class="card">
-	  <div class="card-image">
-		<img src="/media/{{i.image}}" alt="{{i.name}}">
-	  </div>
-	  <h2>{{i.name}}</h2>
-	  
-	</div>
-	{% endfor %}
- </div>
- <hr>
-
-
-<div class="text-center my-4">
-	<h2 class="text-dark" id='team4'><b>Website Developers</b></h2>
-</div>
-<div class="card-container">
-	{% for i in dev_team %}
-	<div class="card">
-	  <div class="card-image">
-		<img src="/media/{{i.image}}" alt="{{i.name}}">
-	  </div>
-	  <h2>{{i.name}}</h2>
-	  
-	</div>
-	{% endfor %}
- </div>
- <hr>
-
-
-<div class="text-center my-4">
-	<h2 class="text-dark" id='team5'><b>Alumni</b></h2>
-</div>
-<div class="card-container">
-	{% for i in alumini_team %}
-	<div class="card">
-	  <div class="card-image">
-		<img src="/media/{{i.image}}" alt="{{i.name}}">
-	  </div>
-	  <h2>{{i.name}}</h2>
-	  
-	</div>
-	{% endfor %}
- </div>
- <hr>
-</div>
 
   
  <style>
