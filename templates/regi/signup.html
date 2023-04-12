@@ -109,7 +109,7 @@ body {
                       
                         {% comment %} {% csrf_token %} {% for fm in form %} {% endcomment %}
                         <!-- Email input -->
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-2">
                           <div class="form">
                                 {% csrf_token %}
                                 {{ form.as_p }}
@@ -120,14 +120,14 @@ body {
                         {% comment %} {% endfor %} {% endcomment %}
 
                         <!-- Checkbox -->
-                      <div class="check">
-                        <div class="form-check d-flex justify-content-align mb-4">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                            <label class="form-check-label" for="form2Example33">
-                                 Subscribe to our newsletter
-                            </label>
-                        </div>
-                      </div>
+<!--                      <div class="check">-->
+<!--                        <div class="form-check d-flex justify-content-align mb-4">-->
+<!--                            <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />-->
+<!--                            <label class="form-check-label" for="form2Example33">-->
+<!--                                 Subscribe to our newsletter-->
+<!--                            </label>-->
+<!--                        </div>-->
+<!--                      </div>-->
 
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-lg btn-block" value="sign up">SignUp</button><br>
@@ -137,7 +137,7 @@ body {
                             </a>
                         </button><br><br> --> {% endcomment %}
                         <a href="/login" style="color: red;">Already SignedUp?</a> {% if form.non_field_errors %} {% for error in form.non_field_errors %}
-                        <p class="alert alert-danger my-3">{{error}}</p>
+                        <p class="alert alert-danger my-2">{{error}}</p>
                         {% endfor %} {% endif %}
                 
                     </form>
