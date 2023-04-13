@@ -199,7 +199,7 @@ Be proud to be an Indian {%endblock%}
                       <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
                       <span class="text-secondary">
                           {% if profile.user.github %}
-                            <a href="{{ profile.user.github }}" target="_blank" rel="noopener noreferrer" style="color: red;">
+                            <a href="{{ profile.user.profile.github }}" target="_blank" rel="noopener noreferrer" style="color: red;">
                               <i class="fa fa-github" aria-hidden="true"></i>
                             </a>
                           {% else %}

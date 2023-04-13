@@ -124,10 +124,10 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
                             <span class="text-secondary">
-                                {% if user.github %}
+                                {% if user.profile.github %}
                                 <a href="{{ user.github }}" target="_blank" rel="noopener noreferrer"
                                     style="color: red;">
-                                    <i class="fa fa-github" aria-hidden="true"></i>
+                                     <i class="fa fa-external-link" aria-hidden="true"></i>
                                 </a>
                                 {% else %}
                                 <span>NA</span>
@@ -148,19 +148,7 @@
                                 {% endif %}
                             </span>
                         </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                            <h6 class="mb-0 text-dark"><i class="fa fa-github" aria-hidden="true"></i> Github</h6>
-                            <span class="text-secondary">
-                                {% if user.github %}
-                                <a href="{{ user.github }}" target="_blank" rel="noopener noreferrer"
-                                    style="color: red;">
-                                    <i class="fa fa-github" aria-hidden="true"></i>
-                                </a>
-                                {% else %}
-                                NA
-                                {% endif %}
-                            </span>
-                        </li>
+
                         <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                             <h6 class="mb-0 text-dark"><i class="fa fa-twitter" aria-hidden="true"></i> Twitter</h6>
                             <span class="text-secondary">
