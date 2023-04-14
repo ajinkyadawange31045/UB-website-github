@@ -21,7 +21,7 @@ class Profile(models.Model):
     phone_number = models.IntegerField(null=True, blank=True)
     # branch = models.CharField(choices=BRANCH_CHOICES, max_length=100, null=True, blank=True)
     # semester = models.IntegerField(null=True, blank=True)
-    profile_image = models.ImageField(default='user_avtar.webp', upload_to='users/', null=True, blank=True)
+    profile_image = models.ImageField(default='../static/images/user_avtar.webp', upload_to='users/', null=True, blank=True)
     website = models.CharField(max_length=244 ,null=True, blank=True)
     github = models.CharField(max_length=244 ,null=True, blank=True)
     twitter = models.CharField(max_length=244 ,null=True, blank=True)
