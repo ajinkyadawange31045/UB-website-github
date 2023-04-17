@@ -287,17 +287,22 @@ Be proud to be an Indian {%endblock%}
 
             
             <div class="col-md-8">
+                 {% if user_posts %}
                 <div class="card mb-3">
+
                     <div class="col-sm-12 mb-12">
                         <div class="h-100">
                             <div class="card-body">
-                                <h3 style="color: black;" class="text-center">All the following discussions were started by {{user.username}}</h3>
+
+                                <h3 style="color: black;" class="text-center">All the following discussions were started by {{profile.user.username}}</h3>
+
                                 <!-- <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Post in forums</i>{{ num_forum_posts }}</h5>
                                 <h5 class="d-flex align-items-center mb-3"><i class="material-icons text-info mr-2">Total Replies given</i>{{ num_comments }}</h5> -->
                             </div>
                         </div>
                     </div>
                 </div>
+                 {% endif %}
             
                 <div class="row gutters-sm">
                     <div class="col-sm-6 mb-3">

@@ -53,7 +53,7 @@ proud to be an Indian {%endblock%}
                     <!-- Category -->
                     <div class="category">
                         <div class="section_panel d-flex flex-row align-items-center justify-content-start">
-                            <div class="section_title">All Post</div>
+                            <div class="section_title">All Videos</div>
                             <div class="section_tags ml-auto">
                                 <ul>
                                     {%for cat in cat_4 %}
@@ -79,33 +79,28 @@ proud to be an Indian {%endblock%}
 
                         <!-- <div class="container pt-2"> -->
                             <!-- <div class="album py-1 bg-light"> -->
-
+                                <div class="text-center">
+                                    <div class="d-flex justify-content-around flex-wrap">
+                                      {% for i in yt %}
+                                      <div class="card p-2 block_ard rounded" style="width: calc(33.33% - 20px); margin: 10px; overflow: hidden;">
+                                        <p class="p-1 font-weight-bold text-dark">{{i.title}}</p>
+                                        {% video i.video '340x220' %}
+                                      </div>
+                                      {% endfor %}
+                                    </div>
+                                    <div class="text-center load_more" style="margin-top: 20px;">
+                                      <div id="load" class="load_more_button text-center trans_200">Load More</div>
+                                    </div>
+                                  </div>
+                                  
                     </div>
                 </div>
-
             </div>
-
-
 
         </div>
 
     </div>
-    <div class="l-12">
-        <div class="text-center mt-4">
-                                <div class="d-flex justify-content-center flex-wrap">
-                                {% for i in yt %}
-                                    <div class="card p-2 block_ard flex-wrap " style="margin:5px;">
-                                        <p class="p-1 font-weight-bold text-dark">{{i.title}}</p>
-                                        {% video i.video '360x240' %}
-                                    </div>
-                                    {%endfor%}
-                                </div>
-                                <div class="text-center load_more">
-                                    <div id="load" class="load_more_button text-center trans_200">Load More</div>
-                                </div>
-                            </div>
 </div>
-    </div>
 
 
 <script>
