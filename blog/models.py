@@ -9,9 +9,29 @@ from mptt.models import MPTTModel, TreeForeignKey
 from ckeditor.fields import RichTextField
 # Create your models here.
 
+from django.db import models
+
+class CustomAutoPrimaryKeyField(models.IntegerField):
+    def __init__(self, *args, **kwargs):
+        kwargs['primary_key'] = True
+        kwargs['editable'] = True  # Set editable to True
+        super().__init__(*args, **kwargs)
+
+    def get_pk_value_on_save(self, instance):
+        if instance._state.adding:
+            max_id = instance.__class__.objects.aggregate(models.Max('id'))['id__max']
+            if max_id is not None:
+                return max_id + 1
+            else:
+                return 1
+        else:
+            return super().get_pk_value_on_save(instance)
+
+
 # catergories of post
 class Category(models.Model):
-    cat_id = models.AutoField(primary_key=True)
+    # cat_id = models.AutoField(primary_key=True)
+    cat_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=100)
     description = RichTextField(blank=True)
     url = models.CharField(max_length=100)
@@ -59,7 +79,7 @@ class Post_with_image(models.Model):
     author_of_quote = models.CharField(max_length=50,blank=True)
     # status = models.CharField(max_length=10, choices=options, default='draft')
     # status = models.BooleanField(default=True)
-    tags_for_seo = models.TextField(default='Utkrishta Bharath,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,')
+    tags_for_seo_and_search_bar_in_website = models.TextField(help_text='Add tags(this tags will be for search bar of the webstie as well as for SEO stuffs, so be particular while adding, do research for the keywords, and add properly.')
     # favourites = models.ManyToManyField(User, related_name='favourite', default=None, blank=True)
     # likes = models.ManyToManyField(
     #     User, related_name='like', default=None, blank=True)

@@ -218,12 +218,18 @@ def post(request, url):
     
 
     # sidebar
-    x_one = sidebar()
-    
-    data = {'post':post,'cats':cats,'datetime':datetime,'user': request.user,'post_comment':post_comment, 'comments': comments, 'comment_form': comment_form,'allcomments': allcomments,'future':future,'adv1':adv1,'adv2':adv2,'cat_r':remaining_categoreis,'value':value,}
+    # x_one = sidebar()
+    post_ard = Post_with_image.objects.all()
+    try:
+        latest = post_ard
+    except latest.DoesNotExist:
+        latest = None
+
+    data = {'post':post,'cats':cats,'datetime':datetime,'user': request.user,'post_comment':post_comment, 'comments': comments, 'comment_form': comment_form,'allcomments': allcomments,'future':future,'adv1':adv1,'adv2':adv2,'cat_r':remaining_categoreis,'value':value,'latest':latest,}
     
     # merging both dictionaries
-    data_final = {**x_one,**data}
+    # data_final = {**x_one,**data}
+    data_final = data
     return render(request, 'blog/post.html', data_final)
 
 
@@ -301,7 +307,7 @@ def post_search(request):
             if c is not None:
                 query &= Q(category=c)
             if q is not None:
-                query &= Q(title__contains=q)
+                query &= Q(tags_for_seo_and_search_bar_in_website__contains=q)
 
             results = Post_with_image.objects.filter(query)
             # results = Question.objects.filter(query)

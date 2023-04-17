@@ -6,7 +6,7 @@ from mptt.admin import MPTTModelAdmin
 
 # for configuration of Category admin
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ( 'title', 'description', 'url', 'add_date')
+    list_display = ('cat_id', 'title', 'description', 'url', 'add_date')
     search_fields = ('title',)
 
 class Post_with_imageAdmin(admin.ModelAdmin):
