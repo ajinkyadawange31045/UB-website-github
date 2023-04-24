@@ -368,7 +368,7 @@
         <!-- Blog Section - What's Trending -->
 
         <div class="blog_section">
-            <div class="section_panel d-flex flex-row align-items-center justify-content-start">
+            <div class="section_panel d-flex flex-row align-items-center justify-content-start" >
                 <div class="section_title">Our Initiatives..</div>
                 <!-- <div class="section_tags ml-auto">
                     <ul>
@@ -399,7 +399,7 @@
                 {% for i in initiatives %}
                 <div class="row wow fadeInLeft" data-wow-delay=".3s">
                     <div class="col-lg-6 col-xl-5 pr-lg-5 pb-5">
-                        <h6 class="text-dark text-center font-bold" style="font-weight: 300;">{{i.name}}</h6>
+                        <h4 class="text-center font-bold" style="font-weight: 400; color: black;"><b>{{i.name}}</b></h6>
                         <img class="img-fluid rounded z-depth-2" src="/media/{{i.image}}" alt="project image" />
                         <p>Conducted on : {{i.date_of_initiative}}</p>
                     </div>
@@ -407,28 +407,28 @@
 
 
                         <div class="row mb-3">
-                            <div class="col-1 mr-1"></div>
-                            <div class="col-10">
-                                <h5 class="font-weight-bold">{{i.title1_like_what_we_do}}</h5>
-                                <p class="grey-text">
+                            <div class="mr-1"></div>
+                            <div class="">
+                                <h6 class="" style="color: black;">{{i.title1_like_what_we_do}}</h5>
+                                <p class="grey-text" style="color: black;">
                                     {{i.content1}}
-                                </p>
+                                </p> 
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-1 mr-1"></div>
-                            <div class="col-10">
-                                <h5 class="font-weight-bold">{{i.title2_like_how_we_do}}</h5>
-                                <p class="grey-text">
+                            <div class="mr-1"></div>
+                            <div class="">
+                                <h6 class="" style="color: black;">{{i.title2_like_how_we_do}}</h5>
+                                <p class="grey-text" style="color: black;">
                                     {{i.content2}}
                                 </p>
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-1 mr-1"></div>
-                            <div class="col-10">
-                                <h5 class="font-weight-bold">{{i.title_like_what_we_achieve}}</h5>
-                                <p class="grey-text">
+                            <div class="mr-1"></div>
+                            <div class="">
+                                <h6 class="" style="color: black;">{{i.title_like_what_we_achieve}}</h5>
+                                <p class="grey-text" style="color: black;">
                                     {{i.content3}}
                                 </p>
                             </div>
@@ -444,6 +444,9 @@
 
 
 
+
+
+        
         <!-- product details -->
         <style>
             .carousel {
@@ -600,6 +603,7 @@
                 font-size: 16px;
                 color: #abb0b8;
             }
+            
         </style>
         <script>
             $(document).ready(function() {

@@ -106,8 +106,7 @@
                             <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="#">{% post_to_facebook object_or_url "Facebook!" %}</a>
                                 <a class="dropdown-item" href="#">{% post_to_whatsapp object_or_url "WhatsApp" %}</a>
-                                <a class="dropdown-item" href="#">{% post_to_reddit object_or_url "Share To Reddit"
-                                    %}</a>
+                                <a class="dropdown-item" href="#">{% post_to_reddit object_or_url "Share To Reddit" %}</a>
                             </div>
                         </div>
 
@@ -286,9 +285,13 @@
                     </div>
 
 
+                   
+                   
+                   
+                   
                     <!--                    post feeds-->
 
-                    <style>
+                    {% comment %} <style>
                         .card_ard {
                             transition: 0.3s;
                             background-color:white;
@@ -301,8 +304,6 @@
                         }
 
                     </style>
-
-
                     <section class="page-section my-5" id="branches" style="background-color: inherit;">
                         <div class="container">
                             <div class="text-center">
@@ -328,8 +329,79 @@
 
                             </div>
                         </div>
-                    </section>
+                    </section> {% endcomment %}
+                    
 
+                    {% comment %} methods 2 for post feeds {% endcomment %}
+                    <style>
+                        /* Style for the collapsible button */
+                        .collapsible {
+                          background-color: white;
+                          color: black;
+                          border-radius: 25px;
+                          border: 1px solid black;
+                          cursor: pointer;
+                          padding: 18px;
+                          width: 100%;
+                          text-align: left;
+                          outline: none;
+                          font-size: 15px;
+                          transition: 0.3s;
+                        }
+                      
+                        /* Style for the collapsed content */
+                        .content {
+                          padding: 0 18px;
+                          max-height: 0;
+                          overflow: hidden;
+                          transition: max-height 0.2s ease-out;
+                        }
+                      
+                        /* Style for the active collapsible button */
+                        .active, .collapsible:hover {
+                          color: orangered;
+                          transform: translateY(-2px);
+                        }
+                      
+                        /* Style for the content inside the collapsed div */
+                        .card {
+                          transition: 0.3s;
+                        }
+                      
+                        .card:hover {
+                          box-shadow: 0 10px 20px rgba(156, 156, 156, 0.285), 0 6px 6px rgba(151, 145, 93, 0.512);
+                          transform: translateY(-7px);
+                        }
+                    </style>
+                      
+                    <div class="container text-center" style="margin-top: 135px; margin-bottom: 120px;">
+                        {% comment %} <div class="post_title">Other Blogs</div> {% endcomment %}
+                        <div class="post_comment_title">Other Blogs</div>
+                        {% comment %} <div class="post_title">Semesters</div> {% endcomment %}
+                        <div class="container pt-5">
+                            {% for i in latest %}
+                          
+                          <a href="/blog/{{i.url}}"><button class="collapsible w-75 m-2" type="button" onclick="toggleCollapsible(event)">{{ i.title }}</button></a>
+                           
+                             
+                      
+
+                          {% endfor %}
+                        </div>
+                    </div>
+                      
+                      <script>
+                        function toggleCollapsible(event) {
+                          const collapsibleButton = event.currentTarget;
+                          collapsibleButton.classList.toggle("active");
+                          const content = collapsibleButton.nextElementSibling;
+                          if (content.style.maxHeight) {
+                            content.style.maxHeight = null;
+                          } else {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                          }
+                        }
+                      </script>
 
                 </div>
             </div>
