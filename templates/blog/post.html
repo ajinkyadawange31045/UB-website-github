@@ -126,10 +126,13 @@
                         <p class="post_p text-dark">
                             {{post.content_before_image| safe }}
                         </p>
-                        <figure class="text-center">
-                            <img src="/media/{{post.image_for_post}}" alt="">
-                            <figcaption>{{post.caption_for_image| safe }}</figcaption>
-                        </figure>
+                        {% if post.image_for_post %}
+                            <figure class="text-center">
+                                <img src="{{ post.image_for_post.url }}" alt="{{ post.caption_for_image }}">
+                                <figcaption>{{ post.caption_for_image }}</figcaption>
+                            </figure>
+                        {% endif %}
+
                         <p class="post_p text-dark">
                             {{post.content_after_image| safe }}
                         </p>

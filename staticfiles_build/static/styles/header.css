@@ -17,7 +17,7 @@
 .main_nav>ul>li>a:hover{
     text-decoration: solid;
     border-bottom: 2px solid white ;
-    padding: .5rem;
+    padding: 0.5rem;
     /* text-decoration: white; */
 }
 
