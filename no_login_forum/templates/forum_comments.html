@@ -24,8 +24,8 @@
 
 <div class="home ard">
     <div class="home_content">
-        <div class="post_category trans_200"><a href="/forum" class="trans_200">Forum</a></div>
-        <div class="post_title trans_200">{{ object.title }}</div>
+        <div class="post_category trans_200"><a href="/indirect-forum" class="trans_200">Forum</a></div>
+        <div class="post_title trans_200">{{ posts.title }}</div>
     </div>
 
 </div>
@@ -34,8 +34,9 @@
 <div class="container">
     
     <div class="post_body text-justify">
-        <h4 class="card-title text-dark" style="font-weight: 700;">{{ object.body|safe }}</h4>
-        {% comment %} <p class="card-text post_p text-justify"> </p> {% endcomment %}
+        {% comment %} <h3 class="card-title text-dark" style="font-weight: 700;">{{ posts.title }}</h3> {% endcomment %}
+        <h4 class="card-title text-dark" style="font-weight: 700;">{{ posts.body|safe }}</h4>
+        {% comment %} <p class="card-text post_p text-justify"> {{ posts.body|safe }}</p> {% endcomment %}
         <!-- <p class="text-dark" style="font-size: 10px; font-style: italic; color: rgb(155, 155, 155); text-align: right;">Asked By: {{ object.user|title }}&nbsp;&nbsp;&nbsp;
             |&nbsp;&nbsp;&nbsp; On: {{ object.date_created|date:"j F, Y" }} -->
             <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
@@ -46,35 +47,37 @@
        
         <div class="post_meta text-dark">
            
-            <form action="{% url 'forum:like_post' object.pk %}" method="POST">
-            {% csrf_token %}
-            {% if user.is_authenticated %}
-            {% if liked %}
-            <div style="display: flex; align-items: center; margin-left: 10px;">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                {% if liked %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                    
+                    <button type="submit" name="post_id" value="{{ object.id }}"
+                        style="color: red; border: none; border-radius: 60px;"><img
+                            src="{% static 'images/heart-solid.svg' %}"
+                            alt="" style="width: 40px;"></button>
+                    <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;
+                            <br>{{ total_likes }} Likes</h5>
+                </div>
+                {% else %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                    <button type="submit" name="post_id" value="{{ object.id }}"
+                        style="color: red; border: none; border-radius: 30px;"><img
+                            src="{% static 'images/heart-regular.svg' %}"
+                            alt="" style="width: 40px;"></button>
+                            <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;
+                                |&nbsp; On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br>{{ total_likes }} Likes</h5>
+                </div>
                 
-                <button type="submit" name="post_id" value="{{ object.id }}"
-                    style="color: red; border: none; border-radius: 60px;"><img
-                        src="{% static 'images/heart-solid.svg' %}"
-                        alt="" style="width: 40px;"></button>
-                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;
-                        <br>{{ total_likes }} Likes</h5>
-            </div>
-            {% else %}
-            <div style="display: flex; align-items: center; margin-left: 10px;">
-                <button type="submit" name="post_id" value="{{ object.id }}"
-                    style="color: red; border: none; border-radius: 30px;"><img
-                        src="{% static 'images/heart-regular.svg' %}"
-                        alt="" style="width: 40px;"></button>
-                        <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;
-                            |&nbsp; On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br>{{ total_likes }} Likes</h5>
-            </div>
-            
-            {% endif %}
-            {% else %}
-            <h5 style="margin-left: 10px; cursor: pointer;"><a href="{% url 'login' %}" " style="color: red;"><b>Login</b></a> to Like
-                Question | {{ total_likes }} Likes</h5>
-            {% endif %}
-        </form> </div>
+                {% endif %}
+                {% else %}
+                <h5 style="margin-left: 10px; cursor: pointer;"><a href="{% url 'login' %}" " style="color: red;"><b>Login</b></a> to Like
+                    Question | {{ total_likes }} Likes</h5>
+                {% endif %}
+            </form>
+    
+    </div>
 
         <div class="row mt-2">
             <div class="col-1 offset-4 ">
@@ -118,7 +121,7 @@
                                     {% endif %}
                                 {% comment %} </a> {% endcomment %}
                                 {% comment %} final-ub-website-project\static\images\user_avtar.webp           {% endcomment %}
-                                <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true">{{comment.author.username}}</a>
+                                <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true" target="_blank">{{comment.author.username}}</a>
                                 {% comment %} <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'profile' username=comment.author.username %}" data-abc="true">{{comment.author.username}}</a> {% endcomment %}
                                     <div class="text-muted small">{{comment.timestamp|date:"j F, Y"}}</div>
                                 </div>
@@ -145,7 +148,7 @@
        
 
 
-        <div class="container">
+        {% comment %} <div class="container">
             <form method="POST">
                 {% csrf_token %}
                 <fieldset class="form-group">
@@ -155,21 +158,11 @@
                     <button class="btn btn-outline-info" type="submit">Submit</button>
                 </div>
             </form>
-        </div>
+        </div> {% endcomment %}
 
+        <button class="btn btn-outline-primary" type="button"><a style="color: black;" href="{% url 'login' %}" target="_blank">Login to Comment</a></button>
+                </div>
 
-
-        {% if object.author == user %}
-       
-        <!-- <a style="text-decoration: none; " class="btn btn-outline-secondary"
-            href="{% url 'forum:forum-index' %}">&#x21a9;</a><br><br> -->
-        <p class="pb-1 text-warning">Only those who have posted questions can edit or delete them.</p>
-        <a style="text-decoration: none; " class="btn btn-outline-success"
-            href="{% url 'forum:post-update' object.id %}">&#x270E;</a>
-        <a style="text-decoration: none; " class="btn btn-outline-danger"
-            href="{% url 'forum:post-delete' object.id %}">&#x2716;</a>
-            
-        {% endif %}
 
 
 

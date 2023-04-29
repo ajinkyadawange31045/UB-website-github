@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'indic_r',
     'gallery',
+    'no_login_forum',
     
     # "django.contrib.staticfiles",
 ]

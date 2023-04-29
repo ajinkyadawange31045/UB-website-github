@@ -35,6 +35,7 @@ urlpatterns = [
             # path('', include('community.urls')),
             path('', include('forum.urls')),
             path('', include('indic_r.urls')),
+            path('', include('no_login_forum.urls')),
             
             path('gallery/',views.home, name="home"),
             path('<int:image_id>',views.details, name="details"),
