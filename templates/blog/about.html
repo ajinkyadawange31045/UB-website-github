@@ -45,18 +45,52 @@ India | Be proud to be an Indian {%endblock%}
 		padding: 50px 0;
 	}
 
+	@media only screen and (max-width: 767px) {
+		.block_ard {
+			display: none;
+		}
+	}
+
 	
 </style>
 
 <div class="bg-white py-8 section">
 	<div class="container py-8">
 		<div class="row align-items-start">
-			<div class="col-lg-5 px-0 mx-auto">
+			<div class="col-lg-5 px-0 mx-auto my-auto">
 				<img src="{% static 'images/ub.jpg' %}" alt="" class="img-fluid mb-4 mb-lg-0">
 			</div>
-			<div class="col-lg-7">
+			<div class="col-lg-7 ">
 				<h2 class="text-danger">Utkrishta Bharath</h2>
-				<p class="text-dark" style="font-size: 1.2rem;">India is home to over a billion people, accommodating incredible cultural diversity between languages, geographic regions, religious traditions and social stratifications. In recognition of this large demographic diversity, the following descriptions are not intended to represent every Indian person. However, there are common themes and principles that contribute to the values, attitudes, beliefs and norms of the dominant society. Generally speaking, Indians tend to have a strong sense of pride in the distinctiveness and diversity of their culture. For example, the country’s agricultural expansions and technological advancements in infrastructure, science and engineering are sources of pride. Moreover, a considerable amount of pride stems from India's rich artistic cultural exports of music, fine arts, literature and spirituality (especially the practice of yoga).</p>
+				<p class="text-dark " style="font-size: 1.1rem; text-align: justify;">India is home to over a billion people, accommodating incredible cultural diversity between languages, geographic regions, religious traditions and social stratifications. In recognition of this large demographic diversity, the following descriptions are not intended to represent every Indian person. However, there are common themes and principles that contribute to the values, attitudes, beliefs and norms of the dominant society. Generally speaking, Indians tend to have a strong sense of pride in the distinctiveness and diversity of their culture. For example, the country’s agricultural expansions and technological advancements in infrastructure, science and engineering are sources of pride. Moreover, a considerable amount of pride stems from India's rich artistic cultural exports of music, fine arts, literature and spirituality (especially the practice of yoga).</p>
+				<p class="text-dark" style="font-size: 1.1rem; text-align: justify;">The Utkrishta Bharat club was founded in 2021-22 by a group of dedicated students and scholars who were passionate about promoting awareness of India's rich heritage and culture. They envisioned a club that would inspire and empower students to embrace the values of nation, culture, and civilization, and to cultivate their character and leadership skills. Through a variety of events and programs, the Utkrishta Bharat club seeks to foster a sense of pride and responsibility among students, and to encourage them to make a positive impact in their communities and in the world at large.</p>
+				<p class="text-dark" style="font-size: 1.1rem; text-align: justify;"><b>People who helped in making the dream true (founders of the club)</b> <br>
+					<ul class="text-dark" style="font-size: 1.1rem;">
+						<li>1. Reetesh Bhat, 2018-2022, B.Tech</li>
+
+							<li>2. Sindhur Joshi, 2019-2024, PhD Scolar</li>
+							
+							<li>3. Shrinidhi Bhat, 2020-2022, MBA</li>
+							
+							<li>4. Shreya Lingareddy , 2019-2023, B.Tech</li>
+							
+							<li>5. Priyanshu Khemariya, 2019-2023, B.Tech</li>
+							
+							<li>6. Yashas S Gowda - 2018- 2022</li>
+							
+							<li>7. Sameer Durgoji - 2018 - 22</li>
+							
+							<li>8. Shilpashree V, 2019-23, B tech</li>
+							
+							<li>9. Prasanna Sarkar - 2019 -23</li>
+							
+							<li>10. Manmith Suvarna - 2019-23</li>
+							
+							<li>11. Ishan Soni - 2019-23</li>
+							
+							<li>12. Tanmaiyh Tentu - 2018 - 22</li>
+					</ul>	
+				</p>
 			</div>
 		</div>
 	</div>
@@ -65,9 +99,9 @@ India | Be proud to be an Indian {%endblock%}
 	<div class="container">
 	
 
-	<div class="text-center my-4">
-		<h2 class="text-danger"><b>Our team</b></h2>
-		<ul style=" list-style: none; display: flex; justify-content:center" class="text-center">
+	<div class="text-center my-4 block_ard">
+		<h2 class="text-danger" ><b>Our team</b></h2>
+		<ul style=" list-style: none; display: flex; justify-content:center" class="text-center block_ard">
 			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team1'>Core Team </a></li>
 			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team2'>Media Team </a></li>
 			<li style="margin-right: 10px; display: inline-block;" class="btn btn-dark"><a style="color:white;" href='#team3'>Content management </a></li>
@@ -95,7 +129,7 @@ India | Be proud to be an Indian {%endblock%}
 	<hr>
 
 	<div class="text-center my-4">
-		<h2 class="text-dark" id='team2'><b>Media Team</b></h2>
+		<h2 class="text-dark" id='team2'><b>3rd year core team</b></h2>
 	</div>
 	<div class="card-container">
 		{% for i in media_team %}
@@ -104,14 +138,14 @@ India | Be proud to be an Indian {%endblock%}
 			<img src="/media/{{i.image}}" alt="{{i.name}}">
 		</div>
 		<h2>{{i.name}}</h2>
-		
+		<p>{{i.work}}</p>
 		</div>
 		{% endfor %}
 	</div>
 	<hr>
 
-	<div class="text-center my-3">
-		<h2 class="text-dark" id='team3'><b>Web Content Management  Team</b></h2>
+	{% comment %} <div class="text-center my-3">
+		<h2 class="text-dark" id='team3'><b>Web Content Management Team</b></h2>
 	</div>
 	<div class="card-container">
 		{% for i in content_management_team %}
@@ -124,7 +158,7 @@ India | Be proud to be an Indian {%endblock%}
 		</div>
 		{% endfor %}
 	</div>
-	<hr>
+	<hr> {% endcomment %}
 
 
 	<div class="text-center my-4">
@@ -193,53 +227,59 @@ India | Be proud to be an Indian {%endblock%}
 
 
 
-  
- <style>
-
+<style>
 	.card-container {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-	  }
-	  
+	  display: flex;
+	  flex-wrap: wrap;
+	  justify-content: space-around;
+	  padding: 20px;
+	}
+  
+	.card {
+	  width: calc(25% - 20px);
+	  height: 400px;
+	  margin-bottom: 20px;
+	  background-color: #fff;
+	  border-radius: 10px;
+	  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	  text-align: center;
+	}
+  
+	.card-image {
+	  height: 70%;
+	  overflow: hidden;
+	  border-radius: 10px 10px 0 0;
+	}
+  
+	.card-image img {
+	  width: 100%;
+	  height: 100%;
+	  object-fit: cover;
+	}
+  
+	.card h2 {
+	  font-size: 24px;
+	  margin-top: 20px;
+	  color: black;
+	}
+  
+	.card p {
+	  font-size: 18px;
+	  margin-top: 10px;
+	  color: #666;
+	}
+  
+	/* Responsive styles for smaller screens */
+	@media (max-width: 767px) {
 	  .card {
-		width: 300px;
-		height: 400px;
-		margin: 20px;
-		padding: 20px;
-		background-color: #fff;
-		border-radius: 10px;
-		box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-		text-align: center;
+		width: calc(50% - 20px);
 	  }
-	  
-	  .card-image {
+	}
+  
+	@media (max-width: 480px) {
+	  .card {
 		width: 100%;
-		height: 70%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		border-radius: 10px;
 	  }
-	  
-	  .card-image img {
-		width: auto;
-		height: 100%;
-		object-fit: contain;
-	  }
-	  
-	  .card h2 {
-		font-size: 24px;
-		margin-top: 20px;
-		color:black;
-	  }
-	  
-	  .card p {
-		font-size: 18px;
-		margin-top: 10px;
-		color: #666;
-	  }
-	  
- </style> 
+	}
+  </style>
   {%endblock%}

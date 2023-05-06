@@ -1,6 +1,11 @@
 {% extends 'base/base.html' %}
 
     {% block content%}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js">
+    </script>
     <style>
    
         .container.gallery-container {
@@ -92,6 +97,11 @@
                 width: 100vw;
                 margin-bottom: 14px;
             }
+
+            .block_ard {
+                display: none;
+                /* font-size: 20px; */
+            }
         </style>
         
         <div class="home ard">
@@ -116,13 +126,16 @@
             
                     <div class="row">
                         {% for gallery_image in images %}
-                        <div class="col-sm-12 col-md-4 my-3">
+                        <div class="col-sm-12 col-md-4 my-3 block_ard">
                             <a class="lightbox" href="{% url 'details' image_id=gallery_image.id %}">
                                 <img src="{{gallery_image.image.url}}" alt="Bridge">
                             </a>
                         </div>
                         {% endfor %}
                         
+                    </div>
+                    <div class="text-center load_more">
+                        <div id="load" class="load_more_button text-center trans_200">Load More</div>
                     </div>
                     
     
@@ -131,7 +144,22 @@
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.8.1/baguetteBox.min.js"></script>
-  
+    <script>
+        $(document).ready(function() {
+            $(".block_ard").slice(0,9).show();
+            if($(".block_ard:hidden").length!=0) {
+                $("#load").show();
+            }
+            $("#load").on("click",function(e) {
+                e.preventDefault();
+                $(".block_ard:hidden").slice(0,6).slideDown();
+                if($(".block_ard:hidden").length==0) {
+                    $("#load").text("No More to view")
+                        .fadOut("slow");
+                }
+            });
+        })
+    </script>
 
 
     

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import  Value,Initiative, Advertisement,Future_events,Youtube_Video,Contact,Core_Team,Alumini_Team,Developer_Team,Media_Team,Web_content_management_Team
+from .models import  Value,Initiative, Advertisement,Past_events,Youtube_Video,Contact,Core_Team,Alumini_Team,Developer_Team,Third_year_core_Team,Web_content_management_Team
 from mptt.admin import MPTTModelAdmin
 # Register your models here.
 
@@ -27,9 +27,9 @@ class ValueAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 admin.site.register(Value,ValueAdmin)
 
-class Future_eventsAdmin(admin.ModelAdmin):
+class Past_eventsAdmin(admin.ModelAdmin):
     list_display = ('title','date_of_event','month_of_event','any_hashtag')
-admin.site.register(Future_events,Future_eventsAdmin)
+admin.site.register(Past_events,Past_eventsAdmin)
 # @admin.register(Contact)
 
 from embed_video.admin import AdminVideoMixin
@@ -54,10 +54,10 @@ class Core_TeamAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 admin.site.register(Core_Team,Core_TeamAdmin)
 
-class Media_TeamAdmin(admin.ModelAdmin):
-    list_display = ('name',  'image')
+class Third_year_core_TeamAdmin(admin.ModelAdmin):
+    list_display = ('name', 'work', 'image')
     search_fields = ('name',)
-admin.site.register(Media_Team,Media_TeamAdmin)
+admin.site.register(Third_year_core_Team,Third_year_core_TeamAdmin)
 
 class Developer_TeamAdmin(admin.ModelAdmin):
     list_display = ('name',  'image')

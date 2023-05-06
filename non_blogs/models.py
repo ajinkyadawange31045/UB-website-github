@@ -27,10 +27,10 @@ class Core_Team(models.Model):
     def __str__(self):
         return self.name
 
-class Media_Team(models.Model):
+class Third_year_core_Team(models.Model):
     team_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
-    # work = models.CharField(max_length=20,blank=True, null=True)
+    work = models.CharField(max_length=200,blank=True, null=True)
     # quote = models.CharField(max_length=40,blank=True,default="no use, don't write anything")
     # Social_media_handle = models.CharField(max_length=120)
     # handle_link = models.CharField(max_length=120)
@@ -114,7 +114,7 @@ class Contact(models.Model):
 
 
 # for future events
-class Future_events(models.Model):
+class Past_events(models.Model):
     title = models.CharField(max_length=100)
     options = (
         ('Jan','1'),

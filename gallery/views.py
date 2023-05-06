@@ -8,16 +8,34 @@ from .forms import GalleryImageForm
 def is_admin(user):
     return user.is_authenticated and user.is_staff
 
+from django.shortcuts import render
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from .models import GalleryImage
+
 def home(request):
     images = GalleryImage.objects.all()
-    # Show most common tags 
-    # common_tags = GalleryImage.tags.most_common()[:4]
+    for image in images:
+        img = Image.open(image.image)
+        # Set the maximum size you want here
+        max_size = (800, 800)
+        img.thumbnail(max_size, Image.ANTIALIAS)
+        # Save the image back to memory buffer
+        in_mem_file = BytesIO()
+        img.save(in_mem_file, format='JPEG')
+        # Set the file pointer to the beginning of the buffer
+        in_mem_file.seek(0)
+        # Update the image file with the compressed version
+        image.image = InMemoryUploadedFile(in_mem_file, 'ImageField', "%s.jpg" % image.image.name.split('.')[0], 'image/jpeg', in_mem_file.getvalue(), None)
+        image.save()
+
     context = {
-        # 'common_tags': common_tags,
         'images':images
     }
-
     return render(request,'app/home.html',context)
+
+
 def details(request, image_id):
     image = get_object_or_404(GalleryImage, pk=image_id)
     previous_image = GalleryImage.objects.filter(pk__lt=image_id).order_by('-pk').first()

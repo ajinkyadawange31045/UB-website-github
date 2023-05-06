@@ -7,32 +7,35 @@
     }
     .ard {
         background-color: black;
-        height: 25vh;
+        height: 10vh;
         width: 100vw;
         margin-bottom: 14px;
     }
 </style>
 
 <div class="home ard">
-    <div class="home_content">
-        <div class="post_title">Preview : {{image.title}}</div>
-
-    </div>
+   
 </div>
-<div class="container text-center my-3 mb-4">
 
-    <img class="" style="width: 100%; max-width: 85vw; height: auto;" src="{{image.image.url}}" alt="">
+<div class="container text-center my-1 mb-4">
 
-    <br><br>
-    
     <div class="d-flex justify-content-between align-items-center">
         {% if previous_id %}
         <a href="{% url 'details' image_id=previous_id %}" class="btn btn-primary rounded-0">&lt; Previous</a>
         {% endif %}
-    
+       
         {% if next_id %}
         <a href="{% url 'details' image_id=next_id %}" class="btn btn-primary rounded-0">Next &gt;</a>
         {% endif %}
+    </div>
+<br><br>    
+    <img class="" style="width: 100%; max-width: 80vw; height: auto;" src="{{image.image.url}}" alt="">
+
+    <br><br>
+    
+    <div class="container text-center">
+        <div class="">{{image.title}}</div>
+
     </div>
     
 </div>

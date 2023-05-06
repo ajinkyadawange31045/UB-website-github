@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import  authenticate,login,logout
 from blog.models import Post_with_image,Author,Category,Comment
-from non_blogs.models import Initiative, Core_Team, Value, Future_events, Advertisement, Youtube_Video
+from non_blogs.models import Initiative, Core_Team, Value, Past_events, Advertisement, Youtube_Video
 from django import forms
 from django.contrib.auth.models import Group
 # from .forms import NewCommentForm, PostSearchForm
@@ -104,7 +104,7 @@ def home(request):
     # initiatives
     initiatives = Initiative.objects.all()
     # future values
-    future = Future_events.objects.all()
+    future = Past_events.objects.all()
     try:
         adv1 = Advertisement.objects.all()[0]
     except:
@@ -166,7 +166,7 @@ def post(request, url):
     post = Post_with_image.objects.filter(url=url).first()
     cats = Category.objects.all()
     datetime = Post_with_image.objects.all()
-    future = Future_events.objects.all()
+    future = Past_events.objects.all()
     try:
         adv1 = Advertisement.objects.all()[0]
     except:
@@ -239,7 +239,7 @@ def category(request, url):
     first_4_categories = Category.objects.all()[0:4]
     remaining_categoreis = Category.objects.all()[::-1]
     cats = Category.objects.all()
-    future = Future_events.objects.all()
+    future = Past_events.objects.all()
     try:
         adv1 = Advertisement.objects.all()[0]
     except:
@@ -332,13 +332,13 @@ def post_search(request):
 #     params={'allPosts': allPosts, 'query': query}
 #     return render(request, 'search.html', params)
 
-from non_blogs.models import Core_Team,Alumini_Team,Media_Team,Developer_Team,Web_content_management_Team
+from non_blogs.models import Core_Team,Alumini_Team,Third_year_core_Team,Developer_Team,Web_content_management_Team
 
 def about(request):
     #core team
     core_team = Core_Team.objects.all()
     amumini_team = Alumini_Team.objects.all()
-    media_team = Media_Team.objects.all()
+    media_team = Third_year_core_Team.objects.all()
     dev_team = Developer_Team.objects.all()
     content_management_team = Web_content_management_Team.objects.all()
 
