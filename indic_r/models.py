@@ -1,12 +1,16 @@
 from django.db import models
+from mptt.models import MPTTModel, TreeForeignKey
+from ckeditor.fields import RichTextField
+# Create your models here.
 
+from django.db import models
 class Competition(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = RichTextField()
     
 class Workshop(models.Model):
     title = models.CharField(max_length=255)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='workshop_images/')
 
 class Talk(models.Model):
@@ -14,18 +18,18 @@ class Talk(models.Model):
     speaker_name = models.CharField(max_length=255)
     about_speaker = models.TextField()
     title_of_topic_of_speaker = models.CharField(max_length=255)
-    about_talk_in_nutshell = models.TextField()
+    about_talk_in_nutshell = RichTextField()
 
 class Proshow(models.Model):
     title = models.CharField(max_length=255, null=True,blank=True)
     short_content = models.CharField(max_length=255,null=True,blank=True)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='proshow_images/')
 
 class SocialInitiative(models.Model):
     title = models.CharField(max_length=255,null=True,blank=True)
     short_content = models.CharField(max_length=255, null=True,blank=True)
-    content = models.TextField()
+    content = RichTextField()
     image = models.ImageField(upload_to='social_initiative_images/')
     
 class Sponsor(models.Model):
