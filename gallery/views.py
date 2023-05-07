@@ -16,19 +16,19 @@ from .models import GalleryImage
 
 def home(request):
     images = GalleryImage.objects.all()
-    for image in images:
-        img = Image.open(image.image)
-        # Set the maximum size you want here
-        max_size = (800, 800)
-        img.thumbnail(max_size, Image.ANTIALIAS)
-        # Save the image back to memory buffer
-        in_mem_file = BytesIO()
-        img.save(in_mem_file, format='JPEG')
-        # Set the file pointer to the beginning of the buffer
-        in_mem_file.seek(0)
-        # Update the image file with the compressed version
-        image.image = InMemoryUploadedFile(in_mem_file, 'ImageField', "%s.jpg" % image.image.name.split('.')[0], 'image/jpeg', in_mem_file.getvalue(), None)
-        image.save()
+    # for image in images:
+    #     img = Image.open(image.image)
+    #     # Set the maximum size you want here
+    #     max_size = (800, 800)
+    #     img.thumbnail(max_size, Image.ANTIALIAS)
+    #     # Save the image back to memory buffer
+    #     in_mem_file = BytesIO()
+    #     img.save(in_mem_file, format='JPEG')
+    #     # Set the file pointer to the beginning of the buffer
+    #     in_mem_file.seek(0)
+    #     # Update the image file with the compressed version
+    #     image.image = InMemoryUploadedFile(in_mem_file, 'ImageField', "%s.jpg" % image.image.name.split('.')[0], 'image/jpeg', in_mem_file.getvalue(), None)
+    #     image.save()
 
     context = {
         'images':images

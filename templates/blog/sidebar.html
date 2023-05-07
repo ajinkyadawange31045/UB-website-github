@@ -382,9 +382,9 @@
                 <div class="item mb-1">
                     <!-- Future Events Post -->
                     <div class="side_post">
-                        <a href="#">
+                        {% comment %} <a href="#"> {% endcomment %}
                             <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
-                                <div class="event_date d-flex flex-column align-items-center justify-content-center">
+                                <div class="event_date d-flex flex-column align-items-center justify-content-center mx-2">
                                     <div class="event_day">{{i.date_of_event}}</div>
                                     <div class="event_month">{{i.month_of_event}}</div>
                                 </div>
@@ -393,7 +393,7 @@
                                     <small class="post_meta">{{i.any_hashtag}}</small>
                                 </div>
                             </div>
-                        </a>
+                        {% comment %} </a> {% endcomment %}
                     </div>
                 </div>
                 <hr>
