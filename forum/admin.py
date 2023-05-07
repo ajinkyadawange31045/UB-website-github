@@ -13,13 +13,16 @@ admin.site.register(Topic,Topic_Admin)
 
 # @admin.register(Post)
 class Post_Admin(admin.ModelAdmin):
-    list_display = ('id', 'topic', 'author', 'likes_count',)
+    list_display = ('id','title', 'topic', 'author', 'views',)
     search_fields = ('topic', 'author', 'title')
     sortable_by = ('topic',)
+    list_filter = ('topic','author',)
+    readonly_fields = ('likes_count','views')
 admin.site.register(Post,Post_Admin)
 
 # @admin.register(Comment)
 class Comment_Admin(admin.ModelAdmin):
-    list_display = ('id', 'post','author','body')
-    search_fields = ('post','author')
+    list_display = ('author','id', 'post','body')
+    search_fields = ('post','author','body')
+    list_filter = ('post','author')
 admin.site.register(Comment,Comment_Admin)

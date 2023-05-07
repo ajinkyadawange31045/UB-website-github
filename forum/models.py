@@ -25,13 +25,22 @@ class Topic(models.Model):
         return self.posts.count()
 
     def total_views(self):
-        return sum(post.views for post in self.posts.all())
+        a = sum(post.views for post in self.posts.all())
+        value = str(a)
+        if value.isdigit():
+            value_int = int(value)
+            if value_int > 1000000:
+                value = "%.1f%s" % (value_int/1000000.00, 'M')
+            else:
+                if value_int > 1000:
+                    value = "%.1f%s" % (value_int/1000.0, 'k')
+        return value
 
 class Post(models.Model):
     """ Posts can be found under its topic. """
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    topic = models.ForeignKey(Topic, on_delete=models.SET_NULL, null=True,related_name='posts')
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    topic = models.ForeignKey(Topic, on_delete=models.CASCADE, null=True,related_name='posts')
     timestamp = models.DateTimeField(default=timezone.now)
     title = models.CharField(max_length=200, default='untitled')
     likes = models.ManyToManyField(User, related_name='forum_post')
@@ -52,8 +61,8 @@ class Post(models.Model):
 class Comment(models.Model):
     """ Comments are replies to posts """
 
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     body = models.TextField()
 

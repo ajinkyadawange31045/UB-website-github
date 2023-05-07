@@ -122,14 +122,14 @@
     }
 
     a.forum-item-title {
-        color: inherit;
+        color: black;
         display: block;
         font-size: 18px;
         font-weight: 600;
     }
 
     a.forum-item-title:hover {
-        color: inherit;
+        color: red;
     }
 
     .forum-icon .fa {
@@ -314,14 +314,14 @@
                     </div>
 
                     {% for topic in topics %}
-                    <div class="forum-item active">
+                    <div class="forum-item">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="forum-icon">
-                                    <i class="fa fa-bolt"></i>
+                                    <i class="fa fa-star" style="color: black; hover:color:red;} "></i>
                                 </div>
                                 <a href="{% url 'no_login_forum:topic-detail-indirect' topic.id %}" class="forum-item-title"
-                                    style="color: black;">{{ topic.title }}</a>
+                                style="hover:rgba(0,0,0,0.5);">{{ topic.title }}</a>
                                 <div class="forum-sub-title">{{ topic.description }}</div>
                             </div>
                             <div class="col-md-1 forum-info">
@@ -371,7 +371,7 @@
 
 
 
-<div class="container">
+<div class="container mt-3">
     <div class="row">
         <div class="col-lg-12">
             <div class="wrapper wrapper-content animated fadeInRight">

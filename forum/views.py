@@ -62,9 +62,18 @@ class TopicListView(ListView):
         
         # Get the total views of all posts
         total_views = Post.objects.aggregate(Sum('views'))['views__sum']
-        Post.objects.annotate(total_views=Sum('views'))
 
-        context['total_views'] = total_views
+        Post.objects.annotate(total_views=Sum('views'))
+        value = str(total_views)
+        if value.isdigit():
+            value_int = int(value)
+            if value_int > 1000000:
+                value = "%.1f%s" % (value_int/1000000.00, 'M')
+            else:
+                if value_int > 1000:
+                    value = "%.1f%s" % (value_int/1000.0, 'k')
+    
+        context['total_views'] = value
         
         # Get the total number of posts
         total_posts = Post.objects.count()
@@ -109,20 +118,26 @@ class PostDetailView(LoginRequiredMixin, FormMixin, DetailView):
     def get_object(self):
         post = super().get_object()
 
-        # Get the current session
-        session = SessionStore(session_key=self.request.session.session_key)
+        
+        #this will have unique number of view for every loggedin user. and views will not be counted if the user is logged out
+        
+        # session = SessionStore(session_key=self.request.session.session_key)
+        # viewed_posts = session.get('viewed_posts', [])
+        # if post.id not in viewed_posts:
+        #     post.views += 1
+        #     post.save()
+        #     viewed_posts.append(post.id)
+        #     session['viewed_posts'] = viewed_posts
+        #     session.save()
 
-        # Get the list of viewed post IDs from the session, or create an empty list
-        viewed_posts = session.get('viewed_posts', [])
 
-        # Check if the post ID is in the viewed post list
-        if post.id not in viewed_posts:
-            # If not, increment the post's view count and add the post ID to the viewed post list
-            post.views += 1
-            post.save()
-            viewed_posts.append(post.id)
-            session['viewed_posts'] = viewed_posts
-            session.save()
+
+        #it will simply increase count on every refresh.
+        viewed_posts =[]
+        post.views += 1
+        post.save()
+        viewed_posts.append(post.id)
+        
 
         return post
 

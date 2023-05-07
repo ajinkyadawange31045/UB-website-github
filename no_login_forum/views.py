@@ -50,6 +50,10 @@ def forum_post(request,pk):
 def forum_comments(request,pk):
     posts = get_object_or_404(Post,pk=pk)
     comments = Comment.objects.all().filter(post=posts)
+    # viewed_posts =[]
+    posts.views += 1
+    posts.save()
+    # viewed_posts.append(post.id)
     context = {
         'comments':comments,
         'posts':posts
