@@ -137,8 +137,7 @@ class Past_events(models.Model):
     def __str__(self):
         return self.title
     
-    
-from  embed_video.fields  import  EmbedVideoField
+
 from embed_video.fields import EmbedVideoField
 # Create your models here.
 class Youtube_Video(models.Model):
