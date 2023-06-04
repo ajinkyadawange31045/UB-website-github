@@ -1,0 +1,15 @@
+1. To make comment section async
+2. UI changes are need at many places, like in profile page, about page, forum, serach page, etc
+
+3. implementing comment section in gallery page, views, likes, etc
+4. forum, like views counts
+5. Book mark and like option for all blogs
+6. Signup and login using google, fb, github, etc
+
+6. `Make front end of entire website using react js`
+7. `Linking that front end using django backend`
+
+7. redirect login -> to previous page.
+8. nested comment section for forum page
+
+sanjeev -> 4th, 5th and 3rd, 8th
