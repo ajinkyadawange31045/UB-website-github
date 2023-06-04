@@ -890,10 +890,9 @@ who can make a positive impact on the world.
 
 
 
-        <!-- Blog Section - Team Members -->
         <div class="blog_section" id="team">
             <div class="section_panel d-flex flex-row align-items-center justify-content-start">
-                <div class="section_title">Team Members</div>
+                {% comment %} <div class="section_title">Team Members</div> {% endcomment %}
             </div>
             
             <div class="section_content">
@@ -902,7 +901,6 @@ who can make a positive impact on the world.
                     <div class="card card_default card_small_no_image grid-item">
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark ">Our social media handles</div>
-                            <!-- <small class="post_meta">Our Handles<span> -->
                             <a style="color:rgb(34, 34, 244);" href="https://twitter.com/UtkrishtaBNitk" class="ml-2"
                                 target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                             <a style="color:rgb(0, 68, 255);" href="https://ne-np.facebook.com/utkrishta.bharath.nitk"
@@ -912,8 +910,6 @@ who can make a positive impact on the world.
                             <a style="color:rgb(255, 0, 0);" href="https://www.youtube.com/@utkrishtabharathnitk"
                                 class="ml-2" target="_blank"><i class="fa fa-youtube fa-youtube-play"
                                     aria-hidden="true"></i></a>
-                            <!-- </span> -->
-                            <!-- </small> -->
                         </div>
                     </div>
 
@@ -921,39 +917,25 @@ who can make a positive impact on the world.
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark">We are not only one big team, but we are
                                 also one big family!</div>
-                            <!-- <small class="post_meta">Our Handles<span><a style="color:blue;" href=""
-                                        target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></span></small> -->
                         </div>
                     </div>
                     <div class="card card_default card_small_no_image grid-item">
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark">These are our warriors who are currently
                                 leading the mission.</div>
-                            <!-- <small class="post_meta">Our Handles<span><a style="color:blue;" href=""
-                                        target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></span></small> -->
                         </div>
                     </div>
-                    {% for i in team_core_members %}
+                    {% comment %} {% for i in team_core_members %}
                     <div class="card card_small_with_image grid-item">
                         <img class="card-img-top" src="/media/{{i.image}}" alt="Image">
                         <div class="card-body">
                             <div class="card-title card-title-small text-dark">
                                <b> {{i.name}}</b>
-                                {% comment %} <a href="">{{i.name}}</a> {% endcomment %}
                             </div>
                             <small class="post_meta">{{i.work}}</small>
                         </div>
                     </div>
-                    {%endfor%} 
-                    {% comment %} {% for i in other_important_members %}
-                    <div class="card card_default card_small_no_image grid-item">
-                        <div class="card-body">
-                            <div class="card-title card-title-small text-dark">{{i.name}}</div>
-                            <small class="post_meta">{{i.work}}<span><a style="color:blue;" href="{{i.handle_link}}"
-                                        target="_blank">{{i.Social_media_handle}}</a></span></small>
-                        </div>
-                    </div>
-                    {%endfor%} {% endcomment %}
+                    {%endfor%}  {% endcomment %}
                 </div>
             </div>
            
