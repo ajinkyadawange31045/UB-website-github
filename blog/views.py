@@ -20,6 +20,7 @@ from django.contrib.auth import authenticate, login, logout,update_session_auth_
 from django.contrib.auth.decorators import login_required
 from non_blogs.forms import ContactForm
 from blog.forms import PostSearchForm,NewCommentForm
+from django.urls import reverse
 # import time
 # from community.models import Question
 # from community.views import 
@@ -350,3 +351,25 @@ def about(request):
         'content_management_team':content_management_team,
     }
     return render(request,'blog/about.html',context)
+
+def add_likes(request, ids) :
+    if request.user.is_authenticated :
+        if request.method == "POST" :
+            user = request.user
+            get_post = Post_with_image.objects.get(post_id = ids)
+            if user not in get_post.likes.all() :
+                get_post.likes.add(user)
+            else :
+                get_post.likes.remove(user)
+            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
+        
+def add_bookmark(request, ids) :
+    if request.user.is_authenticated :
+        if request.method == "POST" :
+            user = request.user
+            get_post = Post_with_image.objects.get(post_id = ids)
+            if user not in get_post.likes.all() :
+                get_post.bookmark.add(user)
+            else :
+                get_post.bookmark.remove(user)
+            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))

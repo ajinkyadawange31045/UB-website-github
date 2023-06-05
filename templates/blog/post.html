@@ -69,6 +69,8 @@
 
 <!-- Page Content -->
 
+
+
 <div class="page_content">
     <div class="container">
         <div class="row row-lg-eq-height">
@@ -170,7 +172,14 @@
                             </ul>
                         </div>
                     </div>
-
+                    <form action="{% url 'likes' ids=post.post_id %}" method="post" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Like</button>
+                    </form>
+                    <form action="{% url 'bookmark' ids=post.post_id %}" method="post" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary">Bookmark</button>
+                    </form>
                     <div class="simalar_posts">
                         <!-- Comments -->
                         <div class="comments">
