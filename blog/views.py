@@ -25,7 +25,7 @@ from django.urls import reverse
 # from community.models import Question
 # from community.views import 
 
-
+@login_required
 def add_likes(request, ids) :
     if request.user.is_authenticated :
         if request.method == "POST" :
@@ -37,6 +37,7 @@ def add_likes(request, ids) :
                 get_post.likes.remove(user)
             return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
         
+@login_required
 def add_bookmark(request, ids) :
     if request.user.is_authenticated :
         if request.method == "POST" :
