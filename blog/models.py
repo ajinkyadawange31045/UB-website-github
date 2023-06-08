@@ -77,6 +77,8 @@ class Post_with_image(models.Model):
     content_after_image = RichTextField(blank=True)
     quote_related_to_post = models.TextField(blank=True)
     author_of_quote = models.CharField(max_length=50,blank=True)
+    likes = models.ManyToManyField(User, blank=True, related_name="liked_blogs")
+    bookmark = models.ManyToManyField(User, blank=True, related_name="bookmarked_blogs")
     # status = models.CharField(max_length=10, choices=options, default='draft')
     # status = models.BooleanField(default=True)
     tags_for_seo_and_search_bar_in_website = models.TextField(help_text='Add tags(this tags will be for search bar of the webstie as well as for SEO stuffs, so be particular while adding, do research for the keywords, and add properly.')
