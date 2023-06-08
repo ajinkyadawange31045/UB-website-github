@@ -81,7 +81,7 @@
                 <div class="post_content">
 
                     <!-- Top Panel -->
-                    <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start">
+                    {% comment %} <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start">
                         <div class="author_image text-center">
                             <div><img src="/media/{{post.author.image}}"
                                       style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" alt="">
@@ -90,22 +90,38 @@
                         <div class="post_meta text-dark">{{post.author.name}} <span
                                 class="text-dark">{{post.publish}}</span><br>
                             <p class="text-primary">{{value}} views</p></div>
-                        <!-- <div class="post_share ml-sm-auto">
-                            <span>share</span>
-                            <ul class="post_share_list">
-                                <li class="post_share_item" style=" color: darkblue;">{% post_to_facebook  object_or_url "Facebook!" %}</li>
-                                <li class="post_share_item" style=" color: darkblue;">{% post_to_whatsapp  object_or_url "WhatsApp" %}</li>
-                                <li class="post_share_item" style=" color: darkblue;">{% post_to_reddit  object_or_url "Share To Reddit" %}</li>
-                                </ul>
-                        </div> -->
-
+                       
+                            
+                            <div class="ml-sm-auto ">
+                                <div class="ml-sm-auto ">
+                                    {{like_count}}
+                                </div>
+                                <div class="ml-sm-auto ">
+                                    <form class="dropdown-item" action="{% url 'likes' ids=post.post_id %}" method="post" >
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary">Like</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                            <div class="ml-sm-auto ">
+                                <form class="dropdown-item" action="{% url 'bookmark' ids=post.post_id %}" method="post" >
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Bookmark</button>
+                                </form>
+                                
+                            </div>
                         <div class="ml-sm-auto dropdownard show bg-secondary">
+                            
                             <a class="btn btn-successs dropdown-toggle dropbtnard" href="#" role="button"
                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span></span>
                             </a>
 
                             <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                
+
+                                
                                 <a class="dropdown-item" href="#">{% post_to_facebook object_or_url "Facebook!" %}</a>
                                 <a class="dropdown-item" href="#">{% post_to_whatsapp object_or_url "WhatsApp" %}</a>
                                 <a class="dropdown-item" href="#">{% post_to_reddit object_or_url "Share To Reddit" %}</a>
@@ -113,7 +129,99 @@
                         </div>
 
 
+                    </div> {% endcomment %}
+
+
+
+                    <div class="post_panel post_panel_top d-flex flex-row align-items-center justify-content-start">
+                        <div class="author_image text-center">
+                            <div>
+                                <img src="/media/{{post.author.image}}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" alt="">
+                            </div>
+                        </div>
+                        <div class="post_meta text-dark">{{post.author.name}} <span class="text-dark">{{post.publish}}</span><br>
+                            <p class="text-primary">{{value}} views</p>
+                        </div>
+                        <div class="ml-auto d-flex align-items-center">
+                            <div class="like_count">
+                                {{like_count}}
+                            </div>
+                            {% comment %} <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-regular fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            <form class="ml-3" action="{% url 'bookmark' ids=post.post_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fas fa-bookmark"></i> 
+                                </button>
+                            </form> {% endcomment %}
+                            <style>
+                                .transparent-button {
+                                    background-color: transparent;
+                                    border: none;
+                                    padding: 0;
+                                    cursor: pointer;
+                                }
+                                
+                                .transparent-icon {
+                                    color: #000; /* Set the desired color for the icons */
+                                    opacity: 0.5; /* Adjust the opacity value as needed */
+                                }
+                            </style>
+                            
+                            <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link transparent-button">
+                                    {% if liked %}
+                                        <i class="fa fa-solid fa-thumbs-up fa-2x"></i>
+                                    {% else %}
+                                        <i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i>
+                                    {% endif %}
+                                </button>
+                            </form>
+                            
+                            <form class="ml-3" action="{% url 'bookmark' ids=post.post_id %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link transparent-button">
+                                    {% if is_bookmarked %}
+                                        <i class="fa fas fa-bookmark fa-2x"></i> 
+                                    {% else %}
+                                        <i class="fa fas fa-bookmark fa-2x transparent-icon"></i> 
+                                    {% endif %}
+                                </button>
+                            </form>
+                            
+                            <div class="dropdownard ml-3">
+                                <a class="btn btn-successs" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <style>
+                                        .blue {
+                                            color: grey;
+                                        }
+                                    </style>
+                                    
+                                    <i class="fa fas fa-share fa-2x blue"></i>
+                                    
+                                </a>
+                                <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="#">{% post_to_facebook object_or_url "Facebook!" %}</a>
+                                    <a class="dropdown-item" href="#">{% post_to_whatsapp object_or_url "WhatsApp" %}</a>
+                                    <a class="dropdown-item" href="#">{% post_to_reddit object_or_url "Share To Reddit" %}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    
+
+
+
+
+
+
+
+
 
                     <!-- Post Body -->
 
@@ -172,14 +280,7 @@
                             </ul>
                         </div>
                     </div>
-                    <form action="{% url 'likes' ids=post.post_id %}" method="post" >
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Like</button>
-                    </form>
-                    <form action="{% url 'bookmark' ids=post.post_id %}" method="post" >
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-primary">Bookmark</button>
-                    </form>
+                    
                     <div class="simalar_posts">
                         <!-- Comments -->
                         <div class="comments">

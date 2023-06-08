@@ -24,6 +24,32 @@ from django.urls import reverse
 # import time
 # from community.models import Question
 # from community.views import 
+
+
+def add_likes(request, ids) :
+    if request.user.is_authenticated :
+        if request.method == "POST" :
+            user = request.user
+            get_post = Post_with_image.objects.get(post_id = ids)
+            if user not in get_post.likes.all() :
+                get_post.likes.add(user)
+            else :
+                get_post.likes.remove(user)
+            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
+        
+def add_bookmark(request, ids) :
+    if request.user.is_authenticated :
+        if request.method == "POST" :
+            user = request.user
+            get_post = Post_with_image.objects.get(post_id = ids)
+            if user not in get_post.likes.all() :
+                get_post.bookmark.add(user)
+            else :
+                get_post.bookmark.remove(user)
+            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
+
+
+
 # sidebar recomendation things algo________________________________________________________________
 def sidebar():
     post1 = Post_with_image.objects.all()
@@ -226,7 +252,13 @@ def post(request, url):
     except latest.DoesNotExist:
         latest = None
 
-    data = {'post':post,'cats':cats,'datetime':datetime,'user': request.user,'post_comment':post_comment, 'comments': comments, 'comment_form': comment_form,'allcomments': allcomments,'future':future,'adv1':adv1,'adv2':adv2,'cat_r':remaining_categoreis,'value':value,'latest':latest,}
+    blog = Post_with_image.objects.get(url=url)
+    like_count = blog.likes.count()
+    liked = blog.likes.filter(id=request.user.id).exists()
+    is_bookmarked = blog.bookmark.filter(id=request.user.id).exists()
+
+
+    data = {'post':post,'cats':cats,'datetime':datetime,'user': request.user,'post_comment':post_comment, 'comments': comments, 'comment_form': comment_form,'allcomments': allcomments,'future':future,'adv1':adv1,'adv2':adv2,'cat_r':remaining_categoreis,'value':value,'latest':latest, 'liked':liked,'is_bookmarked':is_bookmarked,'like_count':like_count}
     
     # merging both dictionaries
     # data_final = {**x_one,**data}
@@ -352,24 +384,3 @@ def about(request):
     }
     return render(request,'blog/about.html',context)
 
-def add_likes(request, ids) :
-    if request.user.is_authenticated :
-        if request.method == "POST" :
-            user = request.user
-            get_post = Post_with_image.objects.get(post_id = ids)
-            if user not in get_post.likes.all() :
-                get_post.likes.add(user)
-            else :
-                get_post.likes.remove(user)
-            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
-        
-def add_bookmark(request, ids) :
-    if request.user.is_authenticated :
-        if request.method == "POST" :
-            user = request.user
-            get_post = Post_with_image.objects.get(post_id = ids)
-            if user not in get_post.likes.all() :
-                get_post.bookmark.add(user)
-            else :
-                get_post.bookmark.remove(user)
-            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
