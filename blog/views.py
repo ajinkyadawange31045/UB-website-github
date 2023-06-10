@@ -43,7 +43,7 @@ def add_bookmark(request, ids) :
         if request.method == "POST" :
             user = request.user
             get_post = Post_with_image.objects.get(post_id = ids)
-            if user not in get_post.likes.all() :
+            if user not in get_post.bookmark.all() :
                 get_post.bookmark.add(user)
             else :
                 get_post.bookmark.remove(user)
