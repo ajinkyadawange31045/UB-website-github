@@ -3,7 +3,9 @@ from django.template.defaultfilters import slugify
 from django.http import HttpResponse
 from .models import GalleryImage
 from .forms import GalleryImageForm
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import  HttpResponseRedirect
+from django.urls import reverse
 
 def is_admin(user):
     return user.is_authenticated and user.is_staff
@@ -40,10 +42,16 @@ def details(request, image_id):
     image = get_object_or_404(GalleryImage, pk=image_id)
     previous_image = GalleryImage.objects.filter(pk__lt=image_id).order_by('-pk').first()
     next_image = GalleryImage.objects.filter(pk__gt=image_id).order_by('pk').first()
+    get_image = GalleryImage.objects.get( id = image_id)
+    if request.user in get_image.likes.all() :
+        liked = True
+    else :
+        liked = False
     context = {
         'image':image,
         'previous_id': previous_image.id if previous_image else None,
-        'next_id': next_image.id if next_image else None
+        'next_id': next_image.id if next_image else None,
+        'liked' : liked
     }
     return render(request,'app/details.html',context)
 
@@ -66,3 +74,12 @@ def image_upload(request):
         
     return render(request, 'app/image/upload.html', {'form': form})
 
+@login_required
+def addlike(request, id) :
+    if request.method == "POST" :
+        get_img = GalleryImage.objects.get(id = id)
+        if request.user not in get_img.likes.all() :
+            get_img.likes.add(request.user)
+        else :
+            get_img.likes.remove(request.user)
+        return HttpResponseRedirect(reverse(details, args=(id, )))
