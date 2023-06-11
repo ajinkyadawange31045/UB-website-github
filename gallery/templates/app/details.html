@@ -1,6 +1,7 @@
 {% extends 'base/base.html'%}
 
 {% block content %}
+
 <style>
     body{
         background-color: black;
@@ -26,6 +27,34 @@
     <div class="">{{image.title}}</div>
 
 </div>
+<style>
+    .transparent-button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .transparent-icon {
+        color: #ffffff; /* Set the desired color for the icons */
+        opacity: 0.5; /* Adjust the opacity value as needed */
+    }
+</style>
+    <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 1rem;">
+        <form class="ml-3" action="{% url 'image_like' id=image.id %}" method="post" >
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link transparent-button">
+                {% if liked %}
+                    <i class="fa fa-solid fa-thumbs-up fa-2x"></i>
+                {% else %}
+                <i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i>
+                {% endif %}
+            </button>
+        </form>
+
+    <a href="{{ image.image.url }}" download="image.jpg"><i class="fa fa-download" style="font-size: 30px;"></i></a>
+    </div>
+
     <img class="" style="width: 100%; max-width: 80vw; height: auto;" src="{{image.image.url}}" alt="">
 
     <br><br>
@@ -42,13 +71,6 @@
         {% endif %}
     </div>
     
-</div>
-
-
-
-
-
-
 </div>
 
 {% endblock %}

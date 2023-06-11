@@ -39,6 +39,7 @@ urlpatterns = [
             
             path('gallery/',views.home, name="home"),
             path('<int:image_id>',views.details, name="details"),
+            path('image_like/<int:id>',views.addlike, name="image_like"),
             # path('gallery_image/upload',views.image_upload, name="image-upload")
             path('gallery_image/upload', user_passes_test(views.is_admin)(views.image_upload), name="image-upload"),
             # path("", include("allauth.urls")),
