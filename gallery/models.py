@@ -9,6 +9,7 @@ class GalleryImage(models.Model):
     title = models.CharField(max_length = 100)
     tags = TaggableManager()
     likes = models.ManyToManyField(User, blank=True, related_name="liked_images")
+    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.title
