@@ -163,16 +163,52 @@ serves as an inspiration to all those who seek to make a positive difference in 
 		<h2 class="text-dark" id='team1'><b>Core Team</b></h2>
 	</div>
 	<div class="card-container">
-		{% for i in core_team %}
+		 {% for i in core_team %}
 		<div class="card">
 		<div class="card-image">
-			<img src="/media/{{i.image}}" alt="{{i.name}}">
+			<img src="/media/{{i.image}}" class="img-fluid rounded-circle img-thumbnail" alt="{{i.name}}" >
 		</div>
 		<h2>{{i.name}}</h2>
 		<p>{{i.work}}</p>
 		</div>
-		{% endfor %}
+		{% endfor %} 
+
+		
 	</div>
+
+
+	<style>
+		.card {
+			margin-top: 2em;
+			padding: 1.5em 0.5em 0.5em;
+			border-radius: 2em;
+			text-align: center;
+			box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+		  }
+		  .card img {
+			width: 65%;
+			border-radius: 50%;
+			margin: 0 auto;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		  }
+		  .card .card-title {
+			font-weight: 700;
+			font-size: 1.5em;
+		  }
+		  .card .btn {
+			border-radius: 2em;
+			background-color: teal;
+			color: #ffffff;
+			padding: 0.5em 1.5em;
+		  }
+		  .card .btn:hover {
+			background-color: rgba(0, 128, 128, 0.7);
+			color: #ffffff;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		  }
+	</style>
+	
+
 	<hr>
 
 	<div class="text-center my-4">
@@ -182,7 +218,7 @@ serves as an inspiration to all those who seek to make a positive difference in 
 		{% for i in media_team %}
 		<div class="card">
 		<div class="card-image">
-			<img src="/media/{{i.image}}" alt="{{i.name}}">
+			<img src="/media/{{i.image}}" class="img-fluid rounded-circle mb-3 img-thumbnail" alt="{{i.name}}">
 		</div>
 		<h2>{{i.name}}</h2>
 		<p>{{i.work}}</p>
@@ -198,7 +234,7 @@ serves as an inspiration to all those who seek to make a positive difference in 
 		{% for i in content_management_team %}
 		<div class="card">
 		<div class="card-image">
-			<img src="/media/{{i.image}}" alt="{{i.name}}">
+			<img src="/media/{{i.image}}" class="img-fluid rounded-circle mb-3 img-thumbnail" alt="{{i.name}}">
 		</div>
 		<h2>{{i.name}}</h2>
 		
@@ -215,7 +251,7 @@ serves as an inspiration to all those who seek to make a positive difference in 
 		{% for i in dev_team %}
 		<div class="card">
 		<div class="card-image">
-			<img src="/media/{{i.image}}" alt="{{i.name}}">
+			<img src="/media/{{i.image}}" class="img-fluid rounded-circle mb-3 img-thumbnail" alt="{{i.name}}">
 		</div>
 		<h2>{{i.name}}</h2>
 		
@@ -232,7 +268,7 @@ serves as an inspiration to all those who seek to make a positive difference in 
 		{% for i in alumini_team %}
 		<div class="card">
 		<div class="card-image">
-			<img src="/media/{{i.image}}" alt="{{i.name}}">
+			<img src="/media/{{i.image}}" class="img-fluid rounded-circle mb-3 img-thumbnail" alt="{{i.name}}">
 		</div>
 		<h2>{{i.name}}</h2>
 		
