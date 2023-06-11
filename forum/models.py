@@ -6,6 +6,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from mptt.models import MPTTModel, TreeForeignKey
 
  
 
@@ -65,6 +66,8 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     timestamp = models.DateTimeField(default=timezone.now)
     body = models.TextField()
+    parent = models.ForeignKey('self', on_delete=models.CASCADE,
+                            null=True, blank=True, related_name='children')
 
     def __str__(self):
         return self.body

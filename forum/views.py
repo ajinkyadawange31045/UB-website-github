@@ -143,7 +143,7 @@ class PostDetailView(LoginRequiredMixin, FormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
-        context['comments'] = Comment.objects.filter(post=self.kwargs.get('pk'))
+        context['comments'] = Comment.objects.filter(post=self.kwargs.get('pk'), parent = None)
         context['form'] = CreateCommentForm(initial={'post': self.object, 'author': self.request.user})
 
         something = get_object_or_404(Post, id=self.kwargs['pk'])
@@ -212,4 +212,20 @@ def login(request):
 
 def logout(request):
     return render(request, 'forum/logout.html')
+
+@login_required
+def nested_comment(request, id) :
+    if request.method == "POST" :
+        get_comment = Comment.objects.get(id = id)
+        if get_comment :
+            get_post = get_comment.post
+            get_body = request.POST["nested_comment"]
+            nested_comment = Comment(
+                author = request.user,
+                post = get_post,
+                body = get_body,
+                parent = get_comment
+            )
+            nested_comment.save()
+            return HttpResponseRedirect(reverse('forum:post-detail', args=[str(get_post.pk)]))
 
