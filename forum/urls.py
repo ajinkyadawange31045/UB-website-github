@@ -25,5 +25,6 @@ urlpatterns = [
     
     path('profile/<str:username>/', ProfileView.as_view(), name='profile'),
     # path('profile/', v.profile, name='profile'),
-    path('like/<int:pk>', views.like_view, name="like_post")
+    path('like/<int:pk>', views.like_view, name="like_post"),
+    path('nested_comment/<int:id>', views.nested_comment, name="nested_comment"),
 ]

@@ -139,7 +139,14 @@
                 </div>
             </div>
         </div>
-
+        {% for reply in comment.children.all %}
+           <p>-> {{reply.body}}</p>
+        {% endfor %}
+        <form class="ml-3" action="{% url 'forum:nested_comment' id=comment.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="nested_comment">
+            <button type="submit">Submit</button>
+        </form>
 
         {% endfor %}
        

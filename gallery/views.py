@@ -40,6 +40,8 @@ def home(request):
 
 def details(request, image_id):
     image = get_object_or_404(GalleryImage, pk=image_id)
+    image.views = image.views + 1
+    image.save()
     previous_image = GalleryImage.objects.filter(pk__lt=image_id).order_by('-pk').first()
     next_image = GalleryImage.objects.filter(pk__gt=image_id).order_by('pk').first()
     get_image = GalleryImage.objects.get( id = image_id)
