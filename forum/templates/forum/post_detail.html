@@ -25,6 +25,7 @@
     }
     .comment-foot{
         display: flex;
+        align-items: center;
     }
 
     .reply-header{
@@ -48,19 +49,18 @@
     }
 
     .each-reply{
-        margin-bottom: 1rem;
+        
         border-left: solid;
         padding-left: 1rem;
         border-color: rgb(228, 242, 253);
     }
-    .card-header{
-        border-radius: 1rem;
-        background: rgb(253, 242, 242);
-        filter: drop-shadow(0 0 1rem rgb(228, 242, 253));
-    }
 
     .card-header:hover{
         transform: scale(1.01, 1.01);
+    }
+
+    .btn:hover{
+        text-decoration: none;
     }
 
 </style>
@@ -177,8 +177,23 @@
                         </div>
                         <div class="comment-foot">
                             {% if comment.children.all|length > 0 %}
-                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;">View Replies <strong>{{comment.children.all|length}}</strong></p>
+                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;" >View Replies <strong>{{comment.children.all|length}}</strong></p>
                             {% endif %}
+                            
+                            <form class="ml-3" action="{% url 'forum:like_comment' comment.id %}" method="post" style=" margin-right: 1rem; margin-left: auto;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link transparent-button" >
+                                    {% if request.user in comment.comment_likes.all %}
+                                        <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
+                                        {% else %}
+                                        <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
+                                         {% endif %}
+                                         {{comment.comment_likes_count}}
+                                </button>
+                                
+                            </form> 
+                            
+                            
                             <p class = "reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem; margin-left: auto;"> Add Reply</p>
                         </div>
                         <!-- <div class="card-body">
@@ -212,6 +227,19 @@
                     </div>
                     <div style="color: black; margin-left: 3rem; ">{{reply.body}}</div>
                 </div>
+                    <form class="ml-3" action="{% url 'forum:like_comment' reply.id %}" method="post" style=" margin-right: 1rem; margin-left: auto;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-link transparent-button" >
+                            {% if request.user in reply.comment_likes.all %}
+                                <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
+                                {% else %}
+                                <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
+                                 {% endif %}
+                                 {{reply.comment_likes_count}}
+                        </button>
+                        
+                    </form> 
+                
             {% endfor %}
         </div>
 
@@ -261,12 +289,23 @@
 
     function showForm(commentId) {
         var form = document.getElementById("commentForm" + commentId);
-        form.style.display = "block";
+
+        if(form.style.display == "none"){
+            form.style.display = "block";
+        }
+        else {
+            form.style.display = "none";
+        }
     }
 
     function showreply(commentId) {
         var form = document.getElementById("reply" + commentId);
-        form.style.display = "block";
+        if(form.style.display == "none"){
+            form.style.display = "block";
+        }
+        else {
+            form.style.display = "none";
+        }
     }
 
 </script>
