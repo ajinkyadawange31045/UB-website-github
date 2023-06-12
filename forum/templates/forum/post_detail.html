@@ -180,18 +180,21 @@
                                 <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;" >View Replies <strong>{{comment.children.all|length}}</strong></p>
                             {% endif %}
                             
-                            <form class="ml-3" action="{% url 'forum:like_comment' comment.id %}" method="post" style=" margin-right: 1rem; margin-left: auto;">
+                            <form class="ml-3 like-comment-form" data-comment-id="{{ comment.id }}" style="margin-right: 1rem; margin-left: auto;">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-link transparent-button" >
-                                    {% if request.user in comment.comment_likes.all %}
-                                        <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
+                                <button type="button" class="btn btn-link transparent-button like-comment-button">
+                                    <span class="like-icon">
+                                        {% if request.user in comment.comment_likes.all %}
+                                            <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
                                         {% else %}
-                                        <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
-                                         {% endif %}
-                                         {{comment.comment_likes_count}}
+                                            <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
+                                        {% endif %}
+                                    </span>
+                                    <span class="like-count">{{ comment.comment_likes_count }}</span>
                                 </button>
-                                
-                            </form> 
+                            </form>
+                            
+                            
                             
                             
                             <p class = "reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem; margin-left: auto;"> Add Reply</p>
@@ -227,18 +230,19 @@
                     </div>
                     <div style="color: black; margin-left: 3rem; ">{{reply.body}}</div>
                 </div>
-                    <form class="ml-3" action="{% url 'forum:like_comment' reply.id %}" method="post" style=" margin-right: 1rem; margin-left: auto;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-link transparent-button" >
-                            {% if request.user in reply.comment_likes.all %}
+                <form class="ml-3 like-comment-form" data-comment-id="{{ comment.id }}" style="margin-right: 1rem; margin-left: auto;">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-link transparent-button like-comment-button">
+                        <span class="like-icon">
+                            {% if request.user in comment.comment_likes.all %}
                                 <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
-                                {% else %}
+                            {% else %}
                                 <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
-                                 {% endif %}
-                                 {{reply.comment_likes_count}}
-                        </button>
-                        
-                    </form> 
+                            {% endif %}
+                        </span>
+                        <span class="like-count">{{ comment.comment_likes_count }}</span>
+                    </button>
+                </form>
                 
             {% endfor %}
         </div>
@@ -282,6 +286,8 @@
 
 </div>
 <br>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     document.getElementById("div_id_author").style.display="none"
     document.getElementById("div_id_post").style.display="none"
@@ -309,6 +315,42 @@
     }
 
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButtons = document.querySelectorAll('.like-comment-button');
+        likeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const form = button.closest('.like-comment-form');
+                const commentId = form.dataset.commentId;
+                const url = '{% url "forum:like_comment" 0 %}'.replace('0', commentId);
+
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', url);
+                xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        const likeCount = form.querySelector('.like-count');
+                        const likeIcon = form.querySelector('.like-icon');
+
+                        likeCount.textContent = response.likes_count;
+
+                        if (response.is_liked) {
+                            likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>';
+                        } else {
+                            likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>';
+                        }
+                    }
+                };
+                xhr.send(JSON.stringify({ comment_id: commentId }));
+            });
+        });
+    });
+</script>
+
+
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script> -->

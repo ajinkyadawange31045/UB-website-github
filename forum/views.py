@@ -229,17 +229,20 @@ def nested_comment(request, id) :
             nested_comment.save()
             return HttpResponseRedirect(reverse('forum:post-detail', args=[str(get_post.pk)]))
 
+from django.http import JsonResponse
+
 @login_required
-def like_comment(request, id) :
-    if request.method == "POST" :
-        get_comment = Comment.objects.get(id = id)
-        if get_comment :
-            get_post = get_comment.post
-            if request.user not in get_comment.comment_likes.all() :
+def like_comment(request, id):
+    if request.method == "POST":
+        get_comment = Comment.objects.get(id=id)
+        if get_comment:
+            if request.user not in get_comment.comment_likes.all():
                 get_comment.comment_likes.add(request.user)
                 get_comment.comment_likes_count += 1
-            else :
+                is_liked = True
+            else:
                 get_comment.comment_likes.remove(request.user)
                 get_comment.comment_likes_count -= 1
+                is_liked = False
             get_comment.save()
-            return HttpResponseRedirect(reverse('forum:post-detail', args=[str(get_post.pk)]))
+            return JsonResponse({'likes_count': get_comment.comment_likes_count, 'is_liked': is_liked})
