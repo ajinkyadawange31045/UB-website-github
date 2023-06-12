@@ -20,6 +20,49 @@
         background-color: black;
         color: aliceblue;
     }
+    .reply:hover {
+        cursor: pointer;
+    }
+    .comment-foot{
+        display: flex;
+    }
+
+    .reply-header{
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+    .reply-header>img{
+        height: 2rem;
+        width: 2rem;
+        border-radius: 1rem;
+        
+    }
+    .reply-header-author{
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .reply-header-author>p{
+        color: black;
+    }
+
+    .each-reply{
+        margin-bottom: 1rem;
+        border-left: solid;
+        padding-left: 1rem;
+        border-color: rgb(228, 242, 253);
+    }
+    .card-header{
+        border-radius: 1rem;
+        background: rgb(253, 242, 242);
+        filter: drop-shadow(0 0 1rem rgb(228, 242, 253));
+    }
+
+    .card-header:hover{
+        transform: scale(1.01, 1.01);
+    }
+
 </style>
 
 <div class="home ard">
@@ -108,7 +151,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card mb-4">
-                        <div class="card-header">
+                        <div class="card-header" style="border-radius: 1rem 1rem 0rem 0rem;">
                             <div class="media flex-wrap w-100 align-items-center"> 
                                     {% if comment.author.profile.profile_image %}
                                     <img class="rounded-circle account-img thumbpic" src="{{ comment.author.profile.profile_image.url }}" style="width: 50px; height: 50px; object-fit: cover;" alt="NA">
@@ -119,34 +162,58 @@
                                 {% comment %} </a> {% endcomment %}
                                 {% comment %} final-ub-website-project\static\images\user_avtar.webp           {% endcomment %}
                                 <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true">{{comment.author.username}}</a>
+                                    
                                 {% comment %} <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'profile' username=comment.author.username %}" data-abc="true">{{comment.author.username}}</a> {% endcomment %}
                                     <div class="text-muted small">{{comment.timestamp|date:"j F, Y"}}</div>
                                 </div>
                                 
                                 <div class="text-muted small p-3">
                                     <div>Member since <strong>{{comment.author.date_joined|date:"j F, Y"}}</strong></div>
-                                    <div><strong> {{ comment.author.post_set.count }}</strong> posts</div>
+                                    <div><strong> {{ comment.author.post_set.count }}</strong> posts</div>  
                                 </div>
                             </div>
+                            <div style="color: black; margin: auto; max-width: 50rem;">{{comment.body}}</div>
+                        
                         </div>
-                        <div class="card-body">
+                        <div class="comment-foot">
+                            {% if comment.children.all|length > 0 %}
+                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;">View Replies <strong>{{comment.children.all|length}}</strong></p>
+                            {% endif %}
+                            <p class = "reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem; margin-left: auto;"> Add Reply</p>
+                        </div>
+                        <!-- <div class="card-body">
                             <p class="card-text post_p" style="font-weight: 400; color: black;">
-                                {{comment.body}}
+                                
                             </p>
-                        </div>
+                        </div> -->
                        
                     </div>
                 </div>
             </div>
         </div>
-        {% for reply in comment.children.all %}
-           <p>-> {{reply.body}}</p>
-        {% endfor %}
-        <form class="ml-3" action="{% url 'forum:nested_comment' id=comment.id %}" method="post">
+        <form class="ml-3" id="commentForm{{comment.id}}"  action="{% url 'forum:nested_comment' id=comment.id %}" style="display: none;"  method="post">
             {% csrf_token %}
-            <input type="text" name="nested_comment">
-            <button type="submit">Submit</button>
+            <div class="mb-3">
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reply" name="nested_comment" style="height: 2.5rem;"></textarea>
+              </div>
+              <div style="display: flex;">
+                <button type="submit" class="btn btn-outline-success" style="border-radius: 1rem; max-width: fit-content; margin-right: 1rem; margin-left: auto;">Reply</button>
+              </div>  
         </form>
+        <div class="all-replies" id="reply{{comment.id}}" style="display: none;  max-width: 90%; margin: auto;">
+            {% for reply in comment.children.all %}
+                <div class="each-reply">
+                    <div class="reply-header">
+                        <img src="{{reply.author.profile.profile_image.url}}">
+                        <div class="reply-header-author">
+                            <p>{{reply.author}}</p>
+                            <div class="text-muted small">{{reply.timestamp|date:"j F, Y"}}</div>
+                        </div>
+                    </div>
+                    <div style="color: black; margin-left: 3rem; ">{{reply.body}}</div>
+                </div>
+            {% endfor %}
+        </div>
 
         {% endfor %}
        
@@ -191,6 +258,17 @@
     document.getElementById("div_id_author").style.display="none"
     document.getElementById("div_id_post").style.display="none"
     document.getElementById("div_id_body").getElementsByTagName('label')[0].style.display="none"
+
+    function showForm(commentId) {
+        var form = document.getElementById("commentForm" + commentId);
+        form.style.display = "block";
+    }
+
+    function showreply(commentId) {
+        var form = document.getElementById("reply" + commentId);
+        form.style.display = "block";
+    }
+
 </script>
 
 <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
