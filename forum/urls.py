@@ -27,4 +27,5 @@ urlpatterns = [
     # path('profile/', v.profile, name='profile'),
     path('like/<int:pk>', views.like_view, name="like_post"),
     path('nested_comment/<int:id>', views.nested_comment, name="nested_comment"),
+    path('like_comment/<int:id>', views.like_comment, name='like_comment')
 ]

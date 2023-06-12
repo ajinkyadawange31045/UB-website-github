@@ -68,7 +68,8 @@ class Comment(models.Model):
     body = models.TextField()
     parent = models.ForeignKey('self', on_delete=models.CASCADE,
                             null=True, blank=True, related_name='children')
-
+    comment_likes = models.ManyToManyField(User, blank=True, related_name="liked_comments_forum")
+    comment_likes_count = models.PositiveIntegerField(default=0)
     def __str__(self):
         return self.body
 
