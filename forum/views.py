@@ -22,24 +22,27 @@ from .models import Post
 from django.template.loader import render_to_string
 
 # from .forms import MyForm
+from django.http import JsonResponse
 
-# def my_view(request):
-#     form = MyForm()
-#     context = {'form': form}
-#     return render(request, 'my_template.html', context)
-
-# Topic views
 @login_required
 def like_view(request, pk):
     post = get_object_or_404(Post, id=pk)
     liked = False
+
     if post.likes.filter(id=request.user.id).exists():
         post.likes.remove(request.user)
         liked = False
     else:
         post.likes.add(request.user)
         liked = True
-    return HttpResponseRedirect(reverse('forum:post-detail', args=[str(post.pk)]))
+
+    # Create a JSON response with the updated like information
+    response_data = {
+        'total_likes': post.likes.count(),
+        'liked': liked,
+    }
+
+    return JsonResponse(response_data)
 
 
 

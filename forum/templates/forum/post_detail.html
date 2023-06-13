@@ -88,36 +88,37 @@
 
        
         <div class="post_meta text-dark">
-           
-            <form action="{% url 'forum:like_post' object.pk %}" method="POST">
-            {% csrf_token %}
-            {% if user.is_authenticated %}
-            {% if liked %}
-            <div style="display: flex; align-items: center; margin-left: 10px;">
-                
-                <button type="submit" name="post_id" value="{{ object.id }}"
-                    style="color: red; border: none; border-radius: 60px;"><img
-                        src="{% static 'images/heart-solid.svg' %}"
-                        alt="" style="width: 40px;"></button>
-                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;
-                        <br>{{ total_likes }} Likes</h5>
-            </div>
-            {% else %}
-            <div style="display: flex; align-items: center; margin-left: 10px;">
-                <button type="submit" name="post_id" value="{{ object.id }}"
-                    style="color: red; border: none; border-radius: 30px;"><img
-                        src="{% static 'images/heart-regular.svg' %}"
-                        alt="" style="width: 40px;"></button>
-                        <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;
-                            |&nbsp; On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br>{{ total_likes }} Likes</h5>
-            </div>
-            
-            {% endif %}
-            {% else %}
-            <h5 style="margin-left: 10px; cursor: pointer;"><a href="{% url 'login' %}" " style="color: red;"><b>Login</b></a> to Like
-                Question | {{ total_likes }} Likes</h5>
-            {% endif %}
-        </form> </div>
+        <div id="like-form-container">
+            <form action="{% url 'forum:like_post' object.pk %}" method="POST" id="like-form">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                {% if liked %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                    <button type="submit" name="post_id" value="{{ object.id }}"
+                        style="color: red; border: none; border-radius: 60px;">
+                        <img src="{% static 'images/heart-solid.svg' %}" alt="" style="width: 40px;">
+                    </button>
+                    <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;<br>
+                        {{ total_likes }} Likes</h5>
+                </div>
+                {% else %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                    <button type="submit" name="post_id" value="{{ object.id }}"
+                        style="color: red; border: none; border-radius: 30px;">
+                        <img src="{% static 'images/heart-regular.svg' %}" alt="" style="width: 40px;">
+                    </button>
+                    <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;|&nbsp;
+                        On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
+                </div>
+                {% endif %}
+                {% else %}
+                <h5 style="margin-left: 10px; cursor: pointer;">
+                    <a href="{% url 'login' %}" style="color: red;"><b>Login</b></a> to Like Question | {{ total_likes }} Likes
+                </h5>
+                {% endif %}
+            </form>
+        </div>
+    </div>
 
         <div class="row mt-2">
             <div class="col-1 offset-4 ">
@@ -314,89 +315,8 @@
     }
 
 </script>
-{% comment %}
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const likeButtons = document.querySelectorAll('.like-comment-button');
-        likeButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const form = button.closest('.like-comment-form');
-                const commentId = form.dataset.commentId;
-                const url = '{% url "forum:like_comment" 0 %}'.replace('0', commentId);
 
-                const xhr = new XMLHttpRequest();
-                xhr.open('POST', url);
-                xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.onload = function() {
-                    if (xhr.status === 200) {
-                        const response = JSON.parse(xhr.responseText);
-                        const likeCount = form.querySelector('.like-count');
-                        const likeIcon = form.querySelector('.like-icon');
-
-                        likeCount.textContent = response.likes_count;
-
-                        if (response.is_liked) {
-                            likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>';
-                        } else {
-                            likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>';
-                        }
-                    }
-                };
-                xhr.send(JSON.stringify({ comment_id: commentId }));
-            });
-        });
-    });
-</script>
-<script>
-    document.querySelectorAll('.reply-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            var commentId = button.getAttribute('data-comment-id');
-            var form = document.getElementById('commentForm' + commentId);
-            var formData = new FormData(form);
-            const url = '{% url "forum:nested_comment" 0 %}'.replace('0', commentId);
-
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) {
-                if (response.ok) {
-                    var contentType = response.headers.get('content-type');
-                    console.log('Content-Type:', contentType);
-
-                    if (contentType && contentType.indexOf('application/json') !== -1) {
-                        return response.json();
-                    } else {
-                        console.error('Invalid response format. Expected JSON.');
-                        throw new Error('Invalid response format. Expected JSON.');
-                    }
-                } else {
-                    console.error('Error:', response.status);
-                    throw new Error('Error: ' + response.status);
-                }
-            })
-            .then(function(data) {
-                console.log('Reply added successfully:', data);
-
-                // Handle the response data, update the UI, etc.
-                // You can update the comments section dynamically using JavaScript
-                // without reloading the whole page.
-                var replySection = document.getElementById('reply' + commentId);
-                var replylength = document.getElementById('reply-length' + commentId);
-                replylength.innerText = data.reply_length
-                var replyHtml = data.reply_html;
-                replySection.insertAdjacentHTML('beforeend', replyHtml);
-                form.reset();
-            })
-            .catch(function(error) {
-                console.error('Error:', error);
-            });
-        });
-    });
-</script>
-{% endcomment %}
-
+<!-- This below JavaScript code is to add a reply to comment through AJAX and also add like to comments through AJAX -->
 <script>
     // Function to add event listener to like buttons
 function attachLikeButtonListener(button) {
@@ -488,6 +408,54 @@ likeButtons.forEach(function(button) {
 
 </script>
 
+<!-- This is the JavaScript code for adding like to the main forum Discussion through AJAX -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeForm = document.getElementById('like-form');
+        likeForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the form data
+            const formData = new FormData(likeForm);
+            const url = likeForm.getAttribute('action');
+
+            // Send the AJAX request
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Error:', response.status);
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                console.log('Like added successfully:', data);
+                // Handle the response data and update the UI
+
+                // Example: Update the like count dynamically
+                const likeCount = document.querySelector('#like-forum-dicussion');
+                likeCount.textContent = data.total_likes;
+
+                // Example: Toggle the like button appearance
+                const likeButton = document.querySelector('#like-form-container button');
+                if (data.liked) {
+                    likeButton.innerHTML = '<img src="{% static "images/heart-solid.svg" %}" alt="" style="width: 40px;">';
+
+                } else {
+                    likeButton.innerHTML = '<img src="{% static "images/heart-regular.svg" %}" alt="" style="width: 40px;">';
+
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
 
 
 
