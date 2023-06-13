@@ -19,6 +19,8 @@ from .forms import CreateCommentForm
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .models import Post
+from django.template.loader import render_to_string
+
 # from .forms import MyForm
 
 # def my_view(request):
@@ -213,21 +215,33 @@ def login(request):
 def logout(request):
     return render(request, 'forum/logout.html')
 
+from django.http import JsonResponse
 @login_required
-def nested_comment(request, id) :
-    if request.method == "POST" :
-        get_comment = Comment.objects.get(id = id)
-        if get_comment :
+def nested_comment(request, id):
+    if request.method == "POST":
+        get_comment = Comment.objects.get(id=id)
+        if get_comment:
             get_post = get_comment.post
             get_body = request.POST["nested_comment"]
             nested_comment = Comment(
-                author = request.user,
-                post = get_post,
-                body = get_body,
-                parent = get_comment
+                author=request.user,
+                post=get_post,
+                body=get_body,
+                parent=get_comment
             )
             nested_comment.save()
-            return HttpResponseRedirect(reverse('forum:post-detail', args=[str(get_post.pk)]))
+
+            # Return a JSON response
+            response_data = {
+                'success': True,
+                'message': 'Reply added successfully.',
+                'reply_html': render_to_string('reply.html', {'reply': nested_comment}),
+                'reply_length' : len(get_comment.children.all())
+                # Include any other data you want to pass back to the client
+            }
+            return JsonResponse(response_data)
+
+
 
 from django.http import JsonResponse
 

@@ -1,0 +1,25 @@
+<!-- reply.html -->
+<div class="each-reply">
+    <div class="reply-header">
+        <img src="{{ reply.author.profile.profile_image.url }}">
+        <div class="reply-header-author">
+            <p>{{ reply.author }}</p>
+            <div class="text-muted small">{{ reply.timestamp|date:"j F, Y" }}</div>
+        </div>
+    </div>
+    <div style="color: black; margin-left: 3rem;">{{ reply.body }}</div>
+</div>
+<form class="ml-3 like-comment-form" data-comment-id="{{ reply.id }}" style="margin-right: 1rem; margin-left: auto;">
+    {% csrf_token %}
+    <button type="button" class="btn btn-link transparent-button like-comment-button">
+        <span class="like-icon">
+            {% if request.user in reply.comment_likes.all %}
+                <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
+            {% else %}
+                <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
+            {% endif %}
+        </span>
+        <span class="like-count">{{ reply.comment_likes_count }}</span>
+    </button>
+</form>
+
