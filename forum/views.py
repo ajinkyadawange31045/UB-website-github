@@ -223,19 +223,19 @@ def nested_comment(request, id):
         if get_comment:
             get_post = get_comment.post
             get_body = request.POST["nested_comment"]
-            nested_comment = Comment(
+            new_nested_comment = Comment(
                 author=request.user,
                 post=get_post,
                 body=get_body,
                 parent=get_comment
             )
-            nested_comment.save()
+            new_nested_comment.save()
 
             # Return a JSON response
             response_data = {
                 'success': True,
                 'message': 'Reply added successfully.',
-                'reply_html': render_to_string('reply.html', {'reply': nested_comment}),
+                'reply_html': render_to_string('reply.html', {'reply': new_nested_comment}),
                 'reply_length' : len(get_comment.children.all())
                 # Include any other data you want to pass back to the client
             }
