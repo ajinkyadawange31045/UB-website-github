@@ -176,9 +176,7 @@
                         
                         </div>
                         <div class="comment-foot">
-                            {% if comment.children.all|length > 0 %}
-                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem; " >View Replies <strong id="reply-length{{comment.id}}">{{comment.children.all|length}}</strong></p>
-                            {% endif %}
+                            <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem; " >View Replies <strong id="reply-length{{comment.id}}">{{comment.children.all|length}}</strong></p>
                             
                             <form class="ml-3 like-comment-form" data-comment-id="{{ comment.id }}" style="margin-right: 1rem; margin-left: auto;">
                                 {% csrf_token %}
@@ -316,7 +314,7 @@
     }
 
 </script>
-
+{% comment %}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const likeButtons = document.querySelectorAll('.like-comment-button');
@@ -397,9 +395,98 @@
         });
     });
 </script>
+{% endcomment %}
 
+<script>
+    // Function to add event listener to like buttons
+function attachLikeButtonListener(button) {
+    button.addEventListener('click', function() {
+        const form = button.closest('.like-comment-form');
+        const commentId = form.dataset.commentId;
+        const url = '{% url "forum:like_comment" 0 %}'.replace('0', commentId);
 
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                const response = JSON.parse(xhr.responseText);
+                const likeCount = form.querySelector('.like-count');
+                const likeIcon = form.querySelector('.like-icon');
 
+                likeCount.textContent = response.likes_count;
+
+                if (response.is_liked) {
+                    likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>';
+                } else {
+                    likeIcon.innerHTML = '<i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>';
+                }
+            }
+        };
+        xhr.send(JSON.stringify({ comment_id: commentId }));
+    });
+}
+
+document.querySelectorAll('.reply-button').forEach(function(button) {
+    button.addEventListener('click', function() {
+        var commentId = button.getAttribute('data-comment-id');
+        var form = document.getElementById('commentForm' + commentId);
+        var formData = new FormData(form);
+        const url = '{% url "forum:nested_comment" 0 %}'.replace('0', commentId);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            if (response.ok) {
+                var contentType = response.headers.get('content-type');
+                console.log('Content-Type:', contentType);
+
+                if (contentType && contentType.indexOf('application/json') !== -1) {
+                    return response.json();
+                } else {
+                    console.error('Invalid response format. Expected JSON.');
+                    throw new Error('Invalid response format. Expected JSON.');
+                }
+            } else {
+                console.error('Error:', response.status);
+                throw new Error('Error: ' + response.status);
+            }
+        })
+        .then(function(data) {
+            console.log('Reply added successfully:', data);
+
+            // Handle the response data, update the UI, etc.
+            // You can update the comments section dynamically using JavaScript
+            // without reloading the whole page.
+            var replySection = document.getElementById('reply' + commentId);
+            var replylength = document.getElementById('reply-length' + commentId);
+            replylength.innerText = data.reply_length;
+            var replyHtml = data.reply_html;
+            replySection.insertAdjacentHTML('beforeend', replyHtml);
+            form.reset();
+
+            // Attach event listeners to the new like buttons
+            var newLikeButtons = replySection.querySelectorAll('.like-comment-button');
+            newLikeButtons.forEach(function(button) {
+                attachLikeButtonListener(button);
+            });
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+        });
+    });
+});
+
+// Attach event listeners to existing like buttons
+const likeButtons = document.querySelectorAll('.like-comment-button');
+likeButtons.forEach(function(button) {
+    attachLikeButtonListener(button);
+});
+
+</script>
 
 
 
