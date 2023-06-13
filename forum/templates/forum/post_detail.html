@@ -177,7 +177,7 @@
                         </div>
                         <div class="comment-foot">
                             {% if comment.children.all|length > 0 %}
-                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;" >View Replies <strong>{{comment.children.all|length}}</strong></p>
+                                <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem; " >View Replies <strong id="reply-length{{comment.id}}">{{comment.children.all|length}}</strong></p>
                             {% endif %}
                             
                             <form class="ml-3 like-comment-form" data-comment-id="{{ comment.id }}" style="margin-right: 1rem; margin-left: auto;">
@@ -197,7 +197,7 @@
                             
                             
                             
-                            <p class = "reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem; margin-left: auto;"> Add Reply</p>
+                            <p class = "reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem; margin-left: auto; "> Add Reply</p>
                         </div>
                         <!-- <div class="card-body">
                             <p class="card-text post_p" style="font-weight: 400; color: black;">
@@ -209,15 +209,16 @@
                 </div>
             </div>
         </div>
-        <form class="ml-3" id="commentForm{{comment.id}}"  action="{% url 'forum:nested_comment' id=comment.id %}" style="display: none;"  method="post">
+        <form class="ml-3" id="commentForm{{ comment.id }}" method="post" style="display: none;">
             {% csrf_token %}
             <div class="mb-3">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Reply" name="nested_comment" style="height: 2.5rem;"></textarea>
-              </div>
-              <div style="display: flex;">
-                <button type="submit" class="btn btn-outline-success" style="border-radius: 1rem; max-width: fit-content; margin-right: 1rem; margin-left: auto;">Reply</button>
-              </div>  
+                <textarea class="form-control" rows="3" placeholder="Reply" name="nested_comment" style="height: 2.5rem;"></textarea>
+            </div>
+            <div style="display: flex;">
+                <button type="button" class="btn btn-outline-success reply-button" data-comment-id="{{ comment.id }}" style="border-radius: 1rem; max-width: fit-content; margin-right: 1rem; margin-left: auto;">Reply</button>
+            </div>
         </form>
+        
         <div class="all-replies" id="reply{{comment.id}}" style="display: none;  max-width: 90%; margin: auto;">
             {% for reply in comment.children.all %}
                 <div class="each-reply">
@@ -349,6 +350,57 @@
         });
     });
 </script>
+<script>
+    document.querySelectorAll('.reply-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            var commentId = button.getAttribute('data-comment-id');
+            var form = document.getElementById('commentForm' + commentId);
+            var formData = new FormData(form);
+            const url = '{% url "forum:nested_comment" 0 %}'.replace('0', commentId);
+
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    var contentType = response.headers.get('content-type');
+                    console.log('Content-Type:', contentType);
+
+                    if (contentType && contentType.indexOf('application/json') !== -1) {
+                        return response.json();
+                    } else {
+                        console.error('Invalid response format. Expected JSON.');
+                        throw new Error('Invalid response format. Expected JSON.');
+                    }
+                } else {
+                    console.error('Error:', response.status);
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                console.log('Reply added successfully:', data);
+
+                // Handle the response data, update the UI, etc.
+                // You can update the comments section dynamically using JavaScript
+                // without reloading the whole page.
+                var replySection = document.getElementById('reply' + commentId);
+                var replylength = document.getElementById('reply-length' + commentId);
+                replylength.innerText = data.reply_length
+                var replyHtml = data.reply_html;
+                replySection.insertAdjacentHTML('beforeend', replyHtml);
+                form.reset();
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+
+
+
+
 
 
 
