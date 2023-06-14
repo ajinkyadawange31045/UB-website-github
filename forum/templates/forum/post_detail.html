@@ -92,8 +92,9 @@
             <form action="{% url 'forum:like_post' object.pk %}" method="POST" id="like-form">
                 {% csrf_token %}
                 {% if user.is_authenticated %}
-                {% if liked %}
-                <div style="display: flex; align-items: center; margin-left: 10px;">
+                
+                {% comment %}
+                <!-- <div style="display: flex; align-items: center; margin-left: 10px;">
                     <button type="submit" name="post_id" value="{{ object.id }}"
                         style="color: red; border: none; border-radius: 60px;">
                         <img src="{% static 'images/heart-solid.svg' %}" alt="" style="width: 40px;">
@@ -101,7 +102,7 @@
                     <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;<br>
                         {{ total_likes }} Likes</h5>
                 </div>
-                {% else %}
+               
                 <div style="display: flex; align-items: center; margin-left: 10px;">
                     <button type="submit" name="post_id" value="{{ object.id }}"
                         style="color: red; border: none; border-radius: 30px;">
@@ -109,8 +110,23 @@
                     </button>
                     <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.user|title }}&nbsp;|&nbsp;
                         On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
-                </div>
-                {% endif %}
+                </div> -->
+                {% endcomment %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                <button type="submit" class="btn btn-link transparent-button " value="{{ object.id }}">
+                    <span class="like-icon">
+                        {% if liked %}
+                            <i class="fa fa-heart" style="font-size:40px;color:rgb(253, 58, 58);"></i>
+                        {% else %}
+                            <i class="fa fa-heart" style="font-size:40px;color:rgb(200, 200, 200);"></i>
+                        {% endif %}
+                    </span>
+                </button>
+                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;|&nbsp;
+                    On: {{ object.timestamp|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
+            </div>
+
+                
                 {% else %}
                 <h5 style="margin-left: 10px; cursor: pointer;">
                     <a href="{% url 'login' %}" style="color: red;"><b>Login</b></a> to Like Question | {{ total_likes }} Likes
@@ -443,11 +459,10 @@ likeButtons.forEach(function(button) {
                 // Example: Toggle the like button appearance
                 const likeButton = document.querySelector('#like-form-container button');
                 if (data.liked) {
-                    likeButton.innerHTML = '<img src="{% static "images/heart-solid.svg" %}" alt="" style="width: 40px;">';
+                    likeButton.innerHTML = '<i class="fa fa-heart" style="font-size:40px;color:rgb(253, 58, 58);"></i>';
 
                 } else {
-                    likeButton.innerHTML = '<img src="{% static "images/heart-regular.svg" %}" alt="" style="width: 40px;">';
-
+                    likeButton.innerHTML = '<i class="fa fa-heart" style="font-size:40px;color:rgb(200, 200, 200);"></i>';
                 }
             })
             .catch(function(error) {
