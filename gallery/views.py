@@ -76,12 +76,15 @@ def image_upload(request):
         
     return render(request, 'app/image/upload.html', {'form': form})
 
+from django.http import JsonResponse
 @login_required
 def addlike(request, id) :
     if request.method == "POST" :
         get_img = GalleryImage.objects.get(id = id)
         if request.user not in get_img.likes.all() :
             get_img.likes.add(request.user)
+            liked = True
         else :
             get_img.likes.remove(request.user)
-        return HttpResponseRedirect(reverse(details, args=(id, )))
+            liked = False
+        return JsonResponse({'likes_count': len(get_img.likes.all()), 'is_liked': liked})
