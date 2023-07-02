@@ -1,14 +1,3 @@
-# from django.contrib import admin
-# from django.urls import path
-
-# from .views import forum_home
-# urlpatterns = [
-#     path('indirect-forum',forum_home)
-   
-# ]
-
-
-
 from django.contrib import admin
 from django.urls import path
 app_name = 'no_login_forum'
@@ -30,3 +19,16 @@ urlpatterns = [
     path('indirect-post/<int:pk>/', forum_comments, name='post-detail-indirect'),
     # path('indirect-like/<int:pk>', views.like_view, name="like_post-indirect")
 ]
+
+
+# from django.contrib import admin
+# from django.urls import path
+# from django.views.generic.base import RedirectView
+
+# app_name = 'no_login_forum'
+
+# urlpatterns = [
+#     path('indirect-forum/', RedirectView.as_view(url='/forum/'), name='forum-index-indirect'),
+#     path('indirect-topic/<int:pk>/', RedirectView.as_view(pattern_name='forum:topic-detail', permanent=False), name='topic-detail-indirect'),
+#     path('indirect-post/<int:pk>/', RedirectView.as_view(pattern_name='forum:post-detail', permanent=False), name='post-detail-indirect'),
+# ]

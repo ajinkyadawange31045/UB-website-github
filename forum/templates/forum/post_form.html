@@ -23,30 +23,97 @@
     </div>
 </div>
 
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
 
-<div class="container justify-content-center align-content-center">
+    .container_ard {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-    <!-- <div class="m-b-25"> <img src="{{ user.profile.image.url }}" class="img-radius" alt="User-Profile-Image"> </div> -->
-    <!-- <h6 class="f-w-600" style="font-size: 24px; color: black;">Answer a question here!</h6> -->
-    <p style="font-size: 14px; color: black;">
-        Follow the given rules before answering:
-    <ul style="color: rgb(155, 8, 8);">
-        <li>Do not post Adult/illegal Links.</li>
-        <li>Try to comment in only English Language.</li>
-        <li>Do not post other website's links which are useless.</li>
-        <li>Your Comment should be based on the Topic, for other queries Kindly Visit our Contact Us Page.</li>
-        <li>Do not use Abusive Language.</li>
-        <li>Respect each other.</li>
-        <li style="color: blue;">Tolerance, Humility and Patience are appreciable</li>
-        <li style="color: blue;">No hatred with other religion</li>
-        <li style="color: blue;">No hatred with other caste</li>
-    </ul>
-    </p>
-    <hr>
-    <!-- <div style=" background-color: #0b73fa;"> -->
-        <p style="font-size: 14px; color: black;">
-            Try to ask Question regarding the following topics majorly:
-        <ul style="color: rgb(93, 2, 61);">
+    .left-column {
+        width: 100%;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .right-column {
+        width: 100%;
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .column-content {
+        font-size: 14px;
+        color: firebrick;
+        line-height: 1.5;
+    }
+
+    .column-content ul {
+        padding-left: 20px;
+        color: firebrick;
+    }
+
+    .column-content ul li {
+        list-style-type: disc;
+        margin-bottom: 5px;
+    }
+
+    .column-content ul li:last-child {
+        margin-bottom: 0;
+    }
+
+    @media (min-width: 768px) {
+        .left-column {
+            width: 45%;
+            margin-right: 10px;
+            margin-bottom: 0;
+        }
+
+        .right-column {
+            width: 45%;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+    }
+</style>
+
+<div class="container_ard">
+    <div class="left-column">
+        <p class="column-content" style="color: black;">
+           <b>Follow the given rules before answering:</b>
+        </p>
+        <ul class="column-content">
+            <li>Do not post adult/illegal links.</li>
+            <li>Try to comment in English only.</li>
+            <li>Do not post links from other websites that are useless.</li>
+            <li>Your comment should be relevant to the topic. For other queries, kindly visit our Contact Us page.</li>
+            <li>Do not use abusive language.</li>
+            <li>Respect each other.</li>
+            <li>Tolerance, humility, and patience are appreciated.</li>
+            <li>No hatred towards other religions.</li>
+            <li>No hatred towards other castes.</li>
+        </ul>
+    </div>
+    <div class="right-column" >
+        <p class="column-content" style="color: black;">
+            <b>Try to discuss regarding the following topics primarily:</b>
+        </p>
+        <ul class="column-content">
             <li>Ancient Science</li>
             <li>Glorious India</li>
             <li>Current Affairs</li>
@@ -54,11 +121,11 @@
             <li>Geopolitics</li>
             <li>Sports</li>
             <li>Art</li>
-            <li>and about related topics.</li>
+            <li>and related topics.</li>
         </ul>
-        </p>
-    <!-- </div> -->
+    </div>
 </div>
+
 
 <div class="container text-center my-5 p-3" style="border: 1px solid rgb(222, 217, 217); background-color: white;">
     <div class="col-sm-12">

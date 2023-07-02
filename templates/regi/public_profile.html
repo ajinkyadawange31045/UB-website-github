@@ -1,5 +1,5 @@
-{% extends 'base/base.html' %} {% load static %} {%block title%} Profile Page | Utkrishta Bharath | The Glorious India |
-Be proud to be an Indian {%endblock%}
+{% extends 'base/base.html' %} {% load static %} {%block title%} Public Profile Page | {{profile.user.first_name}}
+{{profile.user.last_name}} {%endblock%}
 {% block extra_head_tags %}
 {{ block.super }}
 <meta name="description"
