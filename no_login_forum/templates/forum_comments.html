@@ -1,11 +1,11 @@
-{% extends 'base/base.html' %} {%block title%} {{ object.title }} {{ object.title }}{%endblock%}
+{% extends 'base/base.html' %} {%block title%} {{ posts.title }} {%endblock%}
 {% block extra_head_tags %}
 {% load crispy_forms_tags %}{% load static %}
 {{ block.super }}
 <meta name="description"
     content="Ask you questions related India on Utkrishta Bharath community platform. Whom are you waiting for?">
 <meta name="keywords"
-    content="Utkrishta Bharath community feature,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, community, stackoverflow, github, questions and answers, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
+    content="Utkrishta Bharath Forum feature,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, community, stackoverflow, github, questions and answers, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
 {% endblock %}
 
 {% block content %}{% load crispy_forms_tags %}
@@ -73,7 +73,7 @@
 <div class="home ard">
     <div class="home_content">
         <div class="post_category trans_200"><a href="/forum" class="trans_200">Forum</a></div>
-        <div class="post_title trans_200">{{ object.title }}</div>
+        <div class="post_title trans_200">{{ posts.title }}</div>
     </div>
 
 </div>
@@ -82,7 +82,7 @@
 <div class="container">
     
     <div class="post_body text-justify">
-        <h4 class="card-title text-dark" style="font-weight: 700;">{{ object.body|safe }}</h4>
+        <h4 class="card-title text-dark" style="font-weight: 700;">{{ posts.body|safe }}</h4>
         {% comment %} <p class="card-text post_p text-justify"> </p> {% endcomment %}
         <!-- <p class="text-dark" style="font-size: 10px; font-style: italic; color: rgb(155, 155, 155); text-align: right;">Asked By: {{ object.user|title }}&nbsp;&nbsp;&nbsp;
             |&nbsp;&nbsp;&nbsp; On: {{ object.date_created|date:"j F, Y" }} -->

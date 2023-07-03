@@ -4,7 +4,15 @@
 <meta name="description" content="{{post.excerpt}}">
 <meta name="keywords" content="{{post.tags_for_seo_and_search_bar_in_website}}">
 <meta name="author" content="{{post.author}}">
+{% comment %} <link rel="icon" href="{% static 'images/ub.jpg' %}" type="image/jpg"> {% endcomment %}
+{% load static %}
 
+<!-- Assuming 'post.thumbnail' contains the path to the thumbnail image -->
+<link rel="icon" href="/media/{{post.thumbnail}}" type="image">
+
+
+
+{% comment %} <img src="/media/{{post.thumbnail}}" alt="Image"> {% endcomment %}
 <!-- <link rel="shortcut icon" href="{% static 'images/ard.png' %}" type="image/x-icon"> -->
 {% endblock %}
 
