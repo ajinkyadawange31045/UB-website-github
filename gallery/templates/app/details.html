@@ -1,4 +1,4 @@
-{% extends 'base/base.html'%}
+{% extends 'base/base.html'%}{%block title%} {{image.title}} | Gallery | Utkrishta Bharath  {%endblock%}
 
 {% block content %}
 
@@ -41,9 +41,9 @@
     }
 </style>
     <div class="d-flex justify-content-between align-items-center" style="margin-bottom: 1rem;">
-        <form class="ml-3" action="{% url 'image_like' id=image.id %}" method="post" >
+        <form class="ml-3" action="{% url 'image_like' id=image.id %}" method="post" id="like-form">
             {% csrf_token %}
-            <button type="submit" class="btn btn-link transparent-button">
+            <button type="submit" class="btn btn-link transparent-button" id="like-button">
                 {% if liked %}
                     <i class="fa fa-solid fa-thumbs-up fa-2x"></i>
                 {% else %}
@@ -74,5 +74,52 @@
     </div>
     
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeForm = document.getElementById('like-form');
+        likeForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the form data
+            const formData = new FormData(likeForm);
+            const url = likeForm.getAttribute('action');
+
+            // Send the AJAX request
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Error:', response.status);
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                console.log('Like added successfully:', data);
+                // Handle the response data and update the UI
+
+                // Example: Update the like count dynamically
+
+                // Example: Toggle the like button appearance
+                const likeButton = document.querySelector('#like-button');
+                if (data.is_liked) {
+                    likeButton.innerHTML = '<i class="fa fa-solid fa-thumbs-up fa-2x">';
+
+                } else {
+                    likeButton.innerHTML = '<i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i>';
+                
+
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
 
 {% endblock %}

@@ -46,10 +46,16 @@ a{
             <input class="" type="text" id="" name="search-area" placeholder="Search for posts...">
             <button type="submit" class="btn btn-success">Search</button>
         </form> {% endcomment %}
+        <form action="" method="GET">
+
+            <input class="" type="text" id="" name="search-areaa" placeholder="Search here...">
+            <button type="submit" class="btn btn-success btn-sm">Search</button>
+        </form>
         {% if request.user.is_authenticated %}
         {% comment %} <div class="px-4 pt-3"> <button type="button" class="btn btn-primary" href="{% url 'post-create' object.id %}"><i class="ion ion-md-create"></i>&nbsp; Reply</button> </div> {% endcomment %}
         <div class="px-4 pt-3">  
-        <a class="btn btn-primary" href="{% url 'forum:post-create' object.id %}">Reply</a>
+        <a class="btn btn-primary" href="{% url 'forum:post-create' object.id %}">Add Reply</a>
+        <a class="btn btn-primary" href="{% url 'forum:topic-detail' object.id %}">Show all</a>
         </div>
         {% endif %}
     </div>
@@ -128,3 +134,7 @@ a{
 
 
 {% endblock content %} 
+
+
+
+

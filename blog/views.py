@@ -25,18 +25,34 @@ from django.urls import reverse
 # from community.models import Question
 # from community.views import 
 
-@login_required
-def add_likes(request, ids) :
-    if request.user.is_authenticated :
-        if request.method == "POST" :
-            user = request.user
-            get_post = Post_with_image.objects.get(post_id = ids)
-            if user in get_post.likes.all() :
-                get_post.likes.remove(user)
-            else :
-                get_post.likes.add(user)
-            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
+# @login_required
+# def add_likes(request, ids) :
+#     if request.user.is_authenticated :
+#         if request.method == "POST" :
+#             user = request.user
+#             get_post = Post_with_image.objects.get(post_id = ids)
+#             if user in get_post.likes.all() :
+#                 get_post.likes.remove(user)
+#             else :
+#                 get_post.likes.add(user)
+#             return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
         
+from django.http import JsonResponse
+
+@login_required
+def add_likes(request, ids):
+    if request.method == "POST":
+        user = request.user
+        get_post = Post_with_image.objects.get(post_id = ids)
+        if user in get_post.likes.all() :
+            get_post.likes.remove(user)
+            is_liked = False
+        else:
+            get_post.likes.add(user) 
+            is_liked = True
+        likes_count = len(get_post.likes.all())
+        return JsonResponse({'likes_count': likes_count, 'is_liked': is_liked})
+       
 @login_required
 def add_bookmark(request, ids) :
     if request.user.is_authenticated :
@@ -45,9 +61,11 @@ def add_bookmark(request, ids) :
             get_post = Post_with_image.objects.get(post_id = ids)
             if user in get_post.bookmark.all() :
                 get_post.bookmark.remove(user)
+                bookmarked = False
             else :
                 get_post.bookmark.add(user)
-            return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
+                bookmarked = True
+            return JsonResponse({'is_bookmarked': bookmarked})
 
 
 

@@ -4,7 +4,15 @@
 <meta name="description" content="{{post.excerpt}}">
 <meta name="keywords" content="{{post.tags_for_seo_and_search_bar_in_website}}">
 <meta name="author" content="{{post.author}}">
+{% comment %} <link rel="icon" href="{% static 'images/ub.jpg' %}" type="image/jpg"> {% endcomment %}
+{% load static %}
 
+<!-- Assuming 'post.thumbnail' contains the path to the thumbnail image -->
+<link rel="icon" href="/media/{{post.thumbnail}}" type="image">
+
+
+
+{% comment %} <img src="/media/{{post.thumbnail}}" alt="Image"> {% endcomment %}
 <!-- <link rel="shortcut icon" href="{% static 'images/ard.png' %}" type="image/x-icon"> -->
 {% endblock %}
 
@@ -144,7 +152,7 @@
                         </div>
                         <div class="ml-auto d-flex align-items-center">
                             <div class="text-primary">
-                                {{like_count}}
+                                <strong id="like-post-count" >{{like_count}}</strong>
                             </div>
                             {% comment %} <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post">
                                 {% csrf_token %}
@@ -172,9 +180,9 @@
                                 }
                             </style>
                             
-                            <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post">
+                            <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post" id="like-form">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-link transparent-button">
+                                <button type="submit" class="btn btn-link transparent-button" id="like-button">
                                     {% if liked %}
                                         <i class="fa fa-solid fa-thumbs-up fa-2x"></i>
                                     {% else %}
@@ -183,9 +191,9 @@
                                 </button>
                             </form>
                             
-                            <form class="ml-3" action="{% url 'bookmark' ids=post.post_id %}" method="post">
+                            <form class="ml-3" action="{% url 'bookmark' ids=post.post_id %}" method="post" id="bookmark-form">
                                 {% csrf_token %}
-                                <button type="submit" class="btn btn-link transparent-button">
+                                <button type="submit" class="btn btn-link transparent-button" id="bookmark-button">
                                     {% if is_bookmarked %}
                                         <i class="fa fas fa-bookmark fa-2x"></i> 
                                     {% else %}
@@ -584,4 +592,96 @@
     }
 
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeForm = document.getElementById('like-form');
+        likeForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get the form data
+            const formData = new FormData(likeForm);
+            const url = likeForm.getAttribute('action');
+
+            // Send the AJAX request
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Error:', response.status);
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                console.log('Like added successfully:', data);
+                // Handle the response data and update the UI
+
+                // Example: Update the like count dynamically
+                const likeCount = document.querySelector('#like-post-count');
+                likeCount.textContent = data.likes_count;
+
+                // Example: Toggle the like button appearance
+                const likeButton = document.querySelector('#like-button');
+                if (data.is_liked) {
+                    likeButton.innerHTML = '<i class="fa fa-solid fa-thumbs-up fa-2x">';
+
+                } else {
+                    likeButton.innerHTML = '<i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i>';
+                
+
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bookmarkForm = document.getElementById('bookmark-form');
+        bookmarkForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            const formData = new FormData(bookmarkForm);
+            const url = bookmarkForm.getAttribute('action');
+
+            // Send the AJAX request
+            fetch(url, {
+                method: 'POST',
+                body: formData  
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    console.error('Error:', response.status);
+                    throw new Error('Error: ' + response.status);
+                }
+            })
+            .then(function(data) {
+                console.log('Like added successfully:', data);
+                // Handle the response data and update the UI
+
+                // Example: Toggle the like button appearance
+                const likeButton = document.querySelector('#bookmark-button');
+                if (data.is_bookmarked) {
+                    likeButton.innerHTML = '<i class="fa fas fa-bookmark fa-2x"></i>';
+
+                } else {
+                    likeButton.innerHTML = '<i class="fa fas fa-bookmark fa-2x transparent-icon"></i>';
+                
+
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    });
+</script>
+
 {%endblock%}

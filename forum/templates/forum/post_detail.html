@@ -61,7 +61,12 @@
 
     .btn:hover{
         text-decoration: none;
+        cursor: pointer;
     }
+    .forum-like:hover{
+        transform: scale(1.1, 1.1);
+    }
+
 
 </style>
 
@@ -92,6 +97,7 @@
             <form action="{% url 'forum:like_post' object.pk %}" method="POST" id="like-form">
                 {% csrf_token %}
                 {% if user.is_authenticated %}
+                {% comment %}
                 {% if liked %}
                 <div style="display: flex; align-items: center; margin-left: 10px;">
                     <button type="submit" name="post_id" value="{{ object.id }}"
@@ -111,6 +117,20 @@
                         On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
                 </div>
                 {% endif %}
+                {% endcomment %}
+                <div style="display: flex; align-items: center; margin-left: 10px;">
+                <button type="submit" class="btn btn-link transparent-button forum-like" value="{{ object.id }}" style="cursor: pointer; ">
+                   
+                        {% if liked %}
+                            <i class="fa fa-heart" style="font-size:40px;color:rgb(253, 58, 58); filter: drop-shadow(0 0 0.5rem red);"></i>
+                        {% else %}
+                            <i class="fa fa-heart" style="font-size:40px;color:rgb(200, 200, 200);filter: drop-shadow(0 0 0.5rem rgb(163, 163, 163));"></i>
+                        {% endif %}
+                    
+                </button>
+                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;|&nbsp;
+                    On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
+            </div>
                 {% else %}
                 <h5 style="margin-left: 10px; cursor: pointer;">
                     <a href="{% url 'login' %}" style="color: red;"><b>Login</b></a> to Like Question | {{ total_likes }} Likes
@@ -443,10 +463,11 @@ likeButtons.forEach(function(button) {
                 // Example: Toggle the like button appearance
                 const likeButton = document.querySelector('#like-form-container button');
                 if (data.liked) {
-                    likeButton.innerHTML = '<img src="{% static "images/heart-solid.svg" %}" alt="" style="width: 40px;">';
+                    likeButton.innerHTML = '<i class="fa fa-heart" style="font-size:40px;color:rgb(253, 58, 58); filter: drop-shadow(0 0 0.5rem red);"></i>';
 
                 } else {
-                    likeButton.innerHTML = '<img src="{% static "images/heart-regular.svg" %}" alt="" style="width: 40px;">';
+                    likeButton.innerHTML = '<i class="fa fa-heart" style="font-size:40px;color:rgb(200, 200, 200); filter: drop-shadow(0 0 0.5rem rgb(163, 163, 163));"></i>';
+                
 
                 }
             })
