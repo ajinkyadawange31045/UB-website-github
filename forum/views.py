@@ -94,23 +94,6 @@ class TopicListView(ListView):
 class TopicDetailView(LoginRequiredMixin,DetailView):
     model = Topic
     template_name = 'forum/topic_detail.html'
-    # context_object_name = 'posts'
-
-    # def get_queryset(self):
-    #     queryset = super().get_queryset()
-    #     print('topic detail view',queryset)
-    #     search_input = self.request.GET.get('search-areaa') or ''
-    #     if search_input:
-    #         queryset = queryset.filter(title__icontains=search_input)
-    #     return queryset
-    
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(TopicDetailView, self).get_context_data(**kwargs)
-    #     posts = Post.objects.filter(topic=self.kwargs.get('pk'))
-    #     context['posts'] = posts
-    #     context['total_posts'] = posts.filter(author=self.request.user).count()
-    #     return context
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
