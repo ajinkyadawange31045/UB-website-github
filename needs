@@ -1,16 +1,43 @@
+-bookmark page. 
+-Public Profile page. (Yash)
+-Search page UI (Yash)
+-Responsive video page
+-Gallery details page design
+
+-Photo compressors is to be added in gallery to load photos faster. (like google photos)
+
+
+forum things (Sanjeev)
+- if clicked Reply button, the reply gets added automatically (It should be like we have in the submit option of the page)
+- update the new design
+- forum without login
+
+-Hiring (Anish)
+-Workon Indic Renaissance page. (this can be done later, once we launch website)
+-Signup and login using google, fb, github, etc
+-redirect login -> to previous page.
+
+-> reporting > 100
+-> 
+
+
+
 1. To make comment section async
 2. UI changes are need at many places, like in profile page, about page, forum, serach page, etc
 
 3. implementing comment section in gallery page, views, likes, etc
 4. forum, like views counts
 5. Book mark and like option for all blogs
-6. Signup and login using google, fb, github, etc
+6.
 
-6. `Make front end of entire website using react js`
-7. `Linking that front end using django backend`
 
-7. redirect login -> to previous page.
+
+
+
 8. nested comment section for forum page
 
 sanjeev -> 4th, 5th and 3rd, 8th
 5 -> done
+
+6. `Make front end of entire website using react js`
+7. `Linking that front end using django backend`
