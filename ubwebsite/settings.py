@@ -18,7 +18,7 @@ from decouple import config
 
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/ 
+# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ('SECRET_KEY')
@@ -70,12 +70,12 @@ INSTALLED_APPS = [
     'indic_r',
     'gallery',
     'no_login_forum',
-    
+
     # "django.contrib.staticfiles",
 ]
 
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4' 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
 
@@ -255,6 +255,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = ['https://ub.nitk.ac.in/']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -329,7 +332,7 @@ CKEDITOR_CONFIGS = {
 # # echo " BUILD START"
 # python3.9 -m pip install -r requirements.txt
 # python3.9 manage.py collectstatic --noinput --clear
-# # echo " BUILD END" 
+# # echo " BUILD END"
 
 # {
 #   "version": 2,
