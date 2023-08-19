@@ -111,7 +111,113 @@
                 </div>
             </div>
         </div>
+        {% if user.is_authenticated %}
+        <div class="sidebar_section newest_videos">
+            <div class="sidebar_title_container">
+                <div class="sidebar_title">Bookmarks</div>
+                <div class="sidebar_slider_nav">
+                    <div class="custom_nav_container sidebar_slider_nav_container">
+                        <div class="custom_prev custom_prev_top">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="0,5.61 5.609,0 7,0 7,1.438 2.438,6 7,10.563 7,12 5.609,12 -0.002,6.39 "/>
+                            </svg>
+                        </div>
+                        <ul id="custom_dots" class="custom_dots custom_dots_top">
+                            <li class="custom_dot custom_dot_top active"><span></span></li>
+                            <li class="custom_dot custom_dot_top"><span></span></li>
+                            <li class="custom_dot custom_dot_top"><span></span></li>
+                        </ul>
+                        <div class="custom_next custom_next_top">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="12px" viewBox="0 0 7 12" enable-background="new 0 0 7 12" xml:space="preserve">
+                                <polyline fill="#bebebe" points="6.998,6.39 1.389,12 -0.002,12 -0.002,10.562 4.561,6 -0.002,1.438 -0.002,0 1.389,0 7,5.61 "/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar_section_content">
+                <!-- Top Stories Slider -->
+                <div class="sidebar_slider_container">
+                    <div class="owl-carousel owl-theme sidebar_slider_top">
 
+                        <!-- Top Stories Slider Item -->
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in bookmark1 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in bookmark2 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in bookmark3 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="owl-item">
+                            <!-- Sidebar Post -->
+                            {% for i in bookmark4 %}
+                            <div class="side_post">
+                                <a href="/blog/{{i.url}}">
+                                    <div class="d-flex flex-row align-items-xl-center align-items-start justify-content-start">
+                                        <div class="side_post_image">
+                                            <div><img src="/media/{{i.thumbnail}}" alt="Image" style="width: 100%; height: 100%; object-fit: cover;"></div>
+                                        </div>
+                                        <div class="side_post_content">
+                                            <div class="side_post_title">{{i.title}}</div>
+                                            <small class="post_meta">{{i.author}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
         <!-- Advertising -->
 
         {%for i in adv2%}
