@@ -23,7 +23,7 @@ from blog.forms import PostSearchForm,NewCommentForm
 from django.urls import reverse
 # import time
 # from community.models import Question
-# from community.views import 
+# from community.views import
 
 # @login_required
 # def add_likes(request, ids) :
@@ -36,7 +36,7 @@ from django.urls import reverse
 #             else :
 #                 get_post.likes.add(user)
 #             return HttpResponseRedirect(reverse(post, args=(get_post.url, )))
-        
+
 from django.http import JsonResponse
 
 @login_required
@@ -48,11 +48,11 @@ def add_likes(request, ids):
             get_post.likes.remove(user)
             is_liked = False
         else:
-            get_post.likes.add(user) 
+            get_post.likes.add(user)
             is_liked = True
         likes_count = len(get_post.likes.all())
         return JsonResponse({'likes_count': likes_count, 'is_liked': is_liked})
-       
+
 @login_required
 def add_bookmark(request, ids) :
     if request.user.is_authenticated :
@@ -96,43 +96,43 @@ def sidebar():
     except:
         main = None
         post_main = None
-    
+
     try:
         first = Category.objects.annotate()[1]
         post_first = Post_with_image.objects.filter(category=first)[0:5]
     except:
         first = None
         post_first = None
-    
+
     try:
         second = Category.objects.annotate()[2]
         post_second = Post_with_image.objects.filter(category=second)[0:5]
     except:
         second = None
         post_second = None
-    
+
     try:
         third = Category.objects.annotate()[3]
         post_third = Post_with_image.objects.filter(category=third)[0:5]
     except:
         third = None
         post_third = None
-    
-    try:       
+
+    try:
         forth = Category.objects.annotate()[4]
         post_forth = Post_with_image.objects.filter(category=forth)[0:5]
     except:
         forth = None
         post_forth = None
-    
-    try:       
+
+    try:
         fifth = Category.objects.annotate()[5]
         post_fifth = Post_with_image.objects.filter(category=fifth)[0:5]
     except:
         fifth = None
         post_fifth = None
-    
-    try:       
+
+    try:
         sixth = Category.objects.annotate()[6]
         post_sixth = Post_with_image.objects.filter(category=sixth)[0:5]
     except:
@@ -159,9 +159,9 @@ def home(request):
         adv2 = Advertisement.objects.all()[1::]
     except:
         adv2 = None
-        
+
     # sidebar
-    x_one = sidebar() 
+    x_one = sidebar()
     # sidebar ends
 
     posts = Post_with_image.objects.all()[:11]
@@ -170,11 +170,11 @@ def home(request):
         team_core_members = Core_Team.objects.all()
     except:
         tean_core_members = None
-    
-    
-    
+
+
+
     values = Value.objects.all()
-    
+
     # contact form
     user_comment = None
     if request.method == 'POST':
@@ -188,9 +188,9 @@ def home(request):
         contact_form = ContactForm()
 
     post1 = Post_with_image.objects.all()
-    latest = post1[0:4] 
-    
-    
+    latest = post1[0:4]
+
+
     # post with most views
     try:
         aj = Post_with_image.objects.all().order_by('-blog_views')[0:20]
@@ -198,8 +198,29 @@ def home(request):
     except:
         aj = None
 
-    data = {'all_categories':all_categories,'posts': posts,'cat_4': first_4_categories,'cat_r':remaining_categoreis,'team_core_members':team_core_members,'values':values,'contact_form':contact_form,'user_comment':user_comment,"initiatives":initiatives,'future':future,'adv1':adv1,'adv2':adv2,'aj':aj,'user': request.user,}
-    
+    if request.user.is_authenticated :
+        bookmarks = request.user.bookmarked_blogs.all()
+        try:
+            bookmark1 = bookmarks[0:5]
+        except bookmark1.DoesNotExist:
+            bookmark1 = None
+        try:
+            bookmark2 = bookmarks[5:10]
+        except bookmark1.DoesNotExist:
+            bookmark2 = None
+        try:
+            bookmark3 = bookmarks[10:15]
+        except bookmark2.DoesNotExist:
+            bookmark3 = None
+        try:
+            bookmark4 = bookmarks[15:20]
+        except bookmark3.DoesNotExist:
+            bookmark4 = None
+
+        data = {'all_categories':all_categories,'posts': posts,'cat_4': first_4_categories,'cat_r':remaining_categoreis,'team_core_members':team_core_members,'values':values,'contact_form':contact_form,'user_comment':user_comment,"initiatives":initiatives,'future':future,'adv1':adv1,'adv2':adv2,'aj':aj,'user': request.user, 'bookmark': bookmarks, 'bookmark1': bookmark1, 'bookmark2': bookmark2, 'bookmark3': bookmark3, 'bookmark4': bookmark4}
+    else :
+        data = {'all_categories':all_categories,'posts': posts,'cat_4': first_4_categories,'cat_r':remaining_categoreis,'team_core_members':team_core_members,'values':values,'contact_form':contact_form,'user_comment':user_comment,"initiatives":initiatives,'future':future,'adv1':adv1,'adv2':adv2,'aj':aj,'user': request.user,}
+
     # merging above dictionaries
     data_final = {**x_one,**data}
     return render(request, "blog/home.html", data_final)
@@ -221,7 +242,7 @@ def post(request, url):
         adv2 = Advertisement.objects.all()[1::]
     except:
         adv2 = None
-   
+
 #    comment section
     post_comment =Post_with_image.objects.filter(url=url).first()
     comments = post.comments.filter(status=True)
@@ -250,7 +271,7 @@ def post(request, url):
     blog_object.save()
     # time.sleep(2)
 
-    # comment section 
+    # comment section
     user_contact = None
     if request.method == 'POST':
         comment_form = NewCommentForm(request.POST)
@@ -261,7 +282,7 @@ def post(request, url):
             return HttpResponseRedirect(request.path_info)
     else:
         comment_form = NewCommentForm()
-    
+
 
     # sidebar
     # x_one = sidebar()
@@ -278,7 +299,7 @@ def post(request, url):
 
 
     data = {'post':post,'cats':cats,'datetime':datetime,'user': request.user,'post_comment':post_comment, 'comments': comments, 'comment_form': comment_form,'allcomments': allcomments,'future':future,'adv1':adv1,'adv2':adv2,'cat_r':remaining_categoreis,'value':value,'latest':latest, 'liked':liked,'is_bookmarked':is_bookmarked,'like_count':like_count}
-    
+
     # merging both dictionaries
     # data_final = {**x_one,**data}
     data_final = data
@@ -300,7 +321,7 @@ def category(request, url):
         adv2 = Advertisement.objects.all()[1::]
     except:
         adv2 = None
-        
+
     # sidebar
     x_one = sidebar()
 
@@ -325,18 +346,18 @@ def category(request, url):
         posts = paginator.page(paginator.num_pages)
 
     data =  {'cat': cat,'cat_4': first_4_categories,'cat_r':remaining_categoreis, 'posts': posts,'p1':p1,'cats':cats,'future':future,'adv1':adv1,'adv2':adv2}
-    
+
     # merging both dictionaries
     data_final = {**x_one,**data}
     return render(request, "blog/category.html",data_final)
 
 # load more ________________________________________________________________________________________________
-def load_more(request):    
-    loaded_item = request.GET.get('loaded_item')    
-    loaded_item_int = int(offset)    
-    limit = 2    
-    post_obj = list(Post_with_image().objects.values() [loaded_item_int:loaded_item_int+limit])    
-    data = {'posts': post_obj}    
+def load_more(request):
+    loaded_item = request.GET.get('loaded_item')
+    loaded_item_int = int(offset)
+    limit = 2
+    post_obj = list(Post_with_image().objects.values() [loaded_item_int:loaded_item_int+limit])
+    data = {'posts': post_obj}
     return JsonResponse(data=data)
 
 

@@ -100,7 +100,7 @@
                             <div class="text-primary">
                                 <strong id="like-post-count" >{{like_count}}</strong>
                             </div>
-                            
+
                             <style>
                                 .transparent-button {
                                     background-color: transparent;
@@ -108,14 +108,14 @@
                                     padding: 0;
                                     cursor: pointer;
                                 }
-                                
+
                                 .transparent-icon {
                                     color: #000; /* Set the desired color for the icons */
                                     opacity: 0.5; /* Adjust the opacity value as needed */
                                 }
                             </style>
-                            
-                            {% if use.is_authenticated %}
+
+                            {% if user.is_authenticated %}
                             <form class="ml-3" action="{% url 'likes' ids=post.post_id %}" method="post" id="like-form">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-link transparent-button" id="like-button">
@@ -131,17 +131,17 @@
                                     <a href="/login" target="_blank"><i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i></a>
                             </button>
                             {% endif %}
-                            
 
 
-                            {% if use.is_authenticated %}
+
+                            {% if user.is_authenticated %}
                             <form class="ml-3" action="{% url 'bookmark' ids=post.post_id %}" method="post" id="bookmark-form">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-link transparent-button" id="bookmark-button">
                                     {% if is_bookmarked %}
-                                        <i class="fa fas fa-bookmark fa-2x"></i> 
+                                        <i class="fa fas fa-bookmark fa-2x"></i>
                                     {% else %}
-                                        <i class="fa fas fa-bookmark fa-2x transparent-icon"></i> 
+                                        <i class="fa fas fa-bookmark fa-2x transparent-icon"></i>
                                     {% endif %}
                                 </button>
                             </form>
@@ -150,7 +150,7 @@
                                     <a href="/login" target="_blank"><i class="fa fas fa-bookmark fa-2x transparent-icon"></i></a>
                             </button>
                             {% endif %}
-                            
+
                             <div class="dropdownard ml-3">
                                 <a class="btn btn-successs" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <style>
@@ -158,9 +158,9 @@
                                             color: grey;
                                         }
                                     </style>
-                                    
+
                                     <i class="fa fas fa-share fa-2x blue"></i>
-                                    
+
                                 </a>
                                 <div class="dropdownard-content dropdown-menu" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">{% post_to_facebook object_or_url "Facebook!" %}</a>
@@ -170,7 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
 
 
 
@@ -237,7 +237,7 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="simalar_posts">
                         <!-- Comments -->
                         <div class="comments">
@@ -355,10 +355,10 @@
                     </div>
 
 
-                   
-                   
-                   
-                   
+
+
+
+
                     <!--                    post feeds-->
 
                     {% comment %} <style>
@@ -400,7 +400,7 @@
                             </div>
                         </div>
                     </section> {% endcomment %}
-                    
+
 
                     {% comment %} methods 2 for post feeds {% endcomment %}
                     <style>
@@ -418,7 +418,7 @@
                           font-size: 15px;
                           transition: 0.3s;
                         }
-                      
+
                         /* Style for the collapsed content */
                         .content {
                           padding: 0 18px;
@@ -426,40 +426,40 @@
                           overflow: hidden;
                           transition: max-height 0.2s ease-out;
                         }
-                      
+
                         /* Style for the active collapsible button */
                         .active, .collapsible:hover {
                           color: orangered;
                           transform: translateY(-2px);
                         }
-                      
+
                         /* Style for the content inside the collapsed div */
                         .card {
                           transition: 0.3s;
                         }
-                      
+
                         .card:hover {
                           box-shadow: 0 10px 20px rgba(156, 156, 156, 0.285), 0 6px 6px rgba(151, 145, 93, 0.512);
                           transform: translateY(-7px);
                         }
                     </style>
-                      
+
                     <div class="container text-center" style="margin-top: 135px; margin-bottom: 120px;">
                         {% comment %} <div class="post_title">Other Blogs</div> {% endcomment %}
                         <div class="post_comment_title">Other Blogs</div>
                         {% comment %} <div class="post_title">Semesters</div> {% endcomment %}
                         <div class="pt-5">
                             {% for i in latest %}
-                          
+
                           <a href="/blog/{{i.url}}"><button class="collapsible w-100 my-1 m-1" type="button" onclick="toggleCollapsible(event)">{{ i.title }}</button></a>
-                           
-                             
-                      
+
+
+
 
                           {% endfor %}
                         </div>
                     </div>
-                      
+
                       <script>
                         function toggleCollapsible(event) {
                           const collapsibleButton = event.currentTarget;
@@ -520,8 +520,8 @@
 <script>
     function scrollToTop() {
       window.scroll({
-        top: 0, 
-        left: 0, 
+        top: 0,
+        left: 0,
         behavior: 'smooth'
       });
     }
@@ -580,7 +580,7 @@
 
                 } else {
                     likeButton.innerHTML = '<i class="fa fa-light fa-thumbs-up fa-2x transparent-icon"></i>';
-                
+
 
                 }
             })
@@ -601,7 +601,7 @@
             // Send the AJAX request
             fetch(url, {
                 method: 'POST',
-                body: formData  
+                body: formData
             })
             .then(function(response) {
                 if (response.ok) {
@@ -622,7 +622,7 @@
 
                 } else {
                     likeButton.innerHTML = '<i class="fa fas fa-bookmark fa-2x transparent-icon"></i>';
-                
+
 
                 }
             })

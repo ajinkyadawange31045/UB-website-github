@@ -27,3 +27,9 @@ def all_pages(request):
     return render(request,'non_blog/blog_page.html',data)
 
 
+def bookmark_blogs(request):
+    post = request.user.bookmarked_blogs.all()
+    first_4_categories = Category.objects.all()[0:4]
+    remaining_categories = Category.objects.all()[::-1]
+    data = {'post':post,'cat_4': first_4_categories,'cat_r':remaining_categories,}
+    return render(request,'non_blog/bookmark.html',data)
