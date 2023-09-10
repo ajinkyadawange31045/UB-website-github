@@ -7,7 +7,7 @@ venv/
 
 
 # Ignore SQLite database file
-db.sqlite3
+# db.sqlite3
 
 # Ignore the __pycache__ directories
 __pycache__/
@@ -18,8 +18,8 @@ migrations/
 # Logs and databases
 *.log
 *.sql
-*.sqlite
+# *.sqlite
 *.db
 
 # Database
-*.sqlite3
+# *.sqlite3

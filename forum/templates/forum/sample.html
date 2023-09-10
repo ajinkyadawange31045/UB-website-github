@@ -8,7 +8,7 @@
     content="Utkrishta Bharath community feature,Utkrishta Bharath NITK, Utkrishta Bharath nitk, India, Glories of India, ancient india, making india Utkrishta, community, stackoverflow, github, questions and answers, facebook-Utkrishta Bharath, twitter-Utkrishta Bharath, linkedIn-Utkrishta Bharath, Bharath Darshan,  ">
 {% endblock %}
 
-{% block content %}{% load crispy_forms_tags %}{% csrf_token %}
+{% block content %}{% load crispy_forms_tags %}
 <style>
     .ard {
         background-color: black;
@@ -148,7 +148,7 @@
 
 
     {% for comment in comments %}
-    <div class="container-fluid mt-100 mb-5">
+    <div class="container-fluid mt-100">
         <div class="row">
             <div class="col-md-12">
                 <div class="card mb-4">
@@ -237,40 +237,31 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
-        <form class="ml-3" id="commentForm{{ comment.id }}" method="post" style="display: none;">
+        <form class="ml-3 reply-form" id="commentForm{{ comment.id }}" method="post" style="display: none;">
             {% csrf_token %}
-            <div class="mb-3">
+            <div class="form-group">
                 <textarea class="form-control" rows="3" placeholder="Reply" name="nested_comment" style="height: 2.5rem;"></textarea>
             </div>
-            <div style="display: flex;">
-                <button type="button" class="btn btn-outline-success reply-button" data-comment-id="{{ comment.id }}" style="border-radius: 1rem; max-width: fit-content; margin-right: 1rem; margin-left: auto;">Reply</button>
+            <div class="form-group">
+                <button type="button" class="btn btn-outline-success reply-button-natural" data-comment-id="{{ comment.id }}">Reply</button>
             </div>
         </form>
-        
+<style>
+    <style>
+    .reply-button-natural {
+        background-color: #ffffff;
+        color: #000000;
+        border: 1px solid #000000;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+        font-size: 14px;
+    }
 
-
-        
-        <style>
-            <style>
-            .reply-button-natural {
-                background-color: #ffffff;
-                color: #000000;
-                border: 1px solid #000000;
-                padding: 0.5rem 1rem;
-                border-radius: 1rem;
-                font-size: 14px;
-            }
-
-            .reply-button-natural:hover {
-                background-color: #0111000;
-                color: #ffffff;
-            }
-        </style>
+    .reply-button-natural:hover {
+        background-color: #0111000;
+        color: #ffffff;
+    }
+</style>
 
        
         
@@ -307,29 +298,21 @@
 
 
 
-    <div class="container">
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                {{form|crispy}}
-            </fieldset>
-            <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
-            </div>
-        </form>
-    </div>
-    {% if object.author == user %}
-           <!-- <a style="text-decoration: none; " class="btn btn-outline-secondary"
-        href="{% url 'forum:forum-index' %}">&#x21a9;</a><br><br> -->
-    <p class="pb-1 text-warning">Only those who have posted questions can edit or delete them.</p>
-    <a style="text-decoration: none; " class="btn btn-outline-success"
-        href="{% url 'forum:post-update' object.id %}">&#x270E;</a>
-    <a style="text-decoration: none; " class="btn btn-outline-danger"
-        href="{% url 'forum:post-delete' object.id %}">&#x2716;</a>
-        
-    {% endif %}
 
-        
+
+        {% if object.author == user %}
+       
+        <!-- <a style="text-decoration: none; " class="btn btn-outline-secondary"
+            href="{% url 'forum:forum-index' %}">&#x21a9;</a><br><br> -->
+        <p class="pb-1 text-warning">Only those who have posted questions can edit or delete them.</p>
+        <a style="text-decoration: none; " class="btn btn-outline-success"
+            href="{% url 'forum:post-update' object.id %}">&#x270E;</a>
+        <a style="text-decoration: none; " class="btn btn-outline-danger"
+            href="{% url 'forum:post-delete' object.id %}">&#x2716;</a>
+            
+        {% endif %}
+
+
 
     </div>
 

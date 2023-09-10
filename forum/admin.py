@@ -22,7 +22,7 @@ admin.site.register(Post,Post_Admin)
 
 # @admin.register(Comment)
 class Comment_Admin(admin.ModelAdmin):
-    list_display = ('author','id', 'post','body')
+    list_display = ('author','id', 'body')
     search_fields = ('post','author','body')
     list_filter = ('post','author')
 admin.site.register(Comment,Comment_Admin)

@@ -118,25 +118,13 @@
                 </div>
                 {% endif %}
                 {% endcomment %}
-                <div style="display: flex; align-items: center; margin-left: 10px;">
-                <button type="submit" class="btn btn-link transparent-button forum-like" value="{{ object.id }}" style="cursor: pointer; ">
-                   
-                        {% if liked %}
-                            <i class="fa fa-heart" style="font-size:40px;color:rgb(253, 58, 58); filter: drop-shadow(0 0 0.5rem red);"></i>
-                        {% else %}
-                            <i class="fa fa-heart" style="font-size:40px;color:rgb(200, 200, 200);filter: drop-shadow(0 0 0.5rem rgb(163, 163, 163));"></i>
-                        {% endif %}
-                    
-                </button>
-                <h5 style="margin-left: 10px; cursor: pointer;">Asked By: {{ object.author.username }}&nbsp;|&nbsp;
-                    On: {{ object.date_created|date:"j F, Y" }}&nbsp;<br><strong id="like-forum-dicussion">{{ total_likes }}</strong> Likes</h5>
-            </div>
+                
                 {% else %}
                 <h5 style="margin-left: 10px; cursor: pointer;">
                     <a href="{% url 'login' %}" style="color: red;"><b>Login</b></a> to Like Question | {{ total_likes }} Likes
                 </h5>
                 {% endif %}
-            </form>
+            
         </div>
     </div>
 
@@ -173,57 +161,85 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header" style="border-radius: 1rem 1rem 0rem 0rem;">
-                            <div class="media flex-wrap w-100 align-items-center"> 
+                            <div class="media flex-wrap w-100 align-items-center">
+                                <div class="media-left">
                                     {% if comment.author.profile.profile_image %}
                                     <img class="rounded-circle account-img thumbpic" src="{{ comment.author.profile.profile_image.url }}" style="width: 50px; height: 50px; object-fit: cover;" alt="NA">
-
                                     {% else %}
-                                        <img class="rounded-circle account-img thumbpic" src="{% static 'images/user_avtar.webp' %}" style="width: 50px; height: 50px; object-fit: cover;">
+                                    <img class="rounded-circle account-img thumbpic" src="{% static 'images/user_avtar.webp' %}" style="width: 50px; height: 50px; object-fit: cover;">
                                     {% endif %}
-                                {% comment %} </a> {% endcomment %}
-                                {% comment %} final-ub-website-project\static\images\user_avtar.webp           {% endcomment %}
-                                <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true">{{comment.author.username}}</a>
-                                    
-                                {% comment %} <div class="media-body ml-3"> <a style="font-weight: 500; color: black;" href="{% url 'profile' username=comment.author.username %}" data-abc="true">{{comment.author.username}}</a> {% endcomment %}
-                                    <div class="text-muted small">{{comment.timestamp|date:"j F, Y"}}</div>
                                 </div>
-                                
+                                <div class="media-body ml-3">
+                                    <a style="font-weight: 500; color: black;" href="{% url 'public-profile' comment.author.username %}" data-abc="true">{{ comment.author.username }}</a>
+                                    <div class="text-muted small">{{ comment.timestamp|date:"j F, Y" }}</div>
+                                </div>
                                 <div class="text-muted small p-3">
-                                    <div>Member since <strong>{{comment.author.date_joined|date:"j F, Y"}}</strong></div>
-                                    <div><strong> {{ comment.author.post_set.count }}</strong> posts</div>  
+                                    <div>Member since <strong>{{ comment.author.date_joined|date:"j F, Y" }}</strong></div>
+                                    <div><strong>{{ comment.author.post_set.count }}</strong> posts</div>
                                 </div>
                             </div>
-                            <div style="color: black; margin: auto; max-width: 50rem;">{{comment.body}}</div>
-                        
                         </div>
-                        <div class="comment-foot">
-                            <p class = "reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem; " >View Replies <strong id="reply-length{{comment.id}}">{{comment.children.all|length}}</strong></p>
-                            
-                            <form class="ml-3 like-comment-form" data-comment-id="{{ comment.id }}" style="margin-right: 1rem; margin-left: auto;">
-                                {% csrf_token %}
-                                <button type="button" class="btn btn-link transparent-button like-comment-button">
-                                    <span class="like-icon">
-                                        {% if request.user in comment.comment_likes.all %}
-                                            <a href="/login"><i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i></a>
-                                        {% else %}
-                                            <a href="/login"><i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i></a>
-                                        {% endif %}
-                                    </span>
-                                    <span class="like-count">{{ comment.comment_likes_count }}</span>
-                                </button>
-                            </form>
-                            
-                            
-                            
-                            
-                            <p class = "reply" style="margin-right: 1rem; margin-left: auto; text-decoration:none; "> <a href="/login">Add Reply</a></p>
-                        </div>
-                        <!-- <div class="card-body">
-                            <p class="card-text post_p" style="font-weight: 400; color: black;">
-                                
+                        <div class="card-body">
+                            <p class="card-text" style="font-weight: 400; color: black;">
+                                {{ comment.body }}
                             </p>
-                        </div> -->
-                       
+                        </div>
+                        <style>
+                            /* CSS for the hover effect and arrow icons */
+                            .reply:hover {
+                                cursor: pointer;
+                                background-color: rgb(46 255 0 / 36%);
+                                border-radius: 10%;
+                                padding:3px;
+                            }
+                            
+                            .reply-icon {
+                                font-size: 16px;
+                                margin-right: 4px;
+                            }
+                            
+                            .reply-icon-up {
+                                transform: rotate(180deg);
+                            }
+                        </style>
+                        
+                        <!-- Updated code for "View Replies" and "Add Reply" buttons -->
+                        <div class="comment-foot">
+                            <p class="reply" onclick="showreply('{{ comment.id }}')" style="margin-left: 1rem;">
+                                {% if comment.children.all|length > 0 %}
+                                    {% if show_replies %}
+                                    {% comment %} <i class="fa fas fa-reply"></i> {% endcomment %}
+                                    <i class="fa fas fa-solid fa-chevron-up"></i>
+                                    {% else %}
+                                        <i class="fa fas fa-solid fa-chevron-down"></i>
+                                        
+                                    {% endif %}
+                                {% endif %}
+                                
+                                {% if comment.children.all|length == 1 %}
+                                    <strong id="reply-length{{ comment.id }}">1 reply</strong>
+                                {% else %}
+                                    <strong id="reply-length{{ comment.id }}">{{ comment.children.all|length }} replies</strong>
+                                {% endif %}
+                            </p>
+                            <form class="like-comment-form" data-comment-id="{{ comment.id }}" style="margin-left: auto;">
+                                {% csrf_token %}
+                                <a href="/login"><button type="button"  class="btn btn-link transparent-button like-comment-button">
+                                    <span class="like-icon">
+                                        
+                                            <i class="fa fa-heart" style="font-size:18px;color:rgb(200,200,200);"></i>
+                                        
+                                    </span>
+                                    <span class="like-count">{{ reply.comment_likes_count }}</span>
+                                </button></a>
+                            </form>
+                            <a href="/login"><p class="reply" onclick="showForm('{{ comment.id }}')" style="margin-right: 1rem;">
+                                <i class="fa fas fa-reply"></i>
+                                Add Reply
+                            </p></a>
+                        </div>
+                        
+                                          
                     </div>
                 </div>
             </div>
@@ -252,16 +268,7 @@
                 </div>
                 <form class="ml-3 like-comment-form" data-comment-id="{{ reply.id }}" style="margin-right: 1rem; margin-left: auto;">
                     {% csrf_token %}
-                    <button type="button" class="btn btn-link transparent-button like-comment-button">
-                        <span class="like-icon">
-                            {% if request.user in reply.comment_likes.all %}
-                                <i class="fa fa-heart" style="font-size:18px;color:rgb(253, 58, 58);"></i>
-                            {% else %}
-                                <i class="fa fa-heart" style="font-size:18px;color:rgb(200, 200, 200);"></i>
-                            {% endif %}
-                        </span>
-                        <span class="like-count">{{ reply.comment_likes_count }}</span>
-                    </button>
+                    <a href="/login"></a>
                 </form>
                 
             {% endfor %}
@@ -271,31 +278,8 @@
        
 
 
-        <div class="container">
-            <form method="POST">
-                {% csrf_token %}
-                <fieldset class="form-group">
-                    {{form|crispy}}
-                </fieldset>
-                <div class="form-group">
-                    <button class="btn btn-outline-info" type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
-
-
-
-        {% if object.author == user %}
-       
-        <!-- <a style="text-decoration: none; " class="btn btn-outline-secondary"
-            href="{% url 'forum:forum-index' %}">&#x21a9;</a><br><br> -->
-        <p class="pb-1 text-warning">Only those who have posted questions can edit or delete them.</p>
-        <a style="text-decoration: none; " class="btn btn-outline-success"
-            href="{% url 'forum:post-update' object.id %}">&#x270E;</a>
-        <a style="text-decoration: none; " class="btn btn-outline-danger"
-            href="{% url 'forum:post-delete' object.id %}">&#x2716;</a>
-            
-        {% endif %}
+            <a href="/login"><button class="btn btn-outline-info" type="submit">Login to reply</button>
+    </a>
 
 
 

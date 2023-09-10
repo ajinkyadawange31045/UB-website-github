@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-&98^%yv94qr--s3jm$j=5t@1&0#a0h_=5y+j#7j@k1w9cq^df=
 # DEBUG = config('DEBUG',cast = bool)
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.14.0.83','ub.nitk.ac.in','www.ub.nitk.ac.in','127.0.0.1']
+ALLOWED_HOSTS = ['10.14.0.83','ub.nitk.ac.in','www.ub.nitk.ac.in','127.0.0.1','localhost']
 
 # ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
@@ -92,7 +92,6 @@ CSRF_TRUSTED_ORIGINS = [
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = False
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
@@ -107,9 +106,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # "django.middleware.security.SecurityMiddleware",
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -216,32 +215,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-# DISABLE_COLLECTSTATIC = 1
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-# from dotenv import path
-# from dotenv import load_dotenv
-
-# load_dotenv()
-# STATIC_DIR = os.path.join(BASE_DIR,'static')
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
-
+DISABLE_COLLECTSTATIC = 1
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [
-#     STATIC_DIR,
-# ]
 
-
-# if DEBUG:
-#     STATICFILES_DIRS = [
-#         STATIC_DIR,
-#    ]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = os.path.join(BASE_DIR,'static'),
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
@@ -249,24 +226,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
-
-# SESSION_COOKIE_SECURE = False
-# CSRF_COOKIE_SECURE = False
-# SECURE_SSL_REDIRECT = False
-
-# CORS_REPLACE_HTTPS_REFERER      = False
-# HOST_SCHEME                     = "http://"
-# SECURE_PROXY_SSL_HEADER         = None
-# SECURE_SSL_REDIRECT             = False
-# SESSION_COOKIE_SECURE           = False
-# CSRF_COOKIE_SECURE              = False
-# SECURE_HSTS_SECONDS             = None
-# SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
-# SECURE_FRAME_DENY               = False
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 
 
 CKEDITOR_CONFIGS = {
@@ -333,44 +292,3 @@ CKEDITOR_CONFIGS = {
         ]),
     }
 }
-
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
-
-
-# inside build_files.sh
-# # echo " BUILD START"
-# python3.9 -m pip install -r requirements.txt
-# python3.9 manage.py collectstatic --noinput --clear
-# # echo " BUILD END"
-
-# {
-#   "version": 2,
-#   "builds": [
-#     {
-#       "src": "ubwebsite/wsgi.py",
-#       "use": "@vercel/python",
-#       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-#     },
-#     {
-#       "src": "build_files.sh",
-#       "use": "@vercel/static-build",
-#       "config": {
-#         "distDir": "staticfiles_build"
-#       }
-#     }
-#   ],
-#   "routes": [
-#     {
-#       "src": "/static/(.*)",
-#       "dest": "/static/$1"
-#     },
-#     {
-#       "src": "/(.*)",
-#       "dest": "ubwebsite/wsgi.py"
-#     }
-#   ]
-# }
-
-
-
