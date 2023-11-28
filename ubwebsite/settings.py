@@ -33,7 +33,7 @@ SECRET_KEY = 'django-insecure-&98^%yv94qr--s3jm$j=5t@1&0#a0h_=5y+j#7j@k1w9cq^df=
 # DEBUG = config('DEBUG',cast = bool)
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.14.0.83','ub.nitk.ac.in','www.ub.nitk.ac.in','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['10.14.0.83','ub.nitk.ac.in','www.ub.nitk.ac.in','127.0.0.1','0.0.0.0','localhost']
 
 # ALLOWED_HOSTS = ['.vercel.app', '.now.sh']
 
@@ -104,9 +104,9 @@ MESSAGE_TAGS = {
 # DISABLE_COLLECTSTATIC = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # "django.middleware.security.SecurityMiddleware",
+    "django.middleware.security.SecurityMiddleware",
     # 'whitenoise.middleware.WhiteNoiseMiddleware',
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
